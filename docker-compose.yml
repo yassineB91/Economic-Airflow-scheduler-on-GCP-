@@ -5,15 +5,15 @@ services:
     image: postgres:latest
     container_name: postgres
     environment:
-      POSTGRES_USER: airflow
-      POSTGRES_PASSWORD: airflow
-      POSTGRES_DB: airflow
+      POSTGRES_USER: ${POSTGRES_USER:-airflow}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me-postgres-password}
+      POSTGRES_DB: ${POSTGRES_DB:-airflow}
     ports:
       - "5432:5432"
     networks:
       - airflow-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-airflow}"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -42,11 +42,16 @@ services:
       bash -c "
       mkdir -p /opt/airflow/logs &&
       airflow db init &&
-      airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com --password admin
+      airflow users create --username ${AIRFLOW_ADMIN_USERNAME:-admin} --firstname ${AIRFLOW_ADMIN_FIRSTNAME:-Admin} --lastname ${AIRFLOW_ADMIN_LASTNAME:-User} --role Admin --email ${AIRFLOW_ADMIN_EMAIL:-admin@example.com} --password ${AIRFLOW_ADMIN_PASSWORD:-change-me-airflow-admin-password}
       "
     environment:
       - AIRFLOW__CORE__EXECUTOR=CeleryExecutor
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-change-me-postgres-password}@postgres:5432/${POSTGRES_DB:-airflow}
+      - AIRFLOW_ADMIN_USERNAME
+      - AIRFLOW_ADMIN_FIRSTNAME
+      - AIRFLOW_ADMIN_LASTNAME
+      - AIRFLOW_ADMIN_EMAIL
+      - AIRFLOW_ADMIN_PASSWORD
       - GOOGLE_APPLICATION_CREDENTIALS_JSON
       - AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT
     user: root
@@ -62,7 +67,7 @@ services:
     command: airflow webserver
     environment:
       - AIRFLOW__CORE__EXECUTOR=CeleryExecutor
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-change-me-postgres-password}@postgres:5432/${POSTGRES_DB:-airflow}
       - AIRFLOW__CELERY__BROKER_URL=redis://redis:6379/0
       - AIRFLOW__CELERY__RESULT_BACKEND=redis://redis:6379/0
       - AIRFLOW__CORE__REMOTE_LOGGING=True
@@ -70,7 +75,12 @@ services:
       - AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER=gs://${GCS_LOGGING_BUCKET}
       - AIRFLOW__LOGGING__REMOTE_LOG_CONN_ID=google_cloud_default
       - AIRFLOW__API__AUTH_BACKENDS=airflow.api.auth.backend.basic_auth
-      - AIRFLOW_CONN_SLACK_WEBHOOK=https://hooks.slack.com/services/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
+      - AIRFLOW_CONN_SLACK_WEBHOOK
+      - AIRFLOW_ADMIN_USERNAME
+      - AIRFLOW_ADMIN_FIRSTNAME
+      - AIRFLOW_ADMIN_LASTNAME
+      - AIRFLOW_ADMIN_EMAIL
+      - AIRFLOW_ADMIN_PASSWORD
       - GOOGLE_APPLICATION_CREDENTIALS_JSON
       - AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT
     ports:
@@ -97,7 +107,7 @@ services:
     command: airflow scheduler
     environment:
       - AIRFLOW__CORE__EXECUTOR=CeleryExecutor
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-change-me-postgres-password}@postgres:5432/${POSTGRES_DB:-airflow}
       - AIRFLOW__CELERY__BROKER_URL=redis://redis:6379/0
       - AIRFLOW__CELERY__RESULT_BACKEND=redis://redis:6379/0
       - AIRFLOW__CORE__REMOTE_LOGGING=True
@@ -105,7 +115,12 @@ services:
       - AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER=gs://${GCS_LOGGING_BUCKET}
       - AIRFLOW__LOGGING__REMOTE_LOG_CONN_ID=google_cloud_default
       - AIRFLOW__API__AUTH_BACKENDS=airflow.api.auth.backend.basic_auth
-      - AIRFLOW_CONN_SLACK_WEBHOOK=https://hooks.slack.com/services/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
+      - AIRFLOW_CONN_SLACK_WEBHOOK
+      - AIRFLOW_ADMIN_USERNAME
+      - AIRFLOW_ADMIN_FIRSTNAME
+      - AIRFLOW_ADMIN_LASTNAME
+      - AIRFLOW_ADMIN_EMAIL
+      - AIRFLOW_ADMIN_PASSWORD
       - GOOGLE_APPLICATION_CREDENTIALS_JSON
       - AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT
     networks:
@@ -125,7 +140,7 @@ services:
     command: airflow celery worker
     environment:
       - AIRFLOW__CORE__EXECUTOR=CeleryExecutor
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-change-me-postgres-password}@postgres:5432/${POSTGRES_DB:-airflow}
       - AIRFLOW__CELERY__BROKER_URL=redis://redis:6379/0
       - AIRFLOW__CELERY__RESULT_BACKEND=redis://redis:6379/0
       - AIRFLOW__CORE__REMOTE_LOGGING=True
@@ -133,7 +148,12 @@ services:
       - AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER=gs://${GCS_LOGGING_BUCKET}
       - AIRFLOW__LOGGING__REMOTE_LOG_CONN_ID=google_cloud_default
       - AIRFLOW__API__AUTH_BACKENDS=airflow.api.auth.backend.basic_auth
-      - AIRFLOW_CONN_SLACK_WEBHOOK=https://hooks.slack.com/services/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
+      - AIRFLOW_CONN_SLACK_WEBHOOK
+      - AIRFLOW_ADMIN_USERNAME
+      - AIRFLOW_ADMIN_FIRSTNAME
+      - AIRFLOW_ADMIN_LASTNAME
+      - AIRFLOW_ADMIN_EMAIL
+      - AIRFLOW_ADMIN_PASSWORD
       - GOOGLE_APPLICATION_CREDENTIALS_JSON
       - AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT
     networks:

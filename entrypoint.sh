@@ -14,13 +14,18 @@ fi
 # Initialize the Airflow database if it hasn't been initialized yet
 if [[ ! -f /opt/airflow/.initialized ]]; then
     airflow db init
+    AIRFLOW_ADMIN_USERNAME="${AIRFLOW_ADMIN_USERNAME:-admin}"
+    AIRFLOW_ADMIN_FIRSTNAME="${AIRFLOW_ADMIN_FIRSTNAME:-Admin}"
+    AIRFLOW_ADMIN_LASTNAME="${AIRFLOW_ADMIN_LASTNAME:-User}"
+    AIRFLOW_ADMIN_EMAIL="${AIRFLOW_ADMIN_EMAIL:-admin@example.com}"
+    AIRFLOW_ADMIN_PASSWORD="${AIRFLOW_ADMIN_PASSWORD:-change-me-airflow-admin-password}"
     airflow users create \
-        --username admin \
-        --firstname Admin \
-        --lastname User \
+        --username "$AIRFLOW_ADMIN_USERNAME" \
+        --firstname "$AIRFLOW_ADMIN_FIRSTNAME" \
+        --lastname "$AIRFLOW_ADMIN_LASTNAME" \
         --role Admin \
-        --email admin@example.com \
-        --password admin
+        --email "$AIRFLOW_ADMIN_EMAIL" \
+        --password "$AIRFLOW_ADMIN_PASSWORD"
     
     # Add Google Cloud connection
     if [ -n "$AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT" ]; then

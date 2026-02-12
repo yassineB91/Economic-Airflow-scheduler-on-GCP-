@@ -100,6 +100,13 @@ Flow:
 - `GCS_LOGGING_BUCKET`
 - `GOOGLE_APPLICATION_CREDENTIALS_JSON` (JSON content, not a file path)
 - `AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT` (Airflow connection URI)
+- `AIRFLOW_CONN_SLACK_WEBHOOK` (optional, required for Slack alerts)
+- `POSTGRES_USER`
+- `POSTGRES_PASSWORD`
+- `POSTGRES_DB`
+- `AIRFLOW_ADMIN_USERNAME`
+- `AIRFLOW_ADMIN_PASSWORD`
+- `AIRFLOW_ADMIN_EMAIL`
 
 ## Run Locally
 
@@ -112,11 +119,20 @@ docker build -t europe-west1-docker.pkg.dev/${PROJECT_ID}/airflow/airflow:${IMAG
 2. Export required env vars:
 
 ```bash
+cp .env.example .env
+
 export PROJECT_ID="your-gcp-project"
 export IMAGE_TAG="dev"
 export GCS_LOGGING_BUCKET="your-log-bucket"
 export GOOGLE_APPLICATION_CREDENTIALS_JSON="$(cat /path/to/sa.json)"
 export AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT="google-cloud-platform://?extra__google_cloud_platform__project=your-gcp-project"
+export AIRFLOW_CONN_SLACK_WEBHOOK="<set-your-slack-webhook-url>"
+export POSTGRES_USER="airflow"
+export POSTGRES_PASSWORD="replace-with-strong-password"
+export POSTGRES_DB="airflow"
+export AIRFLOW_ADMIN_USERNAME="admin"
+export AIRFLOW_ADMIN_EMAIL="admin@example.com"
+export AIRFLOW_ADMIN_PASSWORD="replace-with-strong-password"
 ```
 
 3. Start services:
@@ -128,7 +144,7 @@ docker compose up -d
 4. Open Airflow UI:
 
 - `http://localhost:8080`
-- default credentials (from init script): `admin / admin`
+- credentials from your env vars (`AIRFLOW_ADMIN_USERNAME` / `AIRFLOW_ADMIN_PASSWORD`)
 
 5. Stop services:
 
@@ -181,7 +197,7 @@ pytest tests/dags/test_dag_example.py
 ## Notes and Operational Cautions
 
 - This codebase currently includes hardcoded project/dataset/bucket names in several DAG modules. If you deploy to a different project, update those values or parameterize them.
-- `docker-compose.yml` currently includes a literal Slack webhook environment variable; store secrets in a secret manager or `.env` instead of committing live webhook URLs.
+- Use `.env` / Secret Manager for credentials and webhook values; `.env` is ignored by git and `.env.example` provides placeholders.
 - Airflow and providers should be version-pinned consistently between `dockerfile` base image and `requirements.txt` to reduce dependency drift.
 
 ## Useful Commands
