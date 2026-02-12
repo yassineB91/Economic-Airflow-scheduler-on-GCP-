@@ -1,0 +1,88 @@
+substitutions:
+  _PROJECT_ID: ${PROJECT_ID}
+  _IMAGE_TAG: ${IMAGE_TAG}
+  _VM_NAME: "airflow-vm"
+  _VM_ZONE: "europe-west1-b"
+  _GCS_LOGGING_BUCKET: "airflow-vm-loggings"
+
+steps:
+  # Step 0: Clean up disk space before build
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "Cleaning up disk space before build..."
+        df -h
+        apt-get clean || true
+        rm -rf /var/lib/apt/lists/* || true
+        rm -rf /tmp/* || true
+        df -h
+        echo "Cleanup completed"
+
+  # Step 1: Build the Airflow image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'europe-west1-docker.pkg.dev/${_PROJECT_ID}/airflow/airflow:${_IMAGE_TAG}'
+      - '-f'
+      - 'dockerfile'
+      - '.'
+
+  # Step 2: Push the Airflow image to the container registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'europe-west1-docker.pkg.dev/${_PROJECT_ID}/airflow/airflow:${_IMAGE_TAG}'
+
+  # Step 3: Set up SSH key, copy files, and trigger update on the VM
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        # Create fresh SSH keys
+        mkdir -p /root/.ssh
+        ssh-keygen -t rsa -f /root/.ssh/id_rsa -N '' -q
+        
+        # Add our key to the VM
+        gcloud compute instances add-metadata ${_VM_NAME} \
+          --zone=${_VM_ZONE} \
+          --metadata-from-file ssh-keys=<(echo "cloud-build:$(cat /root/.ssh/id_rsa.pub)")
+        
+        # Prevent prompts during SSH
+        gcloud compute ssh ${_VM_NAME} --zone=${_VM_ZONE} \
+          --ssh-key-file=/root/.ssh/id_rsa \
+          --force-key-file-overwrite \
+          --strict-host-key-checking=no \
+          --quiet \
+          --command="echo Connected successfully"
+        
+        # Copy and run your scripts
+        gcloud compute scp --ssh-key-file=/root/.ssh/id_rsa \
+          --strict-host-key-checking=no \
+          update-airflow.sh ${_VM_NAME}:/home/sa_111538238704422697419/deploy/ \
+          --zone=${_VM_ZONE}
+
+        # Set up environment variables on the VM and change script permissions
+        gcloud compute ssh ${_VM_NAME} --zone=${_VM_ZONE} --ssh-key-file /root/.ssh/id_rsa --command="
+          sudo bash -c 'echo \"#!/bin/bash\" > /home/sa_111538238704422697419/deploy/env_vars.sh'
+          sudo bash -c 'echo \"export IMAGE_TAG=${_IMAGE_TAG}\" >> /home/sa_111538238704422697419/deploy/env_vars.sh'
+          sudo bash -c 'echo \"export PROJECT_ID=${_PROJECT_ID}\" >> /home/sa_111538238704422697419/deploy/env_vars.sh'
+          sudo bash -c 'echo \"export VM_NAME=${_VM_NAME}\" >> /home/sa_111538238704422697419/deploy/env_vars.sh'
+          sudo bash -c 'echo \"export GCS_LOGGING_BUCKET=${_GCS_LOGGING_BUCKET}\" >> /home/sa_111538238704422697419/deploy/env_vars.sh'
+          sudo chmod 755 /home/sa_111538238704422697419/deploy/env_vars.sh
+          sudo chown 3591320390:3591320390 /home/sa_111538238704422697419/deploy/env_vars.sh
+        "
+
+        # Run the update script on the VM, sourcing the environment variables
+        gcloud compute ssh ${_VM_NAME} --zone=${_VM_ZONE} --ssh-key-file /root/.ssh/id_rsa --command="
+          source /home/sa_111538238704422697419/deploy/env_vars.sh && \
+          sudo bash /home/sa_111538238704422697419/deploy/update-airflow.sh
+        "
+
+timeout: '1600s'
+
+options:
+  logging: CLOUD_LOGGING_ONLY

@@ -1,0 +1,59 @@
+selectors:
+  - name: freework_exp
+    definition:
+      method: exposure
+      value: freework_dashboard
+
+  - name: freework_cleaning
+    definition:
+      method: path
+      value: processing/models/freework/cleaning
+
+  - name: freelance_info_cleaning
+    definition:
+      method: path
+      value: processing/models/freelance_info/cleaning
+
+  - name: freework_modeling
+    definition:
+      method: path
+      value: processing/models/freework/modeling
+
+  - name: freelance_info_merging
+    definition:
+      method: path
+      value: processing/models/freelance_info/merging
+  
+  - name: danem_people_cleaning
+    definition:
+      method: path
+      value: processing/models/danem_people/cleaning
+
+  - name: danem_people_modeling
+    definition:
+      method: path
+      value: processing/models/danem_people/modeling
+
+  - name: danem_people_incremental
+    definition:
+      method: path
+      value: processing/models/danem_people/incremental
+
+
+  - name: villeideal_dashboard
+    definition:
+      method: exposure
+      value: villeideal_dashboard
+
+  - name: villeideal_cleaning
+    definition:
+      method: path
+      value: processing/models/villeideal/cleaning
+
+  - name: failed_models
+    definition:
+      method: state
+      value: error
+      state: target/manifest.json
+
+

@@ -1,0 +1,37 @@
+version: 2
+###### Sources ######
+sources:
+  - name: danem_people
+    database: processing-452316
+    schema: danem_people
+    tables:
+      - name: job_list
+
+    
+###### Models ######
+
+models:
+  - name: danem_cleaning_cdi
+    description: "cdi jobs"
+    schema: danem_people
+    columns:
+      - name: insert_date
+        data_tests:
+          - not_null
+
+  - name: danem_cleaning_freelance
+    description: "freelance jobs"
+    schema: danem_people
+    columns:
+      - name: insert_date
+        data_tests:
+          - not_null
+
+
+  - name: danem_cleaning_aggregation
+    description: "aggregated jobs"
+    schema: danem_people
+    columns:
+      - name: insert_date
+        data_tests:
+          - not_null

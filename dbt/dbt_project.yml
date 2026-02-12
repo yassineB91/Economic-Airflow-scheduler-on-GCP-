@@ -1,0 +1,29 @@
+name: 'processing'
+version: '1.0.0'
+
+profile: 'processing'
+
+vars:
+  default_insert_date: '2024-05-22'
+  dbt_metrics_calendar_model: my_custom_calendar
+
+model-paths: ["processing/models"]
+analysis-paths: ["processing/analyses"]
+test-paths: ["processing/tests"]
+seed-paths: ["processing/seeds"]
+macro-paths: ["processing/macros"]
+snapshot-paths: ["processing/snapshots"]
+
+
+models:
+  processing:
+    freework:
+      +tags:
+        - "daily"
+      modeling:
+        +materialized: table
+      cleaning:
+        +materialized: table
+    villeideal:
+      cleaning:
+        +materialized: table      

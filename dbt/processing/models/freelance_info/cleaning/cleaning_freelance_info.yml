@@ -1,0 +1,20 @@
+version: 2
+###### Sources ######
+sources:
+  - name: freelance_info
+    database: processing-452316
+    schema: freelance_info
+    tables:
+      - name: freelance_info_link_list_merge
+
+    
+###### Models ######
+
+models:
+  - name: freelace_info_cleaning_jobs
+    description: "modeling of all jobs"
+    schema: freelance_info
+    columns:
+      - name: insert_date
+        data_tests:
+          - not_null

@@ -1,0 +1,25 @@
+
+    
+    
+
+with child as (
+    select experience_id as from_field
+    from `processing-452316`.`freework`.`jobs_modeling_fact_jobs_initial`
+    where experience_id is not null
+),
+
+parent as (
+    select experience_id as to_field
+    from `processing-452316`.`freework`.`jobs_modeling_experience`
+)
+
+select
+    from_field
+
+from child
+left join parent
+    on child.from_field = parent.to_field
+
+where parent.to_field is null
+
+

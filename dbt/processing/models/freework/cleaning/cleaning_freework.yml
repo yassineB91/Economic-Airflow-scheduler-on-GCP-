@@ -1,0 +1,81 @@
+version: 2
+###### Sources ######
+sources:
+  - name: freework
+    database: processing-452316
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 30, period: hour}
+    loaded_at_field: insert_date
+    schema: freework
+    tables:
+      - name: list_links
+        columns:
+          - name: job
+            data_tests:
+              - not_null
+          - name: insert_date
+            data_tests:
+              - not_null
+          - name: link
+            data_tests:
+              - not_null       
+        
+      - name: job_list
+        description: "{{doc('job_list')}}"
+        columns:
+          - name: title
+            data_tests:
+              - not_null
+          - name: insert_date
+            data_tests:
+              - not_null
+    
+###### Models ######
+
+models:
+  - name: jobs_cleaning_cdi
+    description: "freework CDI jobs content parsed and cleaned"
+    columns:
+      - name: job_type
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['CDI']
+      - name: insert_date
+        data_tests:
+          - not_null
+  - name: jobs_cleaning_freelance
+    description: "freework freelance jobs content parsed and cleaned"
+    columns:
+      - name: job_type
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['Freelance']
+      - name: insert_date
+        data_tests:
+          - not_null
+    
+  - name: jobs_cleaning_freelance_cdi
+    description: "freework freelance/CDI jobs content parsed and cleaned"
+    columns:
+      - name: job_type
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['CDI or Freelance']
+      - name: insert_date
+        data_tests:
+          - not_null
+  - name: jobs_cleaning_aggregation
+    description: "Aggregation of all parsed and cleaned freework jobs"
+    columns:
+      - name: job_type
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['CDI or Freelance','Freelance','CDI']
+      - name: insert_date
+        data_tests:
+          - not_null

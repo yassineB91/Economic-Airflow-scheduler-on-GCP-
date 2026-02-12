@@ -1,0 +1,51 @@
+processing:
+  target: freework
+  outputs:
+    villeideal:
+      type: bigquery
+      method: oauth
+      project: processing-452316
+      dataset: villeideal
+      threads: 4
+      timeout_seconds: 300
+      location: europe-west1
+      priority: interactive
+      retries: 1
+      #keyfile:  /home/yassine/project/airflow/airflow/docker_airflow_sa.json #/opt/airflow/sa.json #
+
+    freework:
+      type: bigquery
+      method: oauth
+      project: processing-452316
+      dataset: freework
+      threads: 4
+      timeout_seconds: 300
+      location: europe-west1
+      priority: interactive
+      retries: 1
+      #keyfile:  /home/yassine/project/airflow/airflow/docker_airflow_sa.json #/opt/airflow/sa.json #
+
+    freelance_info:
+      type: bigquery
+      method: oauth
+      project: processing-452316
+      dataset: freelance_info
+      threads: 4
+      timeout_seconds: 300
+      location: europe-west1
+      priority: interactive
+      retries: 1
+      #keyfile:  /home/yassine/project/airflow/airflow/docker_airflow_sa.json # /opt/airflow/sa.json #
+
+
+    danem_people:
+      type: bigquery
+      method: oauth
+      project: processing-452316
+      dataset: danem_people
+      threads: 4
+      timeout_seconds: 300
+      location: europe-west1
+      priority: interactive
+      retries: 1
+      #keyfile:  /home/yassine/project/airflow/airflow/docker_airflow_sa.json #/opt/airflow/sa.json #

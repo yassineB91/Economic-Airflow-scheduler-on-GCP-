@@ -1,0 +1,22 @@
+stages:
+  - build
+
+variables:
+  REPOSITORY_NAME: "airflow"
+  REGION: "europe-west1"
+  IMAGE_TAG: $CI_COMMIT_SHORT_SHA 
+
+before_script:
+  # Decode and set up the service account key
+  - echo "$GCP_SERVICE_KEY" | base64 -d > "${CI_PROJECT_DIR}/gcloud-service-key.json"
+  - gcloud auth activate-service-account --key-file="${CI_PROJECT_DIR}/gcloud-service-key.json"
+  - gcloud config set project "$GCP_PROJECT_ID"
+
+build:
+  stage: build
+  image: google/cloud-sdk:latest
+  script:
+    # Submit a build to Google Cloud Build
+    - gcloud builds submit --config=cloudbuild.yaml --substitutions=_PROJECT_ID="${GCP_PROJECT_ID}",_IMAGE_TAG="${IMAGE_TAG}" .
+  only:
+    - main

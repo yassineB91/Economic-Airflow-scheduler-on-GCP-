@@ -1,0 +1,26 @@
+version: 2
+###### Sources ######
+sources:
+  - name: danem_people
+    database: processing-452316
+    schema: danem_people
+    tables:
+      - name: list_links_ext
+        columns:
+          - name: link
+            data_tests:
+              - not_null
+          - name: insert_date
+            data_tests:
+              - not_null
+    
+###### Models ######
+
+models:
+  - name: danem_people_list_links
+    description: "merge job links"
+    schema: danem_people
+    columns:
+      - name: insert_date
+        data_tests:
+          - not_null

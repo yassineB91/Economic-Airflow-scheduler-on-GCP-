@@ -1,0 +1,100 @@
+
+version: 2
+
+sources:
+  - name: raw_cities
+    database: processing-452316
+    schema: villeideal
+    tables:
+      - name: yvelines
+      - name: essone
+      - name: seine_et_marne
+      - name: seine_saint_denis
+      - name: hauts_de_seine
+      - name: paris
+      - name: val_de_marne
+      - name: val_doise
+
+
+
+
+models:
+  - name: cities_cleaning_val_doise
+    description: "cleaning and formatting cities data"
+    columns:
+      - name: city
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  # - name: cities_cleaning_yvelines
+  #   description: "cleaning and formatting cities data"
+  #   columns:
+  #     - name: city
+  #       description: "The primary key for this table"
+  #       tests:
+  #         - unique
+  #         - not_null
+
+  - name: cities_cleaning_hauts_de_seine
+    description: "cleaning and formatting cities data"
+    columns:
+      - name: city
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: cities_cleaning_val_de_marne
+    description: "cleaning and formatting cities data"
+    columns:
+      - name: city
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+
+  - name: cities_cleaning_paris
+    description: "cleaning and formatting cities data"
+    columns:
+      - name: city
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: cities_cleaning_seine_saint_denis
+    description: "cleaning and formatting cities data"
+    columns:
+      - name: city
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+  
+  - name: cities_cleaning_essone
+    description: "cleaning and formatting cities data"
+    columns:
+      - name: city
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+exposures:
+  - name: villeideal_dashboard
+    type: dashboard
+    maturity: low
+
+    depends_on:
+      - ref('cities_cleaning_essone')
+      - ref('cities_cleaning_hauts_de_seine')
+      - ref('cities_cleaning_paris')
+      - ref('cities_cleaning_seine_et_marne')
+      - ref('cities_cleaning_val_doise')
+
+    owner:
+      name: Yassine BELMAAZA
+      email: yassine.belmaaza@gmail.com

@@ -1,0 +1,15 @@
+version: 2
+
+seeds:
+  - name: technologies
+    config:
+      schema: freework
+      quote_columns: false
+      column_types: {Technology: string, Field: string, Category: string}
+      delimiter: ","
+  - name: communes
+    config:
+      schema: freework
+      quote_columns: false
+      column_types: {code_commune_INSEE: string,nom_commune_postal: string,code_postal: string,libelle_acheminement: string,ligne_5: string,latitude: string,longitude: string,code_commune: string,article: string,nom_commune: string,nom_commune_complet: string,code_departement: string,nom_departement: string,code_region: string,nom_region: string}
+      delimiter: ","

@@ -1,0 +1,450 @@
+Technology,Field,Category
+Docker,DevOps,Containerization
+Kubernetes,DevOps,Container Orchestration
+Jenkins,DevOps,Continuous Integration
+Ansible,DevOps,Configuration Management
+Terraform,DevOps,Infrastructure as Code
+GitLab,DevOps,Version Control/CI/CD
+Github,DevOps,Version Control/CI/CD
+CFT,Telecommunications,Communication Protocol
+SFTP,Telecommunications,Communication Protocol
+XML,Data Interchange,Markup Language
+JSON,Data Interchange,Data Format
+SSO,Cybersecurity,Authentication Protocol
+Bitbucket,DevOps,Version Control/CI/CD
+CircleCI,DevOps,Continuous Integration
+Travis CI,DevOps,Continuous Integration
+Puppet,DevOps,Configuration Management
+SaltStack,DevOps,Configuration Management
+Bamboo,DevOps,Continuous Integration
+TeamCity,DevOps,Continuous Integration
+Prometheus,DevOps,Monitoring
+Grafana,DevOps,Monitoring/Visualization
+ELK Stack,DevOps,Log Management
+Nagios,DevOps,Monitoring
+Zabbix,DevOps,Monitoring
+Datadog,DevOps,Monitoring
+New Relic,DevOps,Application Performance Monitoring
+Splunk,DevOps,Log Management
+Git,Version Control,Source Control Management
+SVN,Version Control,Source Control Management
+Mercurial,Version Control,Source Control Management
+Python,Programming/Data Science,Programming Language
+ R ,Data Science,Programming Language
+Julia,Data Science,Programming Language
+MATLAB,Data Science,Numerical Computing Environment
+SAS,Data Science,Statistical Software Suite
+TensorFlow,Machine Learning,ML Framework
+PyTorch,Machine Learning,ML Framework
+Keras,Machine Learning,ML Framework
+Scikit-learn,Machine Learning,ML Library
+XGBoost,Machine Learning,ML Algorithm
+LightGBM,Machine Learning,ML Algorithm
+NLTK,Natural Language Processing,NLP Library
+spaCy,Natural Language Processing,NLP Library
+Gensim,Natural Language Processing,NLP Library
+Apache OpenNLP,Natural Language Processing,NLP Library
+SQL,Database Management,Query Language
+PL/SQL,Database Management,Query Language
+MySQL,Database Management,Relational Database
+PostgreSQL,Database Management,Relational Database
+Oracle,Database Management,Relational Database
+Microsoft SQL Server,Database Management,Relational Database
+MongoDB,Database Management,NoSQL Database
+Cassandra,Database Management,NoSQL Database
+Redis,Database Management,In-Memory Database
+Neo4j,Database Management,Graph Database
+Couchbase,Database Management,NoSQL Database
+InfluxDB,Database Management,Time Series Database
+Hadoop,Big Data,Distributed Computing
+Spark,Big Data,Distributed Computing
+Flink,Big Data,Stream Processing
+Hive,Big Data,Data Warehouse
+Informatica,Data,ETL
+Datastage,Data,ETL
+Talend,Data,ETL
+Snaplogic,Data,ETL
+AS400,Application Server,Application system
+Pig,Big Data,Data Flow Language
+Kafka,Big Data,Distributed Streaming
+Storm,Big Data,Distributed Computation
+Airflow,Big Data,Workflow Management
+Nifi,Big Data,Data Integration
+ SAP,ERP,Enterprise Resource Planning
+Oracle ERP,ERP,Enterprise Resource Planning
+ERP,Business Management,Enterprise Resource Planning
+Microsoft Dynamics,ERP,Enterprise Resource Planning
+ Infor ,ERP,Enterprise Resource Planning
+Sage,ERP,Enterprise Resource Planning
+NetSuite,ERP,Enterprise Resource Planning
+Odoo,ERP,Enterprise Resource Planning
+Firewall,Cybersecurity,Network Security
+Intrusion Detection Systems,Cybersecurity,Network Security
+Intrusion Prevention Systems,Cybersecurity,Network Security
+SIEM,Cybersecurity,Security Information Management
+Encryption,Cybersecurity,Data Security
+VPN,Cybersecurity,Network Security
+Penetration Testing,Cybersecurity,Security Assessment
+Wireshark,Cybersecurity,Network Protocol Analyzer
+Metasploit,Cybersecurity,Penetration Testing
+JUNIT,Testing,Unit Testing
+POSTMAN,Testing,API Testing
+Nmap,Cybersecurity,Network Scanner
+Burp Suite,Cybersecurity,Web Application Security
+Kali Linux,Cybersecurity,Security-focused OS
+Java,Software Development,Programming Language
+C++,Software Development,Programming Language
+C#,Software Development,Programming Language
+Go,Software Development,Programming Language
+Rust,Software Development,Programming Language
+Kotlin,Software Development,Programming Language
+Swift,Software Development,Programming Language
+JavaScript,Web Development,Programming Language
+TypeScript,Web Development,Programming Language
+NgRx,Web Development,Reactive State Management
+HTML,Web Development,Markup Language
+CSS,Web Development,Style Sheet Language
+React,Web Development,JavaScript Library
+Angular,Web Development,Web Application Framework
+Spring Boot,Web Development,Web Application Framework
+Vue.js,Web Development,JavaScript Framework
+Node.js,Web Development,JavaScript Runtime
+Express.js,Web Development,Web Application Framework
+Django,Web Development,Web Framework
+PERL,Text Processing,Programming Language
+Flask,Web Development,Web Framework
+Ruby on Rails,Web Development,Web Framework
+ASP.NET,Web Development,Web Framework
+PHP,Web Development,Programming Language
+Laravel,Web Development,Web Framework
+AWS,Cloud Computing,Cloud Platform
+Azure,Cloud Computing,Cloud Platform
+Google Cloud Platform,Cloud Computing,Cloud Platform
+IBM Cloud,Cloud Computing,Cloud Platform
+Oracle Cloud,Cloud Computing,Cloud Platform
+DigitalOcean,Cloud Computing,Cloud Platform
+Heroku,Cloud Computing,Platform as a Service
+OpenStack,Cloud Computing,Cloud Computing Software
+Cisco,Networking,Network Hardware
+Juniper,Networking,Network Hardware
+Arista,Networking,Network Hardware
+Palo Alto Networks,Networking,Network Security
+F5 Networks,Networking,Application Delivery
+CCNA,Networking Certification,Certification
+CCNP,Networking Certification,Certification
+Network+,Networking Certification,Certification
+VMware,Virtualization,Virtualization Platform
+Hyper-V,Virtualization,Virtualization Platform
+KVM,Virtualization,Virtualization Platform
+Xen,Virtualization,Virtualization Platform
+OpenShift,Containerization,Container Platform
+Tableau,Business Intelligence,Data Visualization
+Power BI,Business Intelligence,Data Visualization
+Microstrategy,Business Intelligence,Data Visualization
+Cognos,Business Intelligence,Data Visualization
+PowerBI,Business Intelligence,Data Visualization
+QlikView,Business Intelligence,Data Visualization
+Looker,Business Intelligence,Data Analytics
+Domo,Business Intelligence,Business Intelligence Platform
+SAS Business Intelligence,Business Intelligence,Analytics Platform
+Salesforce,CRM,Customer Relationship Management
+Microsoft Dynamics CRM,CRM,Customer Relationship Management
+HubSpot,CRM,Customer Relationship Management
+Zoho CRM,CRM,Customer Relationship Management
+ServiceNow,ITSM,IT Service Management
+BMC Remedy,ITSM,IT Service Management
+Jira Service Desk,ITSM,IT Service Management
+Confluence,Wiki Software,Collaborative Working
+Zendesk,ITSM,Customer Service Software
+ITIL,IT Service Management,Best Practice Framework
+COBIT,IT Governance,Governance Framework
+Agile,Project Management,Project Management Methodology
+Scrum,Project Management,Project Management Framework
+Kanban,Project Management,Project Management Method
+PRINCE2,Project Management,Project Management Methodology
+Jira,Project Management Tool,Project Management Software
+Trello,Project Management Tool,Project Management Software
+Asana,Project Management Tool,Project Management Software
+Microsoft Project,Project Management Tool,Project Management Software
+Linux,Operating Systems,Operating System
+Windows Server,Operating Systems,Operating System
+macOS,Operating Systems,Operating System
+Unix,Operating Systems,Operating System
+iOS,Mobile Development,Mobile Operating System
+Android,Mobile Development,Mobile Operating System
+React Native,Mobile Development,Mobile App Framework
+Flutter,Mobile Development,Mobile App SDK
+Xamarin,Mobile Development,Mobile App Development Platform
+Unity,Game Development,Game Engine
+Unreal Engine,Game Development,Game Engine
+Godot,Game Development,Game Engine
+CryEngine,Game Development,Game Engine
+Blockchain,Emerging Technologies,Distributed Ledger
+Ethereum,Blockchain,Blockchain Platform
+Hyperledger,Blockchain,Blockchain Frameworks
+IoT,Emerging Technologies,Internet of Things
+Arduino,IoT,Microcontroller Platform
+Raspberry Pi,IoT,Single-Board Computer
+MQTT,IoT Protocol,Communication Protocol
+CoAP,IoT Protocol,Communication Protocol
+5G,Telecommunications,Cellular Network
+VoIP,Telecommunications,Voice Communication
+SIP,Telecommunications,Signaling Protocol
+WebRTC,Telecommunications,Real-Time Communication
+ Apache ,Web Server,Web Server Software
+Nginx,Web Server,Web Server Software
+IIS,Web Server,Web Server Software
+Tomcat,Application Server,Java Servlet Container
+JBoss,Application Server,Java EE Application Server
+WebSphere,Application Server,Java EE Application Server
+Eclipse,IDE,Integrated Development Environment
+Visual Studio,IDE,Integrated Development Environment
+IntelliJ IDEA,IDE,Integrated Development Environment
+PyCharm,IDE,Integrated Development Environment
+Sublime Text,Text Editor,Text Editor
+VS Code,Text Editor,Text Editor
+Atom,Text Editor,Text Editor
+Vim,Text Editor,Text Editor
+Emacs,Text Editor,Text Editor
+Photoshop,Graphic Design,Raster Graphics Editor
+Illustrator,Graphic Design,Vector Graphics Editor
+GIMP,Graphic Design,Raster Graphics Editor
+Sketch,UI/UX Design,Vector Graphics Editor
+Figma,UI/UX Design,Vector Graphics Editor
+Adobe XD,UI/UX Design,Vector Graphics Editor
+AutoCAD,CAD,Computer-Aided Design
+SolidWorks,CAD,Computer-Aided Design
+CATIA,CAD,Computer-Aided Design
+Fusion 360,CAD,Computer-Aided Design
+Maya,3D Modeling,3D Computer Graphics Software
+Blender,3D Modeling,3D Computer Graphics Software
+3ds Max,3D Modeling,3D Computer Graphics Software
+Revit,BIM,Building Information Modeling
+ArchiCAD,BIM,Building Information Modeling
+SketchUp,3D Modeling,3D Computer Graphics Software
+After Effects,Video Editing,Video Editing Software
+Premiere Pro,Video Editing,Video Editing Software
+DaVinci Resolve,Video Editing,Video Editing Software
+Audacity,Audio Editing,Audio Editing Software
+Pro Tools,Audio Editing,Audio Editing Software
+Logic Pro,Audio Production,Digital Audio Workstation
+MATLAB,Scientific Computing,Numerical Computing Environment
+Mathematica,Scientific Computing,Computational Software
+LabVIEW,Scientific Computing,System Design Software
+SolidWorks,Engineering Software,Computer-Aided Design
+ANSYS,Engineering Simulation,Engineering Simulation Software
+AutoCAD,Engineering Design,Computer-Aided Design
+SharePoint,Collaboration,Collaboration Software
+Microsoft Teams,Collaboration,Collaboration Software
+Slack,Collaboration,Collaboration Software
+Zoom,Video Conferencing,Video Conferencing Software
+WebEx,Video Conferencing,Video Conferencing Software
+Google Meet,Video Conferencing,Video Conferencing Software
+Microsoft Exchange,Email Server,Mail Server Software
+Google Workspace,Productivity Suite,Productivity Software
+Office 365,Productivity Suite,Productivity Software
+Adobe Creative Cloud,Creative Suite,Creative Software Suite
+Autodesk Suite,Engineering Suite,Engineering Software Suite
+ SAP HANA,In-Memory Database,Data Management
+Oracle Exadata,Database Appliance,Data Management
+IBM Watson,AI Platform,Artificial Intelligence
+Google Cloud AI,AI Platform,Artificial Intelligence
+Microsoft Azure AI,AI Platform,Artificial Intelligence
+Amazon SageMaker,Machine Learning Platform,Artificial Intelligence
+H2O.ai,Machine Learning Platform,Artificial Intelligence
+RapidMiner,Data Science Platform,Artificial Intelligence
+KNIME,Data Science Platform,Artificial Intelligence
+OpenCV,Computer Vision,Artificial Intelligence
+TensorRT,Deep Learning Inference,Artificial Intelligence
+CUDA,GPU Computing,Artificial Intelligence
+OpenCL,Heterogeneous Computing,Artificial Intelligence
+MPI,Parallel Computing,Artificial Intelligence
+OpenMP,Parallel Computing,Artificial Intelligence
+Ansible Tower,IT Automation,IT Operations
+Red Hat OpenShift,Container Platform,Containerization
+Istio,Service Mesh,Microservices
+Envoy,Service Proxy,Microservices
+Linkerd,Service Mesh,Microservices
+Vault,Secrets Management,IT Security
+HashiCorp Terraform,Infrastructure as Code,IT Operations
+AWS CloudFormation,Infrastructure as Code,IT Operations
+Google Cloud Deployment Manager,Infrastructure as Code,IT Operations
+Azure Resource Manager,Infrastructure as Code,IT Operations
+Puppet Enterprise,Configuration Management,IT Operations
+Ansible AWX,IT Automation,IT Operations
+SonarQube,Code Quality,Software Development
+Sonar,Code Quality,Software Development
+Checkmarx,Application Security,Software Development
+Veracode,Application Security,Software Development
+Fortify,Application Security,Software Development
+Qualys,Vulnerability Management,Cybersecurity
+Rapid7,Vulnerability Management,Cybersecurity
+Nessus,Vulnerability Scanner,Cybersecurity
+OpenVAS,Vulnerability Scanner,Cybersecurity
+Metasploit Framework,Penetration Testing,Cybersecurity
+Burp Suite,Web Application Security,Cybersecurity
+OWASP ZAP,Web Application Security,Cybersecurity
+Acunetix,Web Vulnerability Scanner,Cybersecurity
+Imperva,Web Application Firewall,Cybersecurity
+F5 BIG-IP,Application Delivery Controller,Cybersecurity
+Citrix ADC,Application Delivery Controller,Cybersecurity
+Palo Alto Networks Prisma,Cloud Security,Cybersecurity
+Zscaler,Cloud Security,Cybersecurity
+Okta,Identity Management,Cybersecurity
+Auth0,Identity Management,Cybersecurity
+ForgeRock,Identity Management,Cybersecurity
+CyberArk,Privileged Access Management,Cybersecurity
+BeyondTrust,Privileged Access Management,Cybersecurity
+Symantec,Endpoint Protection,Cybersecurity
+McAfee,Endpoint Protection,Cybersecurity
+Trend Micro,Endpoint Protection,Cybersecurity
+Carbon Black,Endpoint Detection and Response,Cybersecurity
+CrowdStrike,Endpoint Detection and Response,Cybersecurity
+Elastic Stack,Log Management and Analytics,DevOps
+Graylog,Log Management,DevOps
+AlienVault OSSIM,Security Information and Event Management,Cybersecurity
+IBM QRadar,Security Information and Event Management,Cybersecurity
+Micro Focus ArcSight,Security Information and Event Management,Cybersecurity
+RSA NetWitness,Security Information and Event Management,Cybersecurity
+Sumo Logic,Cloud-Native Machine Data Analytics,DevOps
+Puppet Enterprise,IT Automation,IT Operations
+Chef Automate,IT Automation,IT Operations
+Ansible Tower,IT Automation,IT Operations
+Terraform Enterprise,Infrastructure as Code,IT Operations
+CloudBees,Continuous Delivery,DevOps
+Spinnaker,Continuous Delivery,DevOps
+Harness,Continuous Delivery,DevOps
+ArgoCD,GitOps,DevOps
+JFrog Artifactory,Binary Repository Manager,DevOps
+Nexus Repository,Binary Repository Manager,DevOps
+SonaType Nexus IQ,Software Composition Analysis,DevOps
+Black Duck,Software Composition Analysis,DevOps
+WhiteSource,Software Composition Analysis,DevOps
+Snyk,Developer Security Platform,Cybersecurity
+Aqua Security,Container Security,Cybersecurity
+Twistlock,Container Security,Cybersecurity
+Sysdig,Container Security and Monitoring,Cybersecurity
+Dynatrace,Application Performance Monitoring,DevOps
+AppDynamics,Application Performance Monitoring,DevOps
+Instana,Application Performance Monitoring,DevOps
+Elastic APM,Application Performance Monitoring,DevOps
+PagerDuty,Incident Management,DevOps
+OpsGenie,Incident Management,DevOps
+VictorOps,Incident Management,DevOps
+Rundeck,Job Scheduling and Runbook Automation,DevOps
+Control-M,Workload Automation,IT Operations
+Automic,Workload Automation,IT Operations
+Puppet Bolt,Task Automation,IT Operations
+Ansible Automation Platform,IT Automation,IT Operations
+Red Hat Satellite,Systems Management,IT Operations
+SUSE Manager,Systems Management,IT Operations
+Foreman,Lifecycle Management,IT Operations
+Katello,Content Management,IT Operations
+Cobbler,Linux Installation Server,IT Operations
+xCAT,Cluster Management,IT Operations
+Kubernetes Operators,Kubernetes Extensions,Container Orchestration
+Helm,Kubernetes Package Manager,Container Orchestration
+Kustomize,Kubernetes Configuration Management,Container Orchestration
+Istio,Service Mesh,Microservices
+Linkerd,Service Mesh,Microservices
+Consul ,Service Discovery and Configuration,Microservices
+etcd,Distributed Key-Value Store,Data Management
+Apache ZooKeeper,Distributed Coordination Service,Data Management
+HashiCorp Nomad,Cluster Scheduler,IT Operations
+Apache Mesos,Cluster Manager,IT Operations
+Docker Swarm,Container Orchestration,Containerization
+LXC,Linux Containers,Containerization
+rkt,Container Runtime,Containerization
+containerd,Container Runtime,Containerization
+CRI-O,Container Runtime,Containerization
+Podman,Container Management Tool,Containerization
+Buildah,Container Build Tool,Containerization
+Skopeo,Container Image Management,Containerization
+OpenShift,Container Application Platform,Containerization
+Rancher,Container Management Platform,Containerization
+VMware Tanzu,Kubernetes Platform,Container Orchestration
+Google Anthos,Hybrid and Multi-Cloud Kubernetes Platform,Cloud Computing
+Azure Arc,Hybrid and Multi-Cloud Management,Cloud Computing
+AWS Outposts,Hybrid Cloud Computing,Cloud Computing
+Azure Stack,Hybrid Cloud Platform,Cloud Computing
+Google Cloud Anthos,Hybrid and Multi-Cloud Platform,Cloud Computing
+OpenStack,Open Source Cloud Computing Platform,Cloud Computing
+CloudStack,Open Source Cloud Computing Platform,Cloud Computing
+Proxmox,Virtualization Platform,Virtualization
+oVirt,Virtualization Management Platform,Virtualization
+Xen Project,Hypervisor,Virtualization
+QEMU,Machine Emulator and Virtualizer,Virtualization
+Vagrant,Development Environment Management,DevOps
+Packer,Machine Image Creation,DevOps
+Ansible Molecule,Ansible Testing Framework,DevOps
+Goss,Quick and Easy Server Testing,DevOps
+InSpec,Compliance as Code,DevOps
+Chef InSpec,Compliance as Code,DevOps
+Puppet Compliance,Compliance Automation,DevOps
+Terraform Sentinel,Policy as Code,DevOps
+Open Policy Agent,Policy Engine,DevOps
+Falco,Kubernetes Runtime Security,DevOps
+Sysdig Secure,Container Security,DevOps
+Aqua Security,Container Security Platform,Cybersecurity
+Prisma Cloud,Cloud Native Security Platform,Cybersecurity
+Datadog,Monitoring and Analytics Platform,DevOps
+Sumo Logic,Cloud-Native Machine Data Analytics,DevOps
+Splunk,Data Platform,DevOps
+Elastic Stack,Search and Analytics Engine,DevOps
+Prometheus,Monitoring System,DevOps
+Grafana,Observability Platform,DevOps
+InfluxDB,Time Series Database,Database Management
+OpenTSDB,Time Series Database,Database Management
+Graphite,Monitoring Tool,DevOps
+StatsD,Metrics Aggregation,DevOps
+collectd,System Statistics Collection Daemon,DevOps
+Telegraf,Metrics Collection Agent,DevOps
+Fluentd,Data Collector,DevOps
+Logstash,Data Processing Pipeline,DevOps
+Beats,Data Shippers,DevOps
+Filebeat,Log File Shipper,DevOps
+Metricbeat,Metric Shipper,DevOps
+Packetbeat,Network Data Shipper,DevOps
+Auditbeat,Audit Data Shipper,DevOps
+Heartbeat,Uptime Monitoring,DevOps
+Elastic APM,Application Performance Monitoring,DevOps
+Jaeger,Distributed Tracing,DevOps
+Zipkin,Distributed Tracing,DevOps
+OpenTelemetry,Observability Framework,DevOps
+OpenCensus,Metrics Collection and Distributed Tracing,DevOps
+Apache Skywalking,Application Performance Monitor,DevOps
+Consul,Service Mesh and Service Discovery,Microservices
+Envoy,Edge and Service Proxy,Microservices
+NGINX,Web Server and Reverse Proxy,Web Server
+HAProxy,Load Balancer and Proxy,DevOps
+Traefik,Edge Router and Reverse Proxy,DevOps
+Istio,Service Mesh,Microservices
+Linkerd,Service Mesh,Microservices
+Consul,Service Mesh,Microservices
+Ambassador,API Gateway,Microservices
+Kong,API Gateway,Microservices
+AWS Lambda,Serverless Computing,Cloud Computing
+Azure Functions,Serverless Computing,Cloud Computing
+Google Cloud Functions,Serverless Computing,Cloud Computing
+OpenFaaS,Serverless Functions Framework,Cloud Computing
+Knative,Kubernetes-based Platform for Deploying and Managing Serverless Workloads,Cloud Computing
+Kubeless,Serverless Framework for Kubernetes,Cloud Computing
+Fission,Serverless Functions for Kubernetes,Cloud Computing
+OpenWhisk,Serverless Framework,Cloud Computing
+Firebase,App Development Platform,Cloud Computing
+Supabase,Open Source Firebase Alternative,Cloud Computing
+Parse,Open Source Backend,Cloud Computing
+Backendless,Visual App Development Platform,Cloud Computing
+Appwrite,Open Source Backend Server,Cloud Computing
+Strapi,Open Source Headless CMS,Cloud Computing
+Directus,Open Data Platform,Cloud Computing
+Ghost,Open Source Publishing Platform,Cloud Computing
+Hugo,Static Site Generator,Web Development
+Jekyll,Static Site Generator,Web Development
+Gatsby,React-based Static Site Generator,Web Development
+Next.js,React Framework,Web Development
+Nuxt.js,Vue.js Framework,Web Development
+Gridsome,Vue.js Static Site Generator,Web Development
+Eleventy,JavaScript Static Site Generator,Web Development
+Sapper,Svelte Framework,Web Development
+Svelte,Web Development Framework,Web Development

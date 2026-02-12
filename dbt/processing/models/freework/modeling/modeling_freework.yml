@@ -1,0 +1,95 @@
+version: 2
+
+models:
+  - name: jobs_modeling_location
+    description: "Location Dimension table"
+    columns:
+      - name: location_id
+        data_tests:
+          - not_null
+          - unique
+
+  - name: jobs_modeling_ref_job_category
+    description: "job category reference table"
+    columns:
+      - name: job_category_id
+        # data_tests:
+        #   - not_null
+        #   - unique
+
+  - name: jobs_modeling_skills
+    description: " job skills dimension table"
+    columns:
+      - name: skill_id
+        data_tests:
+          - not_null
+          - unique
+
+  - name: jobs_modeling_type
+    description: "job type dimension table"
+    columns:
+      - name: job_type_id
+        data_tests:
+          - not_null
+          - unique
+
+  - name: jobs_modeling_experience
+    description: "job required experience dimension table"
+    columns:
+      - name: experience_id
+        data_tests:
+          - not_null
+          - unique
+
+  - name: jobs_modeling_fact_jobs_initial
+    description: "job fact initial table"
+    columns: 
+      - name: job_id
+        data_tests:
+          - not_null
+          - unique
+      - name: location_id
+        data_tests:
+          - relationships:
+              to: ref('jobs_modeling_location')
+              field: location_id
+
+      # - name: skill_id
+      #   data_tests:
+      #     - relationships:
+      #         to: ref('jobs_modeling_skills')
+      #         field: skill_id
+
+      - name: job_type_id
+        data_tests:
+          - relationships:
+              to: ref('jobs_modeling_type')
+              field: job_type_id
+
+      - name: experience_id
+        data_tests:
+          - relationships:
+              to: ref('jobs_modeling_experience')
+              field: experience_id
+
+
+
+
+exposures:
+  - name: freework_dashboard
+    type: dashboard
+    maturity: low
+
+    depends_on:
+      - ref('jobs_modeling_fact_jobs_initial')
+      - ref('jobs_modeling_location')
+      - ref('jobs_modeling_ref_job_category')
+      - ref('jobs_modeling_skills')
+      - ref('jobs_modeling_type')
+      - ref('jobs_cleaning_aggregation')
+      - ref('jobs_cleaning_cdi')
+      - ref('jobs_cleaning_freelance_cdi')
+      - ref('jobs_cleaning_freelance')
+    owner:
+      name: Yassine BELMAAZA
+      email: yassine.belmaaza@gmail.com

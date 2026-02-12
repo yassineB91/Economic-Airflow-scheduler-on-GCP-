@@ -1,0 +1,26 @@
+version: 2
+###### Sources ######
+sources:
+  - name: freelance_info
+    database: processing-452316
+    schema: freelance_info
+    tables:
+      - name: list_links_ext
+        columns:
+          - name: title
+            data_tests:
+              - not_null
+          - name: insert_date
+            data_tests:
+              - not_null
+    
+###### Models ######
+
+models:
+  - name: freelance_info_list_links
+    description: "merge job links"
+    schema: freelance_info
+    columns:
+      - name: insert_date
+        data_tests:
+          - not_null

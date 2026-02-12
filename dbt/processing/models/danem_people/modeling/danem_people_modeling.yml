@@ -1,0 +1,20 @@
+version: 2
+###### Sources ######
+sources:
+  - name: danem_people
+    database: processing-452316
+    schema: danem_people
+    tables:
+      - name: danem_cleaning_aggregation
+
+    
+###### Models ######
+
+models:
+  - name: danem_modeling_aggregation
+    description: "modeling of all jobs"
+    schema: danem_people
+    columns:
+      - name: insert_date
+        data_tests:
+          - not_null
