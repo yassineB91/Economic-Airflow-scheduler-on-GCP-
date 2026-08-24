@@ -1,4 +1,4 @@
-FROM apache/airflow:latest
+FROM apache/airflow:2.10.2-python3.11
 
 # Switch to root user for system installations
 USER root
