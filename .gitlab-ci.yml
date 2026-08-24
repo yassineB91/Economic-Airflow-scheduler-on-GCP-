@@ -2,21 +2,48 @@ stages:
   - build
 
 variables:
-  REPOSITORY_NAME: "airflow"
-  REGION: "europe-west1"
-  IMAGE_TAG: $CI_COMMIT_SHORT_SHA 
-
-before_script:
-  # Decode and set up the service account key
-  - echo "$GCP_SERVICE_KEY" | base64 -d > "${CI_PROJECT_DIR}/gcloud-service-key.json"
-  - gcloud auth activate-service-account --key-file="${CI_PROJECT_DIR}/gcloud-service-key.json"
-  - gcloud config set project "$GCP_PROJECT_ID"
+  GCP_PROJECT_ID: "dev-env-368414"
+  GCP_PROJECT_NUMBER: "932412034179"
+  WIF_POOL_ID: "airflowpool"
+  WIF_PROVIDER_ID: "gitlab-provider"
+  GCP_SERVICE_ACCOUNT: "gitlab-ci@dev-env-368414.iam.gserviceaccount.com"
+  GOOGLE_APPLICATION_CREDENTIALS: "$CI_PROJECT_DIR/.gcp-wif-credentials.json"
+  IMAGE_TAG: "$CI_COMMIT_SHORT_SHA"
 
 build:
   stage: build
   image: google/cloud-sdk:latest
+
+  id_tokens:
+    GITLAB_OIDC_TOKEN:
+      aud: "https://iam.googleapis.com/projects/932412034179/locations/global/workloadIdentityPools/airflowpool/providers/gitlab-provider"
+
+  before_script:
+    # Enregistre temporairement le token OIDC généré par GitLab
+    - printf '%s' "$GITLAB_OIDC_TOKEN" > "$CI_PROJECT_DIR/.gitlab-oidc-token"
+
+    # Crée une configuration indiquant à gcloud comment utiliser WIF
+    - >
+      gcloud iam workload-identity-pools create-cred-config
+      "projects/932412034179/locations/global/workloadIdentityPools/airflowpool/providers/gitlab-provider"
+      --service-account="gitlab-ci@dev-env-368414.iam.gserviceaccount.com"
+      --credential-source-file="$CI_PROJECT_DIR/.gitlab-oidc-token"
+      --output-file="$GOOGLE_APPLICATION_CREDENTIALS"
+
+    # Authentifie gcloud sans clé permanente
+    - gcloud auth login --cred-file="$GOOGLE_APPLICATION_CREDENTIALS" --quiet
+    - gcloud config set project "$GCP_PROJECT_ID"
+
+    # Vérifie l’identité active
+    - gcloud auth list
+
   script:
-    # Submit a build to Google Cloud Build
-    - gcloud builds submit --config=cloudbuild.yaml --substitutions=_PROJECT_ID="${GCP_PROJECT_ID}",_IMAGE_TAG="${IMAGE_TAG}" .
-  only:
-    - main
+    - >
+      gcloud builds submit
+      --project="$GCP_PROJECT_ID"
+      --config=cloudbuild.yaml
+      --substitutions="_PROJECT_ID=${GCP_PROJECT_ID},_IMAGE_TAG=${IMAGE_TAG}"
+      .
+
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
