@@ -1,9 +1,18 @@
-version: '3.8'
+version: "3.8"
+
+# Rotation automatique des logs Docker :
+# maximum 3 fichiers de 10 Mo par conteneur.
+x-default-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
 
 services:
   postgres:
     image: postgres:16
     container_name: postgres
+
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-airflow}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me-postgres-password}
@@ -11,8 +20,10 @@ services:
 
     networks:
       - airflow-network
+
     volumes:
       - airflow_postgres_data:/var/lib/postgresql/data
+
     healthcheck:
       test:
         [
@@ -23,28 +34,44 @@ services:
       timeout: 5s
       retries: 10
       start_period: 20s
+
     restart: unless-stopped
+    logging: *default-logging
 
   redis:
     image: redis:latest
+    container_name: redis
+
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
       timeout: 30s
       retries: 50
+
     networks:
       - airflow-network
 
+    restart: unless-stopped
+    logging: *default-logging
 
   airflow-init:
     image: europe-west1-docker.pkg.dev/${PROJECT_ID}/airflow/airflow:${IMAGE_TAG}
     container_name: airflow-init
+    user: root
+
     command: >
       bash -c "
       mkdir -p /opt/airflow/logs &&
       airflow db init &&
-      airflow users create --username ${AIRFLOW_ADMIN_USERNAME:-admin} --firstname ${AIRFLOW_ADMIN_FIRSTNAME:-Admin} --lastname ${AIRFLOW_ADMIN_LASTNAME:-User} --role Admin --email ${AIRFLOW_ADMIN_EMAIL:-admin@example.com} --password ${AIRFLOW_ADMIN_PASSWORD:-change-me-airflow-admin-password}
+      airflow users create
+      --username ${AIRFLOW_ADMIN_USERNAME:-admin}
+      --firstname ${AIRFLOW_ADMIN_FIRSTNAME:-Admin}
+      --lastname ${AIRFLOW_ADMIN_LASTNAME:-User}
+      --role Admin
+      --email ${AIRFLOW_ADMIN_EMAIL:-admin@example.com}
+      --password ${AIRFLOW_ADMIN_PASSWORD:-change-me-airflow-admin-password}
       "
+
     environment:
       - AIRFLOW__CORE__EXECUTOR=CeleryExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-change-me-postgres-password}@postgres:5432/${POSTGRES_DB:-airflow}
@@ -55,17 +82,21 @@ services:
       - AIRFLOW_ADMIN_PASSWORD
       - GOOGLE_APPLICATION_CREDENTIALS_JSON
       - AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT
-    user: root
+
     depends_on:
       postgres:
         condition: service_healthy
+
     networks:
       - airflow-network
+
+    logging: *default-logging
 
   airflow-webserver:
     image: europe-west1-docker.pkg.dev/${PROJECT_ID}/airflow/airflow:${IMAGE_TAG}
     container_name: airflow-webserver
     command: airflow webserver
+
     environment:
       - AIRFLOW__CORE__EXECUTOR=CeleryExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-change-me-postgres-password}@postgres:5432/${POSTGRES_DB:-airflow}
@@ -84,28 +115,39 @@ services:
       - AIRFLOW_ADMIN_PASSWORD
       - GOOGLE_APPLICATION_CREDENTIALS_JSON
       - AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT
+
     ports:
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"
+
     networks:
       - airflow-network
+
     depends_on:
       airflow-init:
         condition: service_completed_successfully
       redis:
         condition: service_healthy
-    deploy:
-      restart_policy:
-        condition: on-failure
+
+    restart: unless-stopped
+
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
+      test:
+        [
+          "CMD-SHELL",
+          "curl -f http://localhost:8080/health || exit 1"
+        ]
       interval: 30s
       timeout: 10s
       retries: 5
+      start_period: 20s
+
+    logging: *default-logging
 
   airflow-scheduler:
     image: europe-west1-docker.pkg.dev/${PROJECT_ID}/airflow/airflow:${IMAGE_TAG}
     container_name: airflow-scheduler
     command: airflow scheduler
+
     environment:
       - AIRFLOW__CORE__EXECUTOR=CeleryExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-change-me-postgres-password}@postgres:5432/${POSTGRES_DB:-airflow}
@@ -124,21 +166,24 @@ services:
       - AIRFLOW_ADMIN_PASSWORD
       - GOOGLE_APPLICATION_CREDENTIALS_JSON
       - AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT
+
     networks:
       - airflow-network
+
     depends_on:
       airflow-init:
         condition: service_completed_successfully
       redis:
         condition: service_healthy
-    deploy:
-      restart_policy:
-        condition: on-failure
+
+    restart: unless-stopped
+    logging: *default-logging
 
   airflow-worker:
     image: europe-west1-docker.pkg.dev/${PROJECT_ID}/airflow/airflow:${IMAGE_TAG}
     container_name: airflow-worker
     command: airflow celery worker
+
     environment:
       - AIRFLOW__CORE__EXECUTOR=CeleryExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-change-me-postgres-password}@postgres:5432/${POSTGRES_DB:-airflow}
@@ -157,16 +202,18 @@ services:
       - AIRFLOW_ADMIN_PASSWORD
       - GOOGLE_APPLICATION_CREDENTIALS_JSON
       - AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT
+
     networks:
       - airflow-network
+
     depends_on:
       airflow-init:
         condition: service_completed_successfully
       redis:
         condition: service_healthy
-    deploy:
-      restart_policy:
-        condition: on-failure
+
+    restart: unless-stopped
+    logging: *default-logging
 
 networks:
   airflow-network:
