@@ -122,9 +122,106 @@ steps:
           --quiet
 
         echo "Deployment files copied successfully"
+    # ============================================================
+  # 6. Installation de Docker sur la VM si nécessaire
+  # ============================================================
+  - id: "install-docker-on-vm"
+    name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
+    waitFor:
+      - "copy-deployment-files"
+    entrypoint: "bash"
+    volumes:
+      - name: "ssh-config"
+        path: "/builder/home/.ssh"
+    args:
+      - "-c"
+      - |
+        set -Eeuo pipefail
+
+        gcloud compute ssh "${_VM_NAME}" \
+          --project="${_PROJECT_ID}" \
+          --zone="${_VM_ZONE}" \
+          --quiet \
+          --command='
+            set -Eeuo pipefail
+
+            source /etc/os-release
+
+            echo "Operating system: $${PRETTY_NAME}"
+
+            case "$${ID}" in
+              ubuntu|debian)
+                ;;
+              *)
+                echo "Error: unsupported operating system: $${ID}"
+                exit 1
+                ;;
+            esac
+
+            # Si Docker et Compose sont déjà disponibles, ne rien réinstaller
+            if command -v docker >/dev/null 2>&1 &&
+               sudo docker compose version >/dev/null 2>&1; then
+
+              echo "Docker and Docker Compose are already installed"
+              sudo systemctl enable --now docker
+              exit 0
+            fi
+
+            echo "Installing Docker prerequisites..."
+
+            sudo apt-get update
+
+            sudo env DEBIAN_FRONTEND=noninteractive \
+              apt-get install -y \
+                ca-certificates \
+                curl \
+                jq
+
+            echo "Adding the official Docker repository..."
+
+            sudo install -m 0755 -d /etc/apt/keyrings
+
+            curl -fsSL \
+              "https://download.docker.com/linux/$${ID}/gpg" |
+              sudo tee /etc/apt/keyrings/docker.asc \
+                >/dev/null
+
+            sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+            DOCKER_CODENAME="$${UBUNTU_CODENAME:-$${VERSION_CODENAME}}"
+            DOCKER_ARCH="$$(dpkg --print-architecture)"
+
+            echo \
+              "deb [arch=$${DOCKER_ARCH} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/$${ID} $${DOCKER_CODENAME} stable" |
+              sudo tee /etc/apt/sources.list.d/docker.list \
+                >/dev/null
+
+            sudo apt-get update
+
+            echo "Installing Docker Engine and Docker Compose..."
+
+            sudo env DEBIAN_FRONTEND=noninteractive \
+              apt-get install -y \
+                docker-ce \
+                docker-ce-cli \
+                containerd.io \
+                docker-buildx-plugin \
+                docker-compose-plugin
+
+            echo "Starting Docker..."
+
+            sudo systemctl enable --now docker
+
+            echo "Validating Docker installation..."
+
+            sudo docker version
+            sudo docker compose version
+
+            echo "Docker installed successfully"
+          '
 
   # ============================================================
-  # 6. Validation de Docker, Compose, curl et jq
+  # 7. Validation de Docker, Compose, curl et jq
   # ============================================================
   - id: "validate-airflow-vm"
     name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
@@ -174,7 +271,7 @@ steps:
         echo "VM validation completed successfully"
 
   # ============================================================
-  # 7. Authentification à Artifact Registry
+  # 8. Authentification à Artifact Registry
   # ============================================================
   - id: "authenticate-artifact-registry"
     name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
@@ -228,7 +325,7 @@ steps:
           '
 
   # ============================================================
-  # 8. Nettoyage des ressources Docker inutilisées
+  # 9. Nettoyage des ressources Docker inutilisées
   # ============================================================
   - id: "clean-docker-resources"
     name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
@@ -258,7 +355,7 @@ steps:
         echo "Docker cleanup completed"
 
   # ============================================================
-  # 9. Pull de la nouvelle image
+  # 10. Pull de la nouvelle image
   # ============================================================
   - id: "pull-airflow-image"
     name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
@@ -299,7 +396,7 @@ steps:
           '
 
   # ============================================================
-  # 10. Démarrage ou mise à jour d’Airflow
+  # 11. Démarrage ou mise à jour d’Airflow
   # ============================================================
   - id: "start-airflow-services"
     name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
