@@ -226,7 +226,7 @@ steps:
   - id: "validate-airflow-vm"
     name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
     waitFor:
-      - "copy-deployment-files"
+      - "install-docker-on-vm"
     entrypoint: "bash"
     volumes:
       - name: "ssh-config"
