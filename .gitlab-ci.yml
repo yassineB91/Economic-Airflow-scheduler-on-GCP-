@@ -1,17 +1,25 @@
 stages:
+  - validate
+  - authenticate
   - build
 
 variables:
   GCP_PROJECT_ID: "dev-env-368414"
   GCP_PROJECT_NUMBER: "932412034179"
+
   WIF_POOL_ID: "airflowpool"
   WIF_PROVIDER_ID: "gitlab-provider"
+
   GCP_SERVICE_ACCOUNT: "gitlab-ci@dev-env-368414.iam.gserviceaccount.com"
+
   GOOGLE_APPLICATION_CREDENTIALS: "$CI_PROJECT_DIR/.gcp-wif-credentials.json"
+  GITLAB_OIDC_TOKEN_FILE: "$CI_PROJECT_DIR/.gitlab-oidc-token"
+
   IMAGE_TAG: "$CI_COMMIT_SHORT_SHA"
 
-build:
-  stage: build
+
+# Template réutilisable pour tous les jobs qui accèdent à GCP
+.gcp_wif_authentication:
   image: google/cloud-sdk:latest
 
   id_tokens:
@@ -19,29 +27,74 @@ build:
       aud: "https://iam.googleapis.com/projects/932412034179/locations/global/workloadIdentityPools/airflowpool/providers/gitlab-provider"
 
   before_script:
-    # Enregistre temporairement le token OIDC généré par GitLab
-    - printf '%s' "$GITLAB_OIDC_TOKEN" > "$CI_PROJECT_DIR/.gitlab-oidc-token"
+    # Enregistre temporairement le token OIDC fourni par GitLab
+    - printf '%s' "$GITLAB_OIDC_TOKEN" > "$GITLAB_OIDC_TOKEN_FILE"
 
-    # Crée une configuration indiquant à gcloud comment utiliser WIF
+    # Génère la configuration WIF
     - >
       gcloud iam workload-identity-pools create-cred-config
-      "projects/932412034179/locations/global/workloadIdentityPools/airflowpool/providers/gitlab-provider"
-      --service-account="gitlab-ci@dev-env-368414.iam.gserviceaccount.com"
-      --credential-source-file="$CI_PROJECT_DIR/.gitlab-oidc-token"
-      --output-file="$GOOGLE_APPLICATION_CREDENTIALS"
+      "projects/${GCP_PROJECT_NUMBER}/locations/global/workloadIdentityPools/${WIF_POOL_ID}/providers/${WIF_PROVIDER_ID}"
+      --service-account="${GCP_SERVICE_ACCOUNT}"
+      --credential-source-file="${GITLAB_OIDC_TOKEN_FILE}"
+      --output-file="${GOOGLE_APPLICATION_CREDENTIALS}"
 
-    # Authentifie gcloud sans clé permanente
-    - gcloud auth login --cred-file="$GOOGLE_APPLICATION_CREDENTIALS" --quiet
+    # Authentifie gcloud avec WIF
+    - >
+      gcloud auth login
+      --cred-file="${GOOGLE_APPLICATION_CREDENTIALS}"
+      --quiet
+
+    # Configure le projet GCP
     - gcloud config set project "$GCP_PROJECT_ID"
 
-    # Vérifie l’identité active
-    - gcloud auth list
+  after_script:
+    # Supprime les fichiers d’authentification temporaires
+    - rm -f "$GITLAB_OIDC_TOKEN_FILE"
+    - rm -f "$GOOGLE_APPLICATION_CREDENTIALS"
+
+
+# Étape 1 : validation des fichiers
+validate_configuration:
+  stage: validate
+  image: alpine:latest
 
   script:
+    - test -f cloudbuild.yaml
+    - test -f Dockerfile
+    - echo "Les fichiers requis sont présents."
+    - echo "IMAGE_TAG=${IMAGE_TAG}"
+
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+
+
+# Étape 2 : vérification de l’authentification GCP
+authenticate_gcp:
+  stage: authenticate
+  extends: .gcp_wif_authentication
+
+  script:
+    - echo "Vérification de l’identité GCP active..."
+    - gcloud auth list
+    - gcloud auth print-access-token > /dev/null
+    - echo "Authentification WIF et impersonation réussies."
+
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+
+
+# Étape 3 : déclenchement du Cloud Build
+submit_cloud_build:
+  stage: build
+  extends: .gcp_wif_authentication
+
+  script:
+    - echo "Soumission du build avec IMAGE_TAG=${IMAGE_TAG}"
+
     - >
       gcloud builds submit
-      --project="$GCP_PROJECT_ID"
-      --config=cloudbuild.yaml
+      --project="${GCP_PROJECT_ID}"
+      --config="cloudbuild.yaml"
       --substitutions="_PROJECT_ID=${GCP_PROJECT_ID},_IMAGE_TAG=${IMAGE_TAG}"
       .
 

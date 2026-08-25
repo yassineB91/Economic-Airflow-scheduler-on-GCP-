@@ -7,7 +7,7 @@ substitutions:
 
 steps:
   # ============================================================
-  # Step 0: Build de l'image Airflow
+  # 1. Build de l’image
   # ============================================================
   - id: "build-airflow-image"
     name: "gcr.io/cloud-builders/docker"
@@ -20,7 +20,7 @@ steps:
       - "."
 
   # ============================================================
-  # Step 1: Push vers Artifact Registry
+  # 2. Push vers Artifact Registry
   # ============================================================
   - id: "push-airflow-image"
     name: "gcr.io/cloud-builders/docker"
@@ -31,9 +31,9 @@ steps:
       - "europe-west1-docker.pkg.dev/${_PROJECT_ID}/airflow/airflow:${_IMAGE_TAG}"
 
   # ============================================================
-  # Step 2: Déploiement sur la VM avec OS Login
+  # 3. Génération des variables de déploiement
   # ============================================================
-  - id: "deploy-to-airflow-vm"
+  - id: "generate-deployment-environment"
     name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
     waitFor:
       - "push-airflow-image"
@@ -41,21 +41,14 @@ steps:
     args:
       - "-c"
       - |
-        set -euo pipefail
+        set -Eeuo pipefail
 
-        echo "Preparing SSH environment..."
+        if [[ ! -f "/workspace/docker-compose.yml" ]]; then
+          echo "Error: docker-compose.yml not found"
+          exit 1
+        fi
 
-        # HOME du conteneur Cloud Build, pas celui de la VM
-        mkdir -p "$${HOME}/.ssh"
-        chmod 700 "$${HOME}/.ssh"
-
-        touch "$${HOME}/.ssh/google_compute_known_hosts"
-        chmod 600 "$${HOME}/.ssh/google_compute_known_hosts"
-
-        echo "Generating env_vars.sh..."
-
-        # Création locale du fichier qui sera transféré sur la VM
-        cat > /workspace/env_vars.sh <<EOF
+        cat > /workspace/env_vars.sh <<'EOF'
         #!/usr/bin/env bash
 
         export IMAGE_TAG="${_IMAGE_TAG}"
@@ -67,53 +60,292 @@ steps:
 
         chmod 600 /workspace/env_vars.sh
 
-        echo "Creating remote deployment directory..."
+        echo "Deployment environment generated successfully"
 
-        # OS Login détermine automatiquement l'utilisateur Linux.
-        # $$HOME sera évalué sur la VM.
+  # ============================================================
+  # 4. Préparation du répertoire distant
+  # ============================================================
+  - id: "prepare-airflow-vm"
+    name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
+    waitFor:
+      - "generate-deployment-environment"
+    entrypoint: "bash"
+    volumes:
+      - name: "ssh-config"
+        path: "/builder/home/.ssh"
+    args:
+      - "-c"
+      - |
+        set -Eeuo pipefail
+
+        mkdir -p "$${HOME}/.ssh"
+        chmod 700 "$${HOME}/.ssh"
+
+        touch "$${HOME}/.ssh/google_compute_known_hosts"
+        chmod 600 "$${HOME}/.ssh/google_compute_known_hosts"
+
         gcloud compute ssh "${_VM_NAME}" \
           --project="${_PROJECT_ID}" \
           --zone="${_VM_ZONE}" \
           --quiet \
           --command='
-            set -e
+            set -Eeuo pipefail
+
             mkdir -p "$$HOME/deploy"
+            chmod 700 "$$HOME/deploy"
           '
 
-        echo "Copying deployment files..."
+        echo "Remote deployment directory prepared"
+
+  # ============================================================
+  # 5. Copie du Compose et des variables
+  # ============================================================
+  - id: "copy-deployment-files"
+    name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
+    waitFor:
+      - "prepare-airflow-vm"
+    entrypoint: "bash"
+    volumes:
+      - name: "ssh-config"
+        path: "/builder/home/.ssh"
+    args:
+      - "-c"
+      - |
+        set -Eeuo pipefail
 
         gcloud compute scp \
-          update-airflow.sh \
           /workspace/env_vars.sh \
+          /workspace/docker-compose.yml \
           "${_VM_NAME}:~/deploy/" \
           --project="${_PROJECT_ID}" \
           --zone="${_VM_ZONE}" \
           --quiet
 
-        echo "Running Airflow deployment..."
+        echo "Deployment files copied successfully"
+
+  # ============================================================
+  # 6. Validation de Docker, Compose, curl et jq
+  # ============================================================
+  - id: "validate-airflow-vm"
+    name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
+    waitFor:
+      - "copy-deployment-files"
+    entrypoint: "bash"
+    volumes:
+      - name: "ssh-config"
+        path: "/builder/home/.ssh"
+    args:
+      - "-c"
+      - |
+        set -Eeuo pipefail
 
         gcloud compute ssh "${_VM_NAME}" \
           --project="${_PROJECT_ID}" \
           --zone="${_VM_ZONE}" \
           --quiet \
           --command='
-            set -euo pipefail
+            set -Eeuo pipefail
 
-            chmod 700 "$$HOME/deploy/update-airflow.sh"
+            command -v curl >/dev/null ||
+              { echo "Error: curl is not installed"; exit 1; }
+
+            command -v jq >/dev/null ||
+              { echo "Error: jq is not installed"; exit 1; }
+
+            sudo docker version >/dev/null ||
+              { echo "Error: Docker is unavailable"; exit 1; }
+
+            if sudo docker compose version >/dev/null 2>&1; then
+              echo "Docker Compose plugin detected"
+            elif sudo docker-compose version >/dev/null 2>&1; then
+              echo "Legacy docker-compose detected"
+            else
+              echo "Error: Docker Compose is not installed"
+              exit 1
+            fi
+
+            test -f "$$HOME/deploy/env_vars.sh"
+            test -f "$$HOME/deploy/docker-compose.yml"
+
             chmod 600 "$$HOME/deploy/env_vars.sh"
+            chmod 600 "$$HOME/deploy/docker-compose.yml"
+          '
+
+        echo "VM validation completed successfully"
+
+  # ============================================================
+  # 7. Authentification à Artifact Registry
+  # ============================================================
+  - id: "authenticate-artifact-registry"
+    name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
+    waitFor:
+      - "validate-airflow-vm"
+    entrypoint: "bash"
+    volumes:
+      - name: "ssh-config"
+        path: "/builder/home/.ssh"
+    args:
+      - "-c"
+      - |
+        set -Eeuo pipefail
+
+        gcloud compute ssh "${_VM_NAME}" \
+          --project="${_PROJECT_ID}" \
+          --zone="${_VM_ZONE}" \
+          --quiet \
+          --command='
+            set -Eeuo pipefail
+
+            echo "Retrieving temporary token from VM metadata"
+
+            ACCESS_TOKEN="$$(curl -fsS \
+              --connect-timeout 5 \
+              --max-time 15 \
+              -H "Metadata-Flavor: Google" \
+              "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token" |
+              jq -r ".access_token")"
+
+            if [[ -z "$$ACCESS_TOKEN" || "$$ACCESS_TOKEN" == "null" ]]; then
+              unset ACCESS_TOKEN
+              echo "Error: unable to retrieve access token"
+              exit 1
+            fi
+
+            if printf "%s" "$$ACCESS_TOKEN" |
+              sudo docker login \
+                --username oauth2accesstoken \
+                --password-stdin \
+                "europe-west1-docker.pkg.dev"; then
+
+              echo "Docker authentication succeeded"
+            else
+              unset ACCESS_TOKEN
+              echo "Error: Docker authentication failed"
+              exit 1
+            fi
+
+            unset ACCESS_TOKEN
+          '
+
+  # ============================================================
+  # 8. Nettoyage des ressources Docker inutilisées
+  # ============================================================
+  - id: "clean-docker-resources"
+    name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
+    waitFor:
+      - "authenticate-artifact-registry"
+    entrypoint: "bash"
+    volumes:
+      - name: "ssh-config"
+        path: "/builder/home/.ssh"
+    args:
+      - "-c"
+      - |
+        set -Eeuo pipefail
+
+        gcloud compute ssh "${_VM_NAME}" \
+          --project="${_PROJECT_ID}" \
+          --zone="${_VM_ZONE}" \
+          --quiet \
+          --command='
+            set -Eeuo pipefail
+
+            sudo docker image prune -af || true
+            sudo docker builder prune -f || true
+            sudo docker network prune -f || true
+          '
+
+        echo "Docker cleanup completed"
+
+  # ============================================================
+  # 9. Pull de la nouvelle image
+  # ============================================================
+  - id: "pull-airflow-image"
+    name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
+    waitFor:
+      - "clean-docker-resources"
+    entrypoint: "bash"
+    volumes:
+      - name: "ssh-config"
+        path: "/builder/home/.ssh"
+    args:
+      - "-c"
+      - |
+        set -Eeuo pipefail
+
+        gcloud compute ssh "${_VM_NAME}" \
+          --project="${_PROJECT_ID}" \
+          --zone="${_VM_ZONE}" \
+          --quiet \
+          --command='
+            set -Eeuo pipefail
 
             source "$$HOME/deploy/env_vars.sh"
 
-            sudo env \
-              IMAGE_TAG="$$IMAGE_TAG" \
-              PROJECT_ID="$$PROJECT_ID" \
-              VM_NAME="$$VM_NAME" \
-              VM_ZONE="$$VM_ZONE" \
-              GCS_LOGGING_BUCKET="$$GCS_LOGGING_BUCKET" \
-              bash "$$HOME/deploy/update-airflow.sh"
+            IMAGE_URI="europe-west1-docker.pkg.dev/$${PROJECT_ID}/airflow/airflow:$${IMAGE_TAG}"
+
+            echo "Pulling $${IMAGE_URI}"
+
+            if ! sudo docker pull "$${IMAGE_URI}"; then
+              sudo docker logout \
+                "europe-west1-docker.pkg.dev" \
+                >/dev/null 2>&1 || true
+
+              echo "Error: Docker image pull failed"
+              exit 1
+            fi
+
+            echo "Docker image pulled successfully"
           '
 
-        echo "Deployment completed successfully."
+  # ============================================================
+  # 10. Démarrage ou mise à jour d’Airflow
+  # ============================================================
+  - id: "start-airflow-services"
+    name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
+    waitFor:
+      - "pull-airflow-image"
+    entrypoint: "bash"
+    volumes:
+      - name: "ssh-config"
+        path: "/builder/home/.ssh"
+    args:
+      - "-c"
+      - |
+        set -Eeuo pipefail
+
+        gcloud compute ssh "${_VM_NAME}" \
+          --project="${_PROJECT_ID}" \
+          --zone="${_VM_ZONE}" \
+          --quiet \
+          --command='
+            set -Eeuo pipefail
+
+            source "$$HOME/deploy/env_vars.sh"
+
+            cleanup_registry_authentication() {
+              sudo docker logout \
+                "europe-west1-docker.pkg.dev" \
+                >/dev/null 2>&1 || true
+            }
+
+            # Si Compose échoue, Docker sera quand même déconnecté.
+            trap cleanup_registry_authentication EXIT
+
+            if sudo docker compose version >/dev/null 2>&1; then
+              sudo -E docker compose \
+                --project-directory "$$HOME/deploy" \
+                -f "$$HOME/deploy/docker-compose.yml" \
+                up -d --remove-orphans
+            else
+              sudo -E docker-compose \
+                --project-directory "$$HOME/deploy" \
+                -f "$$HOME/deploy/docker-compose.yml" \
+                up -d --remove-orphans
+            fi
+
+            echo "Airflow services started successfully"
+          '
 
 timeout: "1600s"
 
