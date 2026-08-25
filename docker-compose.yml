@@ -8,8 +8,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-airflow}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me-postgres-password}
       POSTGRES_DB: ${POSTGRES_DB:-airflow}
-    ports:
-      - "5432:5432"
+
     networks:
       - airflow-network
     volumes:
@@ -28,8 +27,6 @@ services:
 
   redis:
     image: redis:latest
-    ports:
-      - "6379:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
@@ -37,6 +34,7 @@ services:
       retries: 50
     networks:
       - airflow-network
+
 
   airflow-init:
     image: europe-west1-docker.pkg.dev/${PROJECT_ID}/airflow/airflow:${IMAGE_TAG}
