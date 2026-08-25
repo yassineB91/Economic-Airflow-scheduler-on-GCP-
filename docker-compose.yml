@@ -1,5 +1,4 @@
-# Rotation automatique des logs Docker :
-# maximum 3 fichiers de 10 Mo par conteneur.
+
 x-default-logging: &default-logging
   driver: json-file
   options:
@@ -9,13 +8,16 @@ x-default-logging: &default-logging
 x-airflow-common-environment: &airflow-common-environment
   AIRFLOW__CORE__EXECUTOR: CeleryExecutor
 
+  # Clé identique pour le webserver, scheduler et worker.
+  # Elle protège notamment l’accès aux logs servis par le worker.
+  AIRFLOW__WEBSERVER__SECRET_KEY: ${AIRFLOW_WEBSERVER_SECRET_KEY:?AIRFLOW_WEBSERVER_SECRET_KEY is required}
+
   AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: >-
     postgresql+psycopg2://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-change-me-postgres-password}@postgres:5432/${POSTGRES_DB:-airflow}
 
   AIRFLOW__CELERY__BROKER_URL: redis://redis:6379/0
   AIRFLOW__CELERY__RESULT_BACKEND: redis://redis:6379/0
 
-  AIRFLOW__CORE__REMOTE_LOGGING: "True"
   AIRFLOW__LOGGING__REMOTE_LOGGING: "True"
   AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER: gs://${GCS_LOGGING_BUCKET}
   AIRFLOW__LOGGING__REMOTE_LOG_CONN_ID: google_cloud_default

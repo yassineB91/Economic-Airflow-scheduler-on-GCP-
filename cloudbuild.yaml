@@ -56,6 +56,7 @@ steps:
         export VM_NAME="${_VM_NAME}"
         export VM_ZONE="${_VM_ZONE}"
         export GCS_LOGGING_BUCKET="${_GCS_LOGGING_BUCKET}"
+        export AIRFLOW_WEBSERVER_SECRET_KEY="ta-cle-generee"
         EOF
 
         chmod 600 /workspace/env_vars.sh
