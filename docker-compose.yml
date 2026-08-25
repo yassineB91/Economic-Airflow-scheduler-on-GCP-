@@ -1,5 +1,3 @@
-version: "3.8"
-
 # Rotation automatique des logs Docker :
 # maximum 3 fichiers de 10 Mo par conteneur.
 x-default-logging: &default-logging
@@ -7,6 +5,33 @@ x-default-logging: &default-logging
   options:
     max-size: "10m"
     max-file: "3"
+
+x-airflow-common-environment: &airflow-common-environment
+  AIRFLOW__CORE__EXECUTOR: CeleryExecutor
+
+  AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: >-
+    postgresql+psycopg2://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-change-me-postgres-password}@postgres:5432/${POSTGRES_DB:-airflow}
+
+  AIRFLOW__CELERY__BROKER_URL: redis://redis:6379/0
+  AIRFLOW__CELERY__RESULT_BACKEND: redis://redis:6379/0
+
+  AIRFLOW__CORE__REMOTE_LOGGING: "True"
+  AIRFLOW__LOGGING__REMOTE_LOGGING: "True"
+  AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER: gs://${GCS_LOGGING_BUCKET}
+  AIRFLOW__LOGGING__REMOTE_LOG_CONN_ID: google_cloud_default
+
+  AIRFLOW__API__AUTH_BACKENDS: >-
+    airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session
+
+  AIRFLOW_ADMIN_USERNAME: ${AIRFLOW_ADMIN_USERNAME:-admin}
+  AIRFLOW_ADMIN_FIRSTNAME: ${AIRFLOW_ADMIN_FIRSTNAME:-Admin}
+  AIRFLOW_ADMIN_LASTNAME: ${AIRFLOW_ADMIN_LASTNAME:-User}
+  AIRFLOW_ADMIN_EMAIL: ${AIRFLOW_ADMIN_EMAIL:-admin@example.com}
+  AIRFLOW_ADMIN_PASSWORD: ${AIRFLOW_ADMIN_PASSWORD:-change-me-airflow-admin-password}
+
+  AIRFLOW_CONN_SLACK_WEBHOOK: ${AIRFLOW_CONN_SLACK_WEBHOOK:-}
+  GOOGLE_APPLICATION_CREDENTIALS_JSON: ${GOOGLE_APPLICATION_CREDENTIALS_JSON:-}
+  AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT: ${AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT:-}
 
 services:
   postgres:
@@ -18,18 +43,16 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me-postgres-password}
       POSTGRES_DB: ${POSTGRES_DB:-airflow}
 
-    networks:
-      - airflow-network
-
     volumes:
       - airflow_postgres_data:/var/lib/postgresql/data
 
+    networks:
+      - airflow-network
+
     healthcheck:
       test:
-        [
-          "CMD-SHELL",
-          "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"
-        ]
+        - CMD-SHELL
+        - pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"
       interval: 10s
       timeout: 5s
       retries: 10
@@ -42,14 +65,18 @@ services:
     image: redis:latest
     container_name: redis
 
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 5s
-      timeout: 30s
-      retries: 50
-
     networks:
       - airflow-network
+
+    healthcheck:
+      test:
+        - CMD
+        - redis-cli
+        - ping
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
 
     restart: unless-stopped
     logging: *default-logging
@@ -59,29 +86,45 @@ services:
     container_name: airflow-init
     user: root
 
-    command: >
-      bash -c "
-      mkdir -p /opt/airflow/logs &&
-      airflow db init &&
-      airflow users create
-      --username ${AIRFLOW_ADMIN_USERNAME:-admin}
-      --firstname ${AIRFLOW_ADMIN_FIRSTNAME:-Admin}
-      --lastname ${AIRFLOW_ADMIN_LASTNAME:-User}
-      --role Admin
-      --email ${AIRFLOW_ADMIN_EMAIL:-admin@example.com}
-      --password ${AIRFLOW_ADMIN_PASSWORD:-change-me-airflow-admin-password}
-      "
+    command:
+      - bash
+      - -c
+      - |
+        set -Eeuo pipefail
+
+        mkdir -p /opt/airflow/logs
+
+        echo "Running Airflow database migrations..."
+        airflow db migrate
+
+        echo "Checking Airflow administrator..."
+
+        if airflow users create \
+          --username "$${AIRFLOW_ADMIN_USERNAME}" \
+          --firstname "$${AIRFLOW_ADMIN_FIRSTNAME}" \
+          --lastname "$${AIRFLOW_ADMIN_LASTNAME}" \
+          --role Admin \
+          --email "$${AIRFLOW_ADMIN_EMAIL}" \
+          --password "$${AIRFLOW_ADMIN_PASSWORD}"; then
+
+          echo "Airflow administrator created"
+        else
+          echo "User creation returned a non-zero status."
+
+          if airflow users list |
+            grep -Fq "$${AIRFLOW_ADMIN_USERNAME}"; then
+
+            echo "Administrator already exists; continuing"
+          else
+            echo "Error: administrator could not be created"
+            exit 1
+          fi
+        fi
+
+        echo "Airflow initialization completed"
 
     environment:
-      - AIRFLOW__CORE__EXECUTOR=CeleryExecutor
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-change-me-postgres-password}@postgres:5432/${POSTGRES_DB:-airflow}
-      - AIRFLOW_ADMIN_USERNAME
-      - AIRFLOW_ADMIN_FIRSTNAME
-      - AIRFLOW_ADMIN_LASTNAME
-      - AIRFLOW_ADMIN_EMAIL
-      - AIRFLOW_ADMIN_PASSWORD
-      - GOOGLE_APPLICATION_CREDENTIALS_JSON
-      - AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT
+      <<: *airflow-common-environment
 
     depends_on:
       postgres:
@@ -98,23 +141,7 @@ services:
     command: airflow webserver
 
     environment:
-      - AIRFLOW__CORE__EXECUTOR=CeleryExecutor
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-change-me-postgres-password}@postgres:5432/${POSTGRES_DB:-airflow}
-      - AIRFLOW__CELERY__BROKER_URL=redis://redis:6379/0
-      - AIRFLOW__CELERY__RESULT_BACKEND=redis://redis:6379/0
-      - AIRFLOW__CORE__REMOTE_LOGGING=True
-      - AIRFLOW__LOGGING__REMOTE_LOGGING=True
-      - AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER=gs://${GCS_LOGGING_BUCKET}
-      - AIRFLOW__LOGGING__REMOTE_LOG_CONN_ID=google_cloud_default
-      - AIRFLOW__API__AUTH_BACKENDS=airflow.api.auth.backend.basic_auth
-      - AIRFLOW_CONN_SLACK_WEBHOOK
-      - AIRFLOW_ADMIN_USERNAME
-      - AIRFLOW_ADMIN_FIRSTNAME
-      - AIRFLOW_ADMIN_LASTNAME
-      - AIRFLOW_ADMIN_EMAIL
-      - AIRFLOW_ADMIN_PASSWORD
-      - GOOGLE_APPLICATION_CREDENTIALS_JSON
-      - AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT
+      <<: *airflow-common-environment
 
     ports:
       - "127.0.0.1:8080:8080"
@@ -128,19 +155,16 @@ services:
       redis:
         condition: service_healthy
 
-    restart: unless-stopped
-
     healthcheck:
       test:
-        [
-          "CMD-SHELL",
-          "curl -f http://localhost:8080/health || exit 1"
-        ]
+        - CMD-SHELL
+        - curl -fsS http://localhost:8080/health || exit 1
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 20s
+      start_period: 30s
 
+    restart: unless-stopped
     logging: *default-logging
 
   airflow-scheduler:
@@ -149,23 +173,7 @@ services:
     command: airflow scheduler
 
     environment:
-      - AIRFLOW__CORE__EXECUTOR=CeleryExecutor
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-change-me-postgres-password}@postgres:5432/${POSTGRES_DB:-airflow}
-      - AIRFLOW__CELERY__BROKER_URL=redis://redis:6379/0
-      - AIRFLOW__CELERY__RESULT_BACKEND=redis://redis:6379/0
-      - AIRFLOW__CORE__REMOTE_LOGGING=True
-      - AIRFLOW__LOGGING__REMOTE_LOGGING=True
-      - AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER=gs://${GCS_LOGGING_BUCKET}
-      - AIRFLOW__LOGGING__REMOTE_LOG_CONN_ID=google_cloud_default
-      - AIRFLOW__API__AUTH_BACKENDS=airflow.api.auth.backend.basic_auth
-      - AIRFLOW_CONN_SLACK_WEBHOOK
-      - AIRFLOW_ADMIN_USERNAME
-      - AIRFLOW_ADMIN_FIRSTNAME
-      - AIRFLOW_ADMIN_LASTNAME
-      - AIRFLOW_ADMIN_EMAIL
-      - AIRFLOW_ADMIN_PASSWORD
-      - GOOGLE_APPLICATION_CREDENTIALS_JSON
-      - AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT
+      <<: *airflow-common-environment
 
     networks:
       - airflow-network
@@ -175,6 +183,18 @@ services:
         condition: service_completed_successfully
       redis:
         condition: service_healthy
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          airflow jobs check
+          --job-type SchedulerJob
+          --hostname "$${HOSTNAME}"
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
 
     restart: unless-stopped
     logging: *default-logging
@@ -185,23 +205,7 @@ services:
     command: airflow celery worker
 
     environment:
-      - AIRFLOW__CORE__EXECUTOR=CeleryExecutor
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-change-me-postgres-password}@postgres:5432/${POSTGRES_DB:-airflow}
-      - AIRFLOW__CELERY__BROKER_URL=redis://redis:6379/0
-      - AIRFLOW__CELERY__RESULT_BACKEND=redis://redis:6379/0
-      - AIRFLOW__CORE__REMOTE_LOGGING=True
-      - AIRFLOW__LOGGING__REMOTE_LOGGING=True
-      - AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER=gs://${GCS_LOGGING_BUCKET}
-      - AIRFLOW__LOGGING__REMOTE_LOG_CONN_ID=google_cloud_default
-      - AIRFLOW__API__AUTH_BACKENDS=airflow.api.auth.backend.basic_auth
-      - AIRFLOW_CONN_SLACK_WEBHOOK
-      - AIRFLOW_ADMIN_USERNAME
-      - AIRFLOW_ADMIN_FIRSTNAME
-      - AIRFLOW_ADMIN_LASTNAME
-      - AIRFLOW_ADMIN_EMAIL
-      - AIRFLOW_ADMIN_PASSWORD
-      - GOOGLE_APPLICATION_CREDENTIALS_JSON
-      - AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT
+      <<: *airflow-common-environment
 
     networks:
       - airflow-network
@@ -211,6 +215,20 @@ services:
         condition: service_completed_successfully
       redis:
         condition: service_healthy
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          celery
+          --app airflow.providers.celery.executors.celery_executor.app
+          inspect ping
+          --destination "celery@$${HOSTNAME}"
+          --timeout 10
+      interval: 30s
+      timeout: 15s
+      retries: 5
+      start_period: 45s
 
     restart: unless-stopped
     logging: *default-logging
