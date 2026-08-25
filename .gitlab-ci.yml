@@ -60,7 +60,7 @@ validate_configuration:
 
   script:
     - test -f cloudbuild.yaml
-    - test -f Dockerfile
+    - test -f dockerfile
     - echo "Les fichiers requis sont présents."
     - echo "IMAGE_TAG=${IMAGE_TAG}"
 
