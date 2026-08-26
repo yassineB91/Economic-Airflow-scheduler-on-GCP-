@@ -69,11 +69,10 @@ def get_job_links(number_of_pages, initial_url):
             job_title=element.get_text(strip=True)
             job_page= {"job":job_title,"link":link,"insert_date":str(datetime.now())}
             jobs.append(job_page)
-            try:
-                logger.info(f"Inserting {jobs} into table list_links")
-                bigquery_util.BigQuery(client).insert_row(jobs,"processing-452316","freework","list_links")
-            except Exception as e:
-                logger.error(f"Error occured during insertion of {jobs} in table list_links: {e}")
+
+            logger.info(f"Inserting {jobs} into table list_links")
+            bigquery_util.BigQuery(client).insert_rows(jobs,"dev-env-368414","freework","list_links")
+
 # def main():
 #     """
 #     Main function to initiate the scraping process.
