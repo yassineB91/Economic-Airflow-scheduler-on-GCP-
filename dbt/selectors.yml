@@ -54,6 +54,4 @@ selectors:
     definition:
       method: state
       value: error
-      state: target/manifest.json
-
 

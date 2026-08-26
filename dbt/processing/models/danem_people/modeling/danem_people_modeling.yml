@@ -7,14 +7,15 @@ sources:
     tables:
       - name: danem_cleaning_aggregation
 
-    
+
 ###### Models ######
 
 models:
   - name: danem_modeling_aggregation
     description: "modeling of all jobs"
-    schema: danem_people
     columns:
       - name: insert_date
         data_tests:
           - not_null
+    config:
+      schema: danem_people

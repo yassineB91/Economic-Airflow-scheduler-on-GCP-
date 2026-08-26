@@ -11,7 +11,7 @@ with a as (
 select 
 location_id,
 location 
-from `processing-452316`.`freework`.`jobs_modeling_location`
+from `dev-env-368414`.`freework`.`jobs_modeling_location`
 
 
 ),
@@ -22,7 +22,7 @@ b as (
 
 select location_id,
 location
-from `processing-452316`.`freework`.`jobs_modeling_location_standardized`
+from `dev-env-368414`.`freework`.`jobs_modeling_location_standardized`
 
 
 ),

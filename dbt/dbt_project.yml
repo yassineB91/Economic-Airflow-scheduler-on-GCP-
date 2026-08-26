@@ -26,4 +26,6 @@ models:
         +materialized: table
     villeideal:
       cleaning:
-        +materialized: table      
+        +materialized: table
+flags:
+  require_generic_test_arguments_property: true

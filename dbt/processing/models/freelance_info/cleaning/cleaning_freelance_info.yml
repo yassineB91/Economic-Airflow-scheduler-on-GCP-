@@ -7,14 +7,15 @@ sources:
     tables:
       - name: freelance_info_link_list_merge
 
-    
+
 ###### Models ######
 
 models:
   - name: freelace_info_cleaning_jobs
     description: "modeling of all jobs"
-    schema: freelance_info
     columns:
       - name: insert_date
         data_tests:
           - not_null
+    config:
+      schema: freelance_info

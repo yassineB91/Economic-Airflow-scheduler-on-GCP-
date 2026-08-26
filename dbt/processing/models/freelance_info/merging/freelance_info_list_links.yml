@@ -13,14 +13,15 @@ sources:
           - name: insert_date
             data_tests:
               - not_null
-    
+
 ###### Models ######
 
 models:
   - name: freelance_info_list_links
     description: "merge job links"
-    schema: freelance_info
     columns:
       - name: insert_date
         data_tests:
           - not_null
+    config:
+      schema: freelance_info

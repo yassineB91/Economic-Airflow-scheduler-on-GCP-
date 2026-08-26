@@ -88,3 +88,19 @@ Runtime Error
 [0m16:43:02.364717 [debug] [MainThread]: Command `dbt run` failed at 16:43:02.364598 after 0.06 seconds
 [0m16:43:02.365117 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f006dabbf10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f0069cf4410>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f006daf7c10>]}
 [0m16:43:02.365529 [debug] [MainThread]: Flushing usage events
+[0m19:25:11.281077 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x700932dc9af0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70093264bad0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7009334a9af0>]}
+
+
+============================== 19:25:11.292727 | 00df2de2-b24d-4b96-892a-cb3f20da4241 ==============================
+[0m19:25:11.292727 [info ] [MainThread]: Running with dbt=1.11.14
+[0m19:25:11.293893 [debug] [MainThread]: running dbt with arguments {'send_anonymous_usage_stats': 'True', 'invocation_command': 'dbt compile', 'no_print': 'None', 'profiles_dir': '/home/yassine/.dbt', 'log_cache_events': 'False', 'target_path': 'None', 'static_parser': 'True', 'fail_fast': 'False', 'partial_parse': 'True', 'empty': 'False', 'quiet': 'False', 'version_check': 'True', 'introspect': 'True', 'log_path': 'logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'cache_selected_only': 'False', 'write_json': 'True', 'warn_error': 'None', 'log_format': 'default', 'use_experimental_parser': 'False', 'use_colors': 'True', 'indirect_selection': 'eager', 'printer_width': '80', 'debug': 'False'}
+[0m19:25:11.295335 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m19:25:11.298187 [debug] [MainThread]: Resource report: {"command_name": "compile", "command_success": false, "command_wall_clock_time": 0.15348566, "process_in_blocks": "67944", "process_kernel_time": 0.895491, "process_mem_max_rss": "104260", "process_out_blocks": "8", "process_user_time": 3.91628}
+[0m19:25:11.299301 [debug] [MainThread]: Command `dbt compile` failed at 19:25:11.299063 after 0.15 seconds
+[0m19:25:11.300746 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7009326cf920>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x700932dc9af0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7009335518b0>]}
+[0m19:25:11.302144 [debug] [MainThread]: Flushing usage events
+[0m19:25:11.847594 [debug] [MainThread]: An error was encountered while trying to flush usage events

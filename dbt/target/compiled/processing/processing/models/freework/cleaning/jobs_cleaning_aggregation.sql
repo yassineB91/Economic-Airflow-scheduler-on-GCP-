@@ -17,7 +17,7 @@ location,
 key_skills,
 insert_date,
  description
-from `processing-452316`.`freework`.`jobs_cleaning_freelance_cdi`
+from `dev-env-368414`.`freework`.`jobs_cleaning_freelance_cdi`
 
 
 union all
@@ -38,7 +38,7 @@ location,
 key_skills,
 insert_date,
  description
-from `processing-452316`.`freework`.`jobs_cleaning_cdi`
+from `dev-env-368414`.`freework`.`jobs_cleaning_cdi`
 
 
 union all
@@ -59,7 +59,7 @@ location,
 key_skills,
 insert_date,
  description
-from `processing-452316`.`freework`.`jobs_cleaning_freelance`
+from `dev-env-368414`.`freework`.`jobs_cleaning_freelance`
 
 )
 select  

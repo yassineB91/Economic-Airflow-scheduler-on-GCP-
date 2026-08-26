@@ -5,7 +5,7 @@
 with dbt_test__target as (
 
   select location_id as unique_field
-  from `processing-452316`.`freework`.`jobs_modeling_location`
+  from `dev-env-368414`.`freework`.`jobs_modeling_location`
   where location_id is not null
 
 )

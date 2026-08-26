@@ -7,31 +7,34 @@ sources:
     tables:
       - name: job_list
 
-    
+
 ###### Models ######
 
 models:
   - name: danem_cleaning_cdi
     description: "cdi jobs"
-    schema: danem_people
     columns:
       - name: insert_date
         data_tests:
           - not_null
 
+    config:
+      schema: danem_people
   - name: danem_cleaning_freelance
     description: "freelance jobs"
-    schema: danem_people
     columns:
       - name: insert_date
         data_tests:
           - not_null
 
 
+    config:
+      schema: danem_people
   - name: danem_cleaning_aggregation
     description: "aggregated jobs"
-    schema: danem_people
     columns:
       - name: insert_date
         data_tests:
           - not_null
+    config:
+      schema: danem_people

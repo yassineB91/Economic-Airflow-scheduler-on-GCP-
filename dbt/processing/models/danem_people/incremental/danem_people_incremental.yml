@@ -13,14 +13,15 @@ sources:
           - name: insert_date
             data_tests:
               - not_null
-    
+
 ###### Models ######
 
 models:
   - name: danem_people_list_links
     description: "merge job links"
-    schema: danem_people
     columns:
       - name: insert_date
         data_tests:
           - not_null
+    config:
+      schema: danem_people
