@@ -70,7 +70,7 @@ def get_job_links(number_of_pages, initial_url):
             jobs.append(job_page)
 
             logger.info(f"Inserting {jobs} into table list_links")
-        bigquery_util.BigQuery().insert_rows(jobs,"dev-env-368414","freework","list_links")
+        bigquery_util.BigQuery().insert_rows(jobs,"dev-env-368414","freework","list_links",write_mode="truncate")
 
 # def main():
 #     """
