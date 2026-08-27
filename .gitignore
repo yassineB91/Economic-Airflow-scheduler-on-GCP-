@@ -10,3 +10,5 @@ webserver_config.py
 airflow.cfg
 airflow.db
 docker_airflow_sa.json
+logs
+.vscode
