@@ -8,10 +8,10 @@
         "start-stdio"
       ],
       "env": {
-        "ALTIMATE_EXTENSION_RPC": "/tmp/altimate-mcp-557.sock",
+        "ALTIMATE_EXTENSION_RPC": "/tmp/altimate-mcp-2086.sock",
         "ELECTRON_RUN_AS_NODE": "1"
       },
-      "updatedAt": "2026-08-26T17:55:45.670Z"
+      "updatedAt": "2026-08-27T07:54:08.483Z"
     }
   }
 }

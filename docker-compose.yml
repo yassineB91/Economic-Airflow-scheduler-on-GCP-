@@ -142,6 +142,9 @@ services:
     container_name: airflow-webserver
     command: airflow webserver
 
+    volumes:
+      - ./dags:/opt/airflow/dags:ro
+
     environment:
       <<: *airflow-common-environment
 
@@ -174,6 +177,9 @@ services:
     container_name: airflow-scheduler
     command: airflow scheduler
 
+    volumes:
+      - ./dags:/opt/airflow/dags:ro
+
     environment:
       <<: *airflow-common-environment
 
@@ -205,6 +211,9 @@ services:
     image: europe-west1-docker.pkg.dev/${PROJECT_ID}/airflow/airflow:${IMAGE_TAG}
     container_name: airflow-worker
     command: airflow celery worker
+
+    volumes:
+      - ./dags:/opt/airflow/dags:ro
 
     environment:
       <<: *airflow-common-environment

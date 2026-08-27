@@ -83,7 +83,7 @@ authenticate_gcp:
     - if: '$CI_COMMIT_BRANCH == "main"'
 
 
-# Étape 3 : déclenchement du Cloud Build
+# Étape 3 : déclenchement du Cloud Build pour l'image
 submit_cloud_build:
   stage: build
   extends: .gcp_wif_authentication
@@ -99,4 +99,34 @@ submit_cloud_build:
       .
 
   rules:
-    - if: '$CI_COMMIT_BRANCH == "main"'
+  - if: '$CI_COMMIT_BRANCH == "main"'
+    changes:
+      - dockerfile
+      - requirements.txt
+      - docker-compose.yml
+      - cloudbuild.yaml
+      - dbt/**/*
+      - entrypoint.sh
+      - wait-for-it.sh
+
+
+# Étape 3 : déclenchement du Cloud Build pour dag
+submit_dag_cloud_build:
+  stage: build
+  extends: .gcp_wif_authentication
+
+  script:
+    - echo "Soumission du dag build avec TAG=${IMAGE_TAG}"
+
+    - >
+      gcloud builds submit
+      --project="${GCP_PROJECT_ID}"
+      --config="cloudbuild-dags.yaml"
+      --substitutions="_PROJECT_ID=${GCP_PROJECT_ID},_IMAGE_TAG=${IMAGE_TAG}"
+      .
+
+  rules:
+  - if: '$CI_COMMIT_BRANCH == "main"'
+    changes:
+      - dags/**/*
+      - cloudbuild-dags.yaml

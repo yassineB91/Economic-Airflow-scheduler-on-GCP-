@@ -1,0 +1,93 @@
+# DAG-only delivery pipeline. Create a Cloud Build trigger that runs this file
+# only when files under dags/ or tests/dags/ change.
+
+
+substitutions:
+  _PROJECT_ID: "dev-env-368414"
+  _IMAGE_TAG: "latest"
+  _VM_NAME: "airflow-vm"
+  _VM_ZONE: "europe-west1-b"
+  _DAG_ARTIFACT_BUCKET: "dev-env-368414-airflow-dag-artifacts"
+
+steps:
+
+  - id: "publish-dag-artifact"
+    name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        set -Eeuo pipefail
+
+        ARTIFACT_URI="gs://${_DAG_ARTIFACT_BUCKET}/releases/${COMMIT_SHA}/"
+        gcloud storage rsync --recursive /workspace/dags "$${ARTIFACT_URI}"
+        printf '%s\n' "${COMMIT_SHA}" |
+          gcloud storage cp - "gs://${_DAG_ARTIFACT_BUCKET}/releases/${COMMIT_SHA}/REVISION"
+
+        echo "Published DAG artifact: $${ARTIFACT_URI}"
+
+  - id: "deploy-dags-to-vm"
+    name: "gcr.io/google.com/cloudsdktool/cloud-sdk:latest"
+    waitFor:
+      - "publish-dag-artifact"
+    entrypoint: "bash"
+    volumes:
+      - name: "ssh-config"
+        path: "/builder/home/.ssh"
+    args:
+      - "-c"
+      - |
+        set -Eeuo pipefail
+
+        gcloud compute ssh "${_VM_NAME}" \
+          --project="${_PROJECT_ID}" \
+          --zone="${_VM_ZONE}" \
+          --quiet \
+          --command='
+            set -Eeuo pipefail
+
+            if ! command -v gcloud >/dev/null 2>&1; then
+              echo "Installing Google Cloud CLI on the VM..."
+
+              source /etc/os-release
+
+              case "$$ID" in
+                ubuntu|debian)
+                  ;;
+                *)
+                  echo "Error: unsupported operating system: $$ID"
+                  exit 1
+                  ;;
+              esac
+
+              sudo apt-get update
+              sudo env DEBIAN_FRONTEND=noninteractive \
+                apt-get install -y ca-certificates curl gnupg
+
+              sudo install -m 0755 -d /etc/apt/keyrings
+              curl -fsSL \
+                https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
+                sudo gpg --yes --dearmor -o /etc/apt/keyrings/google-cloud.gpg
+              sudo chmod a+r /etc/apt/keyrings/google-cloud.gpg
+
+              echo "deb [signed-by=/etc/apt/keyrings/google-cloud.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | \
+                sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list >/dev/null
+
+              sudo apt-get update
+              sudo env DEBIAN_FRONTEND=noninteractive \
+                apt-get install -y google-cloud-cli
+            fi
+
+            mkdir -p "$$HOME/deploy/dags"
+            gcloud storage rsync --recursive \
+              --delete-unmatched-destination-objects \
+              "gs://${_DAG_ARTIFACT_BUCKET}/releases/${COMMIT_SHA}/" \
+              "$$HOME/deploy/dags"
+
+            echo "DAG revision ${COMMIT_SHA} deployed to $$HOME/deploy/dags"
+          '
+
+timeout: "900s"
+
+options:
+  logging: "CLOUD_LOGGING_ONLY"
