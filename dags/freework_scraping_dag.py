@@ -34,12 +34,14 @@ def freework_job_scraper():
     @task(on_failure_callback=task_failure_slack_alert, on_success_callback=task_success_slack_alert)
     def page_scraper_task():
         filter="cast(cast(insert_date as timestamp) as date) = current_date()"
-        page_scraper.parse_job_details(condition=f"{filter}")
+        return page_scraper.parse_job_details(condition=f"{filter}")
+
+    uploaded_file = page_scraper_task()
 
     load_json_into_bq = GCSToBigQueryOperator(
         task_id="load_jobs_to_bigquery",
         bucket="freework_jobs",
-        source_objects=["freework/jobs/*.jsonl"],
+        source_objects=[uploaded_file],
         source_format="NEWLINE_DELIMITED_JSON",
         destination_project_dataset_table="dev-env-368414.freework.job_list",
         write_disposition="WRITE_APPEND",
@@ -51,7 +53,7 @@ def freework_job_scraper():
     move_loaded_file = GCSToGCSOperator(
         task_id="move_loaded_file",
         source_bucket="freework_jobs",
-        source_object="freework/jobs/*.jsonl",
+        source_object=uploaded_file,
         destination_bucket="freework_jobs",
         destination_object="freework/loaded/",
         move_object=True,
@@ -105,7 +107,8 @@ def freework_job_scraper():
         on_success_callback=task_success_slack_alert)
 
 
-    get_page_number_task() >> link_scraper_task() >> page_scraper_task() >> load_json_into_bq >> move_loaded_file >> [freelance_cleaning_task,cdi_cleaning_task,cdi_freelance_cleaning_task] >> jobs_cleaning_aggregation >> [jobs_modeling_experience,jobs_modeling_type,jobs_modeling_location,jobs_modeling_skills] >> jobs_modeling_fact_jobs_initial >> jobs_modeling_bridge_job_skill >> jobs_modeling_ref_job_category 
+    get_page_number_task() >> link_scraper_task() >> uploaded_file 
+    uploaded_file >> load_json_into_bq >> move_loaded_file >> [freelance_cleaning_task,cdi_cleaning_task,cdi_freelance_cleaning_task] >> jobs_cleaning_aggregation >> [jobs_modeling_experience,jobs_modeling_type,jobs_modeling_location,jobs_modeling_skills] >> jobs_modeling_fact_jobs_initial >> jobs_modeling_bridge_job_skill >> jobs_modeling_ref_job_category 
 
 freework_job_scraper()
 

@@ -91,11 +91,13 @@ def parse_job_details(condition="link=link"):
             file.write(json.dumps(job, ensure_ascii=False) + "\n")
 
     logger.info(f"Inserting of job details {job} into job_list bucket")
+    blob_name =f"freework/jobs/{file_name.split('/')[-1]}"
     gcs_util.Gcs().upload_file(
     bucket_name="freework_jobs",
     local_file_path=file_name,
-    destination_blob_name=f"freework/jobs/{file_name.split('/')[-1]}",
+    destination_blob_name=blob_name,
     content_type="application/x-ndjson",
 )
+    return blob_name
 
     
