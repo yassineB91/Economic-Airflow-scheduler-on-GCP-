@@ -20,8 +20,9 @@ def parse_job_details(condition="link=link"):
     base_url = "https://www.free-work.com"
     rows=bigquery_util.BigQuery().query_table("dev-env-368414","freework","list_links", condition=condition)
     logger.info(f"Looping over rows of table list_links ")
+    job_list=[]
     for row in rows:
-        job_list=[]
+        
         url= base_url+row.link
         logger.info(f"Scrapping the url: {url}")
         try:
@@ -83,7 +84,7 @@ def parse_job_details(condition="link=link"):
         logger.info(f"Constructing of job dict {job}")
         job_list.append(job)
 
-    file_name = f"/tmp/freework_jobs_{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}.jsonl"
+    file_name = f"/tmp/freework_jobs_{datetime.datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}.jsonl"
 
     with open(file_name, "w", encoding="utf-8") as file:
         for job in job_list:
