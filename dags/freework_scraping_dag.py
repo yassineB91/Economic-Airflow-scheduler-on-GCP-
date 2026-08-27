@@ -41,7 +41,7 @@ def freework_job_scraper():
         bucket="freework_jobs",
         source_objects=["freework/jobs/*.jsonl"],
         source_format="NEWLINE_DELIMITED_JSON",
-        destination_project_dataset_table="dev-env-368414.freework.job_details",
+        destination_project_dataset_table="dev-env-368414.freework.job_list",
         write_disposition="WRITE_APPEND",
         external_table=False,
         autodetect=True,
