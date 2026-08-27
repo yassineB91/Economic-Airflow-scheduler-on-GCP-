@@ -18,7 +18,7 @@ def parse_job_details(condition="link=link"):
     Extracts the main details of a list of jobs
     """
     base_url = "https://www.free-work.com"
-    rows=bigquery_util.BigQuery().query_table("processing-452316","freework","list_links", condition=condition)
+    rows=bigquery_util.BigQuery().query_table("dev-env-368414","freework","list_links", condition=condition)
     logger.info(f"Looping over rows of table list_links ")
     for row in rows:
         job_list=[]
