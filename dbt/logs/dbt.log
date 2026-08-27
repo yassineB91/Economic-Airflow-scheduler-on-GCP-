@@ -90279,3 +90279,124 @@ Update your versions in packages.yml, then run dbt deps
 [0m19:56:37.401788 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7015c499a150>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7015c51682f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7015c4a2a3c0>]}
 [0m19:56:37.402848 [debug] [MainThread]: Flushing usage events
 [0m19:56:37.863643 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:53:27.127606 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ec995c702f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ec995a50140>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ec995618320>]}
+
+
+============================== 09:53:27.132120 | fcddc675-64c1-49f9-a6a8-f9423f0007a5 ==============================
+[0m09:53:27.132120 [info ] [MainThread]: Running with dbt=1.11.14
+[0m09:53:27.135354 [debug] [MainThread]: running dbt with arguments {'fail_fast': 'False', 'static_parser': 'True', 'cache_selected_only': 'False', 'partial_parse': 'True', 'log_format': 'default', 'empty': 'None', 'use_experimental_parser': 'False', 'send_anonymous_usage_stats': 'True', 'log_cache_events': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'invocation_command': 'dbt ', 'no_print': 'None', 'target_path': 'None', 'quiet': 'False', 'warn_error': 'None', 'indirect_selection': 'eager', 'log_path': '/home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt/logs', 'profiles_dir': '/home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt', 'version_check': 'True', 'write_json': 'True', 'debug': 'False', 'introspect': 'True', 'use_colors': 'True', 'printer_width': '80'}
+[0m09:53:27.317772 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'fcddc675-64c1-49f9-a6a8-f9423f0007a5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ec994d23770>]}
+[0m09:53:27.354120 [debug] [MainThread]: Set downloads directory='/tmp/dbt-downloads-ca0hce52'
+[0m09:53:27.354626 [debug] [MainThread]: Making package index registry request: GET https://hub.getdbt.com/api/v1/index.json
+[0m09:53:27.468731 [debug] [MainThread]: Response from registry index: GET https://hub.getdbt.com/api/v1/index.json 200
+[0m09:53:27.471367 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json
+[0m09:53:27.541571 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json 200
+[0m09:53:27.547933 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/audit_helper.json
+[0m09:53:27.609099 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/audit_helper.json 200
+[0m09:53:27.611967 [info ] [MainThread]: Installing dbt-labs/dbt_utils
+[0m09:53:28.011185 [info ] [MainThread]: Installed from version 1.2.0
+[0m09:53:28.011598 [info ] [MainThread]: Updated version available: 1.4.1
+[0m09:53:28.011987 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': 'fcddc675-64c1-49f9-a6a8-f9423f0007a5', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ec9956e1b20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ec994c2d250>]}
+[0m09:53:28.012332 [info ] [MainThread]: Installing dbt-labs/audit_helper
+[0m09:53:28.323730 [info ] [MainThread]: Installed from version 0.7.0
+[0m09:53:28.324339 [info ] [MainThread]: Updated version available: 0.14.0
+[0m09:53:28.333191 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': 'fcddc675-64c1-49f9-a6a8-f9423f0007a5', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ec994c59a30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ec994e681a0>]}
+[0m09:53:28.333850 [info ] [MainThread]: 
+[0m09:53:28.334414 [info ] [MainThread]: Updates available for packages: ['dbt-labs/dbt_utils', 'dbt-labs/audit_helper']                 
+Update your versions in packages.yml, then run dbt deps
+[0m09:53:28.336042 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 1.2961154, "process_in_blocks": "456", "process_kernel_time": 0.337824, "process_mem_max_rss": "108468", "process_out_blocks": "2808", "process_user_time": 2.464128}
+[0m09:53:28.336923 [debug] [MainThread]: Command `cli deps` succeeded at 09:53:28.336748 after 1.30 seconds
+[0m09:53:28.337485 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ec995618320>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ec995d65c40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ec994e6a0c0>]}
+[0m09:53:28.338152 [debug] [MainThread]: Flushing usage events
+[0m09:53:28.776078 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:54:38.519026 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75dac5cc7bc0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75dac41290a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75dac4129e50>]}
+
+
+============================== 09:54:38.523248 | ffce5ad1-8a95-4c95-8334-64d639e400bb ==============================
+[0m09:54:38.523248 [info ] [MainThread]: Running with dbt=1.11.14
+[0m09:54:38.524320 [debug] [MainThread]: running dbt with arguments {'log_cache_events': 'False', 'cache_selected_only': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'fail_fast': 'False', 'quiet': 'False', 'use_experimental_parser': 'False', 'use_colors': 'True', 'log_path': '/home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt/logs', 'printer_width': '80', 'static_parser': 'True', 'warn_error': 'None', 'empty': 'None', 'partial_parse': 'True', 'log_format': 'default', 'write_json': 'True', 'indirect_selection': 'eager', 'invocation_command': 'dbt ', 'target_path': 'None', 'send_anonymous_usage_stats': 'True', 'introspect': 'True', 'version_check': 'True', 'debug': 'False', 'profiles_dir': '/home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt', 'no_print': 'None'}
+[0m09:54:38.746206 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'ffce5ad1-8a95-4c95-8334-64d639e400bb', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75dac401e840>]}
+[0m09:54:38.777918 [debug] [MainThread]: Set downloads directory='/tmp/dbt-downloads-sg0wt64j'
+[0m09:54:38.778574 [debug] [MainThread]: Making package index registry request: GET https://hub.getdbt.com/api/v1/index.json
+[0m09:54:38.884186 [debug] [MainThread]: Response from registry index: GET https://hub.getdbt.com/api/v1/index.json 200
+[0m09:54:38.886623 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json
+[0m09:54:38.958589 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json 200
+[0m09:54:38.965727 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/audit_helper.json
+[0m09:54:39.023967 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/audit_helper.json 200
+[0m09:54:39.027870 [info ] [MainThread]: Installing dbt-labs/dbt_utils
+[0m09:54:39.413518 [info ] [MainThread]: Installed from version 1.2.0
+[0m09:54:39.413967 [info ] [MainThread]: Updated version available: 1.4.1
+[0m09:54:39.414383 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': 'ffce5ad1-8a95-4c95-8334-64d639e400bb', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75dac42e8a10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75dac3970d70>]}
+[0m09:54:39.414773 [info ] [MainThread]: Installing dbt-labs/audit_helper
+[0m09:54:39.795176 [info ] [MainThread]: Installed from version 0.7.0
+[0m09:54:39.795753 [info ] [MainThread]: Updated version available: 0.14.0
+[0m09:54:39.796260 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': 'ffce5ad1-8a95-4c95-8334-64d639e400bb', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75dac3879bb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75dac387a210>]}
+[0m09:54:39.797041 [info ] [MainThread]: 
+[0m09:54:39.797798 [info ] [MainThread]: Updates available for packages: ['dbt-labs/dbt_utils', 'dbt-labs/audit_helper']                 
+Update your versions in packages.yml, then run dbt deps
+[0m09:54:39.799201 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 1.3855652, "process_in_blocks": "0", "process_kernel_time": 0.367495, "process_mem_max_rss": "108728", "process_out_blocks": "2808", "process_user_time": 3.103295}
+[0m09:54:39.800365 [debug] [MainThread]: Command `cli deps` succeeded at 09:54:39.800095 after 1.39 seconds
+[0m09:54:39.801476 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75dac3bdaae0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75dac3993800>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75dac39930b0>]}
+[0m09:54:39.804232 [debug] [MainThread]: Flushing usage events
+[0m09:54:40.332594 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m10:01:07.538362 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a9c05acc650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a9c05829d30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a9c05af6630>]}
+
+
+============================== 10:01:07.541037 | a06576cf-f7ae-4a0d-9fff-aba8810171d7 ==============================
+[0m10:01:07.541037 [info ] [MainThread]: Running with dbt=1.12.3
+[0m10:01:07.541740 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'indirect_selection': 'eager', 'fail_fast': 'False', 'log_path': '/home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt/logs', 'partial_parse': 'True', 'profiles_dir': '/home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt', 'log_format': 'default', 'hints_enabled': 'True', 'use_experimental_parser': 'False', 'log_cache_events': 'False', 'cache_selected_only': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'warn_error': 'None', 'debug': 'False', 'target_path': 'None', 'printer_width': '80', 'no_print': 'None', 'write_json': 'True', 'invocation_command': 'dbt debug', 'static_parser': 'True', 'quiet': 'False', 'empty': 'None', 'use_colors': 'True', 'introspect': 'True', 'maximum_seed_size_mib': '1', 'send_anonymous_usage_stats': 'True'}
+[0m10:01:07.553036 [info ] [MainThread]: dbt version: 1.12.3
+[0m10:01:07.553554 [info ] [MainThread]: python version: 3.12.3
+[0m10:01:07.554017 [info ] [MainThread]: python path: /home/yassine/Economic-Airflow-scheduler-on-GCP-/.venv/bin/python
+[0m10:01:07.554452 [info ] [MainThread]: os info: Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39
+[0m10:01:08.350756 [info ] [MainThread]: Using profiles dir at /home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt
+[0m10:01:08.351336 [info ] [MainThread]: Using profiles.yml file at /home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt/profiles.yml
+[0m10:01:08.351875 [info ] [MainThread]: Using dbt_project.yml file at /home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt/dbt_project.yml
+[0m10:01:08.352314 [info ] [MainThread]: adapter type: bigquery
+[0m10:01:08.352965 [info ] [MainThread]: adapter version: 1.12.0
+[0m10:01:08.505679 [info ] [MainThread]: Configuration:
+[0m10:01:08.506333 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m10:01:08.506872 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m10:01:08.507294 [info ] [MainThread]: Required dependencies:
+[0m10:01:08.507678 [debug] [MainThread]: Executing "git --help"
+[0m10:01:08.509674 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m10:01:08.510115 [debug] [MainThread]: STDERR: "b''"
+[0m10:01:08.510480 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m10:01:08.510835 [info ] [MainThread]: Connection:
+[0m10:01:08.511281 [info ] [MainThread]:   method: oauth
+[0m10:01:08.511699 [info ] [MainThread]:   database: dev-env-368414
+[0m10:01:08.512087 [info ] [MainThread]:   execution_project: dev-env-368414
+[0m10:01:08.512605 [info ] [MainThread]:   schema: freework
+[0m10:01:08.513335 [info ] [MainThread]:   location: europe-west1
+[0m10:01:08.514113 [info ] [MainThread]:   priority: interactive
+[0m10:01:08.514504 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m10:01:08.514868 [info ] [MainThread]:   reservation: None
+[0m10:01:08.515223 [info ] [MainThread]:   impersonate_service_account: None
+[0m10:01:08.515642 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m10:01:08.516026 [info ] [MainThread]:   job_retries: 1
+[0m10:01:08.516458 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m10:01:08.516898 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m10:01:08.517259 [info ] [MainThread]:   job_link_info_level_log: False
+[0m10:01:08.517650 [info ] [MainThread]:   timeout_seconds: 300
+[0m10:01:08.518183 [info ] [MainThread]:   client_id: None
+[0m10:01:08.518835 [info ] [MainThread]:   token_uri: None
+[0m10:01:08.519408 [info ] [MainThread]:   compute_region: None
+[0m10:01:08.519996 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m10:01:08.520613 [info ] [MainThread]:   gcs_bucket: None
+[0m10:01:08.521373 [info ] [MainThread]:   dataproc_batch: None
+[0m10:01:08.522657 [info ] [MainThread]: Registered adapter: bigquery=1.12.0
+[0m10:01:08.643091 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m10:01:08.643581 [debug] [MainThread]: On debug: select 1 as id
+[0m10:01:08.643966 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m10:01:09.995972 [debug] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=dev-env-368414&j=bq:europe-west1:e3163566-9023-40fd-b64d-4a68c5857847&page=queryresults
+[0m10:01:10.176146 [debug] [MainThread]: SQL status: OK in 0.178 seconds
+[0m10:01:10.433869 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m10:01:10.435049 [info ] [MainThread]: [32mAll checks passed![0m
+[0m10:01:10.436535 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": true, "command_wall_clock_time": 2.9722202, "process_in_blocks": "2496", "process_kernel_time": 0.396404, "process_mem_max_rss": "235220", "process_out_blocks": "24", "process_user_time": 3.215727}
+[0m10:01:10.437988 [debug] [MainThread]: Command `dbt debug` succeeded at 10:01:10.437740 after 2.97 seconds
+[0m10:01:10.438757 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m10:01:10.439473 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a9c05acc650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a9be9bc6990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a9be8f71d30>]}
+[0m10:01:10.440259 [debug] [MainThread]: Flushing usage events
+[0m10:01:10.864053 [debug] [MainThread]: An error was encountered while trying to flush usage events
