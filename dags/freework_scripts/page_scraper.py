@@ -2,8 +2,12 @@ from bs4 import BeautifulSoup
 import requests
 import logging
 from gcp_utils import bigquery_util
+from gcp_utils import gcs_util
 from google.cloud import bigquery
 import sys
+import json
+import datetime
+from datetime import timezone
 
 client= bigquery.Client()
 logger = logging.getLogger(__name__)
@@ -78,7 +82,19 @@ def parse_job_details(condition="link=link"):
         job={'title':title,'start':start,'duration':duration,'salary_tjm':salary_tjm,'experience':experience,'remote':remote,'location':location,'description':description,"key_skills":str(key_skills),"insert_date":insert_date}
         logger.info(f"Constructing of job dict {job}")
         job_list.append(job)
-        logger.info(f"Inserting of job details {job} into job_list table")
-        bigquery_util.BigQuery(client).insert_row(job_list,"processing-452316","freework","job_list")
+
+    file_name = f"/tmp/freework_jobs_{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}.jsonl"
+
+    with open(file_name, "w", encoding="utf-8") as file:
+        for job in job_list:
+            file.write(json.dumps(job, ensure_ascii=False) + "\n")
+
+    logger.info(f"Inserting of job details {job} into job_list bucket")
+    gcs_util.Gcs().upload_file(
+    bucket_name="freework_jobs",
+    local_file_path=file_name,
+    destination_blob_name=f"freework/jobs/{file_name.split('/')[-1]}",
+    content_type="application/x-ndjson",
+)
 
     

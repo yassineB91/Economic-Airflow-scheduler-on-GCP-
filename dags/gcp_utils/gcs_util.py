@@ -63,3 +63,33 @@ class Gcs:
             raise
 
 
+#################  Upload file into bucket  ####################################################
+
+    def upload_file(self,bucket_name,local_file_path,destination_blob_name,content_type):
+
+        try:
+            bucket = self.client.bucket(bucket_name)
+            blob = bucket.blob(destination_blob_name)
+
+            blob.upload_from_filename(
+                local_file_path,
+                content_type=content_type,
+            )
+
+            self.logger.info(
+                "File %s uploaded to gs://%s/%s",
+                local_file_path,
+                bucket_name,
+                destination_blob_name,
+            )
+
+        except Exception:
+            self.logger.exception(
+                "Error uploading %s to gs://%s/%s",
+                local_file_path,
+                bucket_name,
+                destination_blob_name,
+            )
+            raise
+
+
