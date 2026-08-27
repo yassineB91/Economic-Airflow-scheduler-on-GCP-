@@ -122,7 +122,7 @@ submit_dag_cloud_build:
       gcloud builds submit
       --project="${GCP_PROJECT_ID}"
       --config="cloudbuild-dags.yaml"
-      --substitutions="_PROJECT_ID=${GCP_PROJECT_ID}"
+      --substitutions="_PROJECT_ID=${GCP_PROJECT_ID},_DAG_VERSION=${CI_COMMIT_SHA}"
       .
 
   rules:

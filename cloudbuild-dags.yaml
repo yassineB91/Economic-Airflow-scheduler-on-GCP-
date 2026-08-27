@@ -4,6 +4,7 @@
 
 substitutions:
   _PROJECT_ID: "dev-env-368414"
+  _DAG_VERSION: "manual"
   _VM_NAME: "airflow-vm"
   _VM_ZONE: "europe-west1-b"
   _DAG_ARTIFACT_BUCKET: "dev-env-368414-airflow-dag-artifacts"
@@ -18,10 +19,10 @@ steps:
       - |
         set -Eeuo pipefail
 
-        ARTIFACT_URI="gs://${_DAG_ARTIFACT_BUCKET}/releases/${COMMIT_SHA}/"
+        ARTIFACT_URI="gs://${_DAG_ARTIFACT_BUCKET}/releases/${_DAG_VERSION}/"
         gcloud storage rsync --recursive /workspace/dags "$${ARTIFACT_URI}"
-        printf '%s\n' "${COMMIT_SHA}" |
-          gcloud storage cp - "gs://${_DAG_ARTIFACT_BUCKET}/releases/${COMMIT_SHA}/REVISION"
+        printf '%s\n' "${_DAG_VERSION}" |
+          gcloud storage cp - "gs://${_DAG_ARTIFACT_BUCKET}/releases/${_DAG_VERSION}/REVISION"
 
         echo "Published DAG artifact: $${ARTIFACT_URI}"
 
@@ -45,10 +46,10 @@ steps:
             mkdir -p "$$HOME/deploy/dags"
             gcloud storage rsync --recursive \
               --delete-unmatched-destination-objects \
-              "gs://${_DAG_ARTIFACT_BUCKET}/releases/${COMMIT_SHA}/" \
+              "gs://${_DAG_ARTIFACT_BUCKET}/releases/${_DAG_VERSION}/" \
               "$$HOME/deploy/dags"
 
-            echo "DAG revision ${COMMIT_SHA} deployed to $$HOME/deploy/dags"
+            echo "DAG revision ${_DAG_VERSION} deployed to $$HOME/deploy/dags"
           '
 
 timeout: "900s"
