@@ -46,38 +46,6 @@ steps:
           --command='
             set -Eeuo pipefail
 
-            if ! command -v gcloud >/dev/null 2>&1; then
-              echo "Installing Google Cloud CLI on the VM..."
-
-              source /etc/os-release
-
-              case "$$ID" in
-                ubuntu|debian)
-                  ;;
-                *)
-                  echo "Error: unsupported operating system: $$ID"
-                  exit 1
-                  ;;
-              esac
-
-              sudo apt-get update
-              sudo env DEBIAN_FRONTEND=noninteractive \
-                apt-get install -y ca-certificates curl gnupg
-
-              sudo install -m 0755 -d /etc/apt/keyrings
-              curl -fsSL \
-                https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
-                sudo gpg --yes --dearmor -o /etc/apt/keyrings/google-cloud.gpg
-              sudo chmod a+r /etc/apt/keyrings/google-cloud.gpg
-
-              echo "deb [signed-by=/etc/apt/keyrings/google-cloud.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | \
-                sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list >/dev/null
-
-              sudo apt-get update
-              sudo env DEBIAN_FRONTEND=noninteractive \
-                apt-get install -y google-cloud-cli
-            fi
-
             mkdir -p "$$HOME/deploy/dags"
             gcloud storage rsync --recursive \
               --delete-unmatched-destination-objects \
