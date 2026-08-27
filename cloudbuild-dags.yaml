@@ -4,7 +4,6 @@
 
 substitutions:
   _PROJECT_ID: "dev-env-368414"
-  _IMAGE_TAG: "latest"
   _VM_NAME: "airflow-vm"
   _VM_ZONE: "europe-west1-b"
   _DAG_ARTIFACT_BUCKET: "dev-env-368414-airflow-dag-artifacts"
