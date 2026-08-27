@@ -109,6 +109,7 @@ submit_cloud_build:
       - dbt/**/*
       - entrypoint.sh
       - wait-for-it.sh
+      - .gitlab-ci.yml
 
 
 # Étape 3 : déclenchement du Cloud Build pour dag
@@ -132,3 +133,4 @@ submit_dag_cloud_build:
     changes:
       - dags/**/*
       - cloudbuild-dags.yaml
+      - .gitlab-ci.yml
