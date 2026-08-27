@@ -30,9 +30,6 @@ steps:
     waitFor:
       - "publish-dag-artifact"
     entrypoint: "bash"
-    volumes:
-      - name: "ssh-config"
-        path: "/builder/home/.ssh"
     args:
       - "-c"
       - |
