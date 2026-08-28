@@ -47,6 +47,7 @@ def freework_job_scraper():
         write_disposition="WRITE_APPEND",
         external_table=False,
         autodetect=True,
+        location="europe-west1",
         deferrable=True,
     )
 

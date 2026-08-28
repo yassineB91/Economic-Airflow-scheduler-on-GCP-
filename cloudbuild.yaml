@@ -92,8 +92,8 @@ steps:
           --command='
             set -Eeuo pipefail
 
-            mkdir -p "$$HOME/deploy"
-            chmod 700 "$$HOME/deploy"
+            mkdir -p "/home/cloud-build/deploy"
+            chmod 700 "/home/cloud-build/deploy"
           '
 
         echo "Remote deployment directory prepared"
@@ -117,7 +117,7 @@ steps:
         gcloud compute scp \
           /workspace/env_vars.sh \
           /workspace/docker-compose.yml \
-          "${_VM_NAME}:~/deploy/" \
+          "${_VM_NAME}:/home/cloud-build/deploy/" \
           --project="${_PROJECT_ID}" \
           --zone="${_VM_ZONE}" \
           --quiet
@@ -262,11 +262,11 @@ steps:
               exit 1
             fi
 
-            test -f "$$HOME/deploy/env_vars.sh"
-            test -f "$$HOME/deploy/docker-compose.yml"
+            test -f "/home/cloud-build/deploy/env_vars.sh"
+            test -f "/home/cloud-build/deploy/docker-compose.yml"
 
-            chmod 600 "$$HOME/deploy/env_vars.sh"
-            chmod 600 "$$HOME/deploy/docker-compose.yml"
+            chmod 600 "/home/cloud-build/deploy/env_vars.sh"
+            chmod 600 "/home/cloud-build/deploy/docker-compose.yml"
           '
 
         echo "VM validation completed successfully"
@@ -378,7 +378,7 @@ steps:
           --command='
             set -Eeuo pipefail
 
-            source "$$HOME/deploy/env_vars.sh"
+            source "/home/cloud-build/deploy/env_vars.sh"
 
             IMAGE_URI="europe-west1-docker.pkg.dev/$${PROJECT_ID}/airflow/airflow:$${IMAGE_TAG}"
 
@@ -419,7 +419,7 @@ steps:
           --command='
             set -Eeuo pipefail
 
-            source "$$HOME/deploy/env_vars.sh"
+            source "/home/cloud-build/deploy/env_vars.sh"
 
             cleanup_registry_authentication() {
               sudo docker logout \
@@ -432,13 +432,13 @@ steps:
 
             if sudo docker compose version >/dev/null 2>&1; then
               sudo -E docker compose \
-                --project-directory "$$HOME/deploy" \
-                -f "$$HOME/deploy/docker-compose.yml" \
+                --project-directory "/home/cloud-build/deploy" \
+                -f "/home/cloud-build/deploy/docker-compose.yml" \
                 up -d --remove-orphans
             else
               sudo -E docker-compose \
-                --project-directory "$$HOME/deploy" \
-                -f "$$HOME/deploy/docker-compose.yml" \
+                --project-directory "/home/cloud-build/deploy" \
+                -f "/home/cloud-build/deploy/docker-compose.yml" \
                 up -d --remove-orphans
             fi
 
