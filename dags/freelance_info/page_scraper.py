@@ -92,7 +92,7 @@ def parse_job_details(condition="link=link"):
     blob_name = f"freelance_info/jobs/{file_name.split('/')[-1]}"
     logger.info(f"Uploading parsed jobs to gs://freelance_info_jobs/{blob_name}")
     gcs_util.Gcs().upload_file(
-        bucket_name="freelance_info_bucket",
+        bucket_name="freelance_info_jobs",
         local_file_path=file_name,
         destination_blob_name=blob_name,
         content_type="application/x-ndjson",
