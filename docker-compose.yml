@@ -178,7 +178,7 @@ services:
     command: airflow scheduler
 
     volumes:
-      - ./dags:/opt/airflow/dags:ro
+      - /home/cloud-build/deploy/dags:/opt/airflow/dags:ro
 
     environment:
       <<: *airflow-common-environment
@@ -213,7 +213,7 @@ services:
     command: airflow celery worker
 
     volumes:
-      - ./dags:/opt/airflow/dags:ro
+      - /home/cloud-build/deploy/dags:/opt/airflow/dags:ro
 
     environment:
       <<: *airflow-common-environment

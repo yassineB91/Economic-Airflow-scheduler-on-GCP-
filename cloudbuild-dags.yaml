@@ -43,13 +43,13 @@ steps:
           --command='
             set -Eeuo pipefail
 
-            mkdir -p "$$HOME/deploy/dags"
+            mkdir -p "/home/cloud-build/deploy/dags"
             gcloud storage rsync --recursive \
               --delete-unmatched-destination-objects \
               "gs://${_DAG_ARTIFACT_BUCKET}/releases/${_DAG_VERSION}/" \
               "/home/cloud-build/deploy/dags"
 
-            echo "DAG revision ${_DAG_VERSION} deployed to $$HOME/deploy/dags"
+            echo "DAG revision ${_DAG_VERSION} deployed to /home/cloud-build/deploy/dags"
           '
 
 timeout: "900s"
