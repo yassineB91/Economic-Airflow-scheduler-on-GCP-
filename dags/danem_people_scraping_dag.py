@@ -41,7 +41,7 @@ def danem_people_job_scraper():
 
     load_json_into_bq = GCSToBigQueryOperator(
         task_id="load_jobs_to_bigquery",
-        bucket="danem_people_bucket",
+        bucket="danem_people_jobs",
         source_objects=[uploaded_file],
         source_format="NEWLINE_DELIMITED_JSON",
         destination_project_dataset_table="dev-env-368414.danem_people.job_list",
@@ -54,9 +54,9 @@ def danem_people_job_scraper():
 
     move_loaded_file = GCSToGCSOperator(
         task_id="move_loaded_file",
-        source_bucket="danem_people_bucket",
+        source_bucket="danem_people_jobs",
         source_object="{{ ti.xcom_pull(task_ids='page_scraper_task') }}",
-        destination_bucket="danem_people_bucket",
+        destination_bucket="danem_people_jobs",
         destination_object="danem_people/loaded/",
         move_object=True,
     )

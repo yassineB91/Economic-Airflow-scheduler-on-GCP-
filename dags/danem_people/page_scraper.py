@@ -69,9 +69,9 @@ def parse_job_details(condition="link=link", base_url="https://www.danempeople.f
             file.write(json.dumps(job, ensure_ascii=False) + "\n")
 
     blob_name = f"danem_people/jobs/{file_name.split('/')[-1]}"
-    logger.info("Uploading parsed jobs to gs://danem_people_bucket/%s", blob_name)
+    logger.info("Uploading parsed jobs to gs://danem_people_jobs/%s", blob_name)
     gcs_util.Gcs().upload_file(
-        bucket_name="danem_people_bucket",
+        bucket_name="danem_people_jobs",
         local_file_path=file_name,
         destination_blob_name=blob_name,
         content_type="application/x-ndjson",
