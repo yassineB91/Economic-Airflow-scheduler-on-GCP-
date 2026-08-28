@@ -90430,3 +90430,33 @@ Update your versions in packages.yml, then run dbt deps
 [0m18:49:17.345839 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c2e5f311eb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c2e5f3120f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c2e5ebdc3b0>]}
 [0m18:49:17.346961 [debug] [MainThread]: Flushing usage events
 [0m18:49:17.837207 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:17:53.277717 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x734fe4e85130>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x734fe789e1b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x734fe4ad0fe0>]}
+
+
+============================== 09:17:53.281163 | 6ad09312-f3bd-45d4-b8a7-4a9b21c881e0 ==============================
+[0m09:17:53.281163 [info ] [MainThread]: Running with dbt=1.11.14
+[0m09:17:53.281730 [debug] [MainThread]: running dbt with arguments {'log_cache_events': 'False', 'partial_parse': 'True', 'no_print': 'None', 'cache_selected_only': 'False', 'profiles_dir': '/home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt', 'use_experimental_parser': 'False', 'invocation_command': 'dbt ', 'quiet': 'False', 'empty': 'None', 'debug': 'False', 'write_json': 'True', 'indirect_selection': 'eager', 'printer_width': '80', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'target_path': 'None', 'introspect': 'True', 'use_colors': 'True', 'log_format': 'default', 'version_check': 'True', 'static_parser': 'True', 'warn_error': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_path': '/home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt/logs'}
+[0m09:17:53.440528 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '6ad09312-f3bd-45d4-b8a7-4a9b21c881e0', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x734fe76298b0>]}
+[0m09:17:53.471748 [debug] [MainThread]: Set downloads directory='/tmp/dbt-downloads-fm1nkuj0'
+[0m09:17:53.472479 [debug] [MainThread]: Making package index registry request: GET https://hub.getdbt.com/api/v1/index.json
+[0m09:17:54.243201 [debug] [MainThread]: Response from registry index: GET https://hub.getdbt.com/api/v1/index.json 200
+[0m09:17:54.246756 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json
+[0m09:17:54.578340 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json 200
+[0m09:17:54.593999 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/audit_helper.json
+[0m09:17:55.195001 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/audit_helper.json 200
+[0m09:17:55.200321 [info ] [MainThread]: Installing dbt-labs/dbt_utils
+[0m09:17:56.763746 [info ] [MainThread]: Installed from version 1.2.0
+[0m09:17:56.764335 [info ] [MainThread]: Updated version available: 1.4.1
+[0m09:17:56.764925 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': '6ad09312-f3bd-45d4-b8a7-4a9b21c881e0', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x734fe53cbbc0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x734fe4640710>]}
+[0m09:17:56.765477 [info ] [MainThread]: Installing dbt-labs/audit_helper
+[0m09:17:57.551535 [info ] [MainThread]: Installed from version 0.7.0
+[0m09:17:57.552534 [info ] [MainThread]: Updated version available: 0.14.0
+[0m09:17:57.553527 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': '6ad09312-f3bd-45d4-b8a7-4a9b21c881e0', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x734fe44700b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x734fe438a510>]}
+[0m09:17:57.554560 [info ] [MainThread]: 
+[0m09:17:57.555671 [info ] [MainThread]: Updates available for packages: ['dbt-labs/dbt_utils', 'dbt-labs/audit_helper']                 
+Update your versions in packages.yml, then run dbt deps
+[0m09:17:57.558167 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 4.3531294, "process_in_blocks": "944", "process_kernel_time": 0.342282, "process_mem_max_rss": "108672", "process_out_blocks": "2808", "process_user_time": 2.326703}
+[0m09:17:57.559464 [debug] [MainThread]: Command `cli deps` succeeded at 09:17:57.559145 after 4.35 seconds
+[0m09:17:57.560460 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x734fe4b0ed80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x734fe44a0f50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x734fe471ffe0>]}
+[0m09:17:57.571071 [debug] [MainThread]: Flushing usage events
+[0m09:17:58.721992 [debug] [MainThread]: An error was encountered while trying to flush usage events

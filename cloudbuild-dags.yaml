@@ -47,7 +47,7 @@ steps:
             gcloud storage rsync --recursive \
               --delete-unmatched-destination-objects \
               "gs://${_DAG_ARTIFACT_BUCKET}/releases/${_DAG_VERSION}/" \
-              "$$HOME/deploy/dags"
+              "/home/cloud-build/deploy/dags"
 
             echo "DAG revision ${_DAG_VERSION} deployed to $$HOME/deploy/dags"
           '
