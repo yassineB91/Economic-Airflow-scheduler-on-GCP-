@@ -106,7 +106,15 @@ submit_cloud_build:
       - requirements.txt
       - docker-compose.yml
       - cloudbuild.yaml
-      - dbt/**/*
+      - dbt/dbt_project.yml
+      - dbt/packages.yml
+      - dbt/package-lock.yml
+      - dbt/models/**/*
+      - dbt/macros/**/*
+      - dbt/seeds/**/*
+      - dbt/snapshots/**/*
+      - dbt/analyses/**/*
+      - dbt/tests/**/*
       - entrypoint.sh
       - wait-for-it.sh
       - .gitlab-ci.yml

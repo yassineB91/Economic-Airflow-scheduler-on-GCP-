@@ -12,3 +12,6 @@ airflow.db
 docker_airflow_sa.json
 logs
 .vscode
+dbt/logs/dbt.log
+dbt/target/manifest.json
+logs/dbt.log
