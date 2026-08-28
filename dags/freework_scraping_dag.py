@@ -51,13 +51,13 @@ def freework_job_scraper():
     )
 
     move_loaded_file = GCSToGCSOperator(
-        task_id="move_loaded_file",
-        source_bucket="freework_jobs",
-        source_object=[uploaded_file],
-        destination_bucket="freework_jobs",
-        destination_object="freework/loaded/",
-        move_object=True,
-    )
+    task_id="move_loaded_file",
+    source_bucket="freework_jobs",
+    source_objects=[uploaded_file],
+    destination_bucket="freework_jobs",
+    destination_object="freework/loaded/",
+    move_object=True,
+)
     
     variable = f"{str(datetime.now().date())}"
     freelance_cleaning_task = BashOperator(task_id="freelance_cleaning_task",bash_command=f"cd /opt/airflow/dbt && \
