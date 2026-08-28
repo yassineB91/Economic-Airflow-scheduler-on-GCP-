@@ -143,7 +143,7 @@ services:
     command: airflow webserver
 
     volumes:
-      - ./dags:/opt/airflow/dags:ro
+      - /home/cloud-build/deploy/dags:/opt/airflow/dags:ro
 
     environment:
       <<: *airflow-common-environment
