@@ -53,7 +53,7 @@ def freework_job_scraper():
     move_loaded_file = GCSToGCSOperator(
         task_id="move_loaded_file",
         source_bucket="freework_jobs",
-        source_object=uploaded_file,
+        source_object=[uploaded_file],
         destination_bucket="freework_jobs",
         destination_object="freework/loaded/",
         move_object=True,
