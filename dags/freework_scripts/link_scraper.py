@@ -44,6 +44,8 @@ def get_job_links(number_of_pages, initial_url):
     Raises:
         SystemExit: If an HTTP request or HTML parsing fails.
     """
+    jobs = []
+
     for page_number in range(1,number_of_pages+1):  
         page_url=f"{initial_url}{page_number}"
         try:
@@ -59,7 +61,6 @@ def get_job_links(number_of_pages, initial_url):
         except Exception as e:
             logger.error(f"Error occured during parsing of page {page_url}: {e}")
             sys.exit(3)        
-        jobs= []
         number = 0
         for element in div:
             number+=1
@@ -69,7 +70,7 @@ def get_job_links(number_of_pages, initial_url):
             job_page= {"job":job_title,"link":link,"insert_date":str(datetime.now())}
             jobs.append(job_page)
 
-            logger.info(f"Inserting {jobs} into table list_links")
+    logger.info(f"Inserting {len(jobs)} jobs into table list_links")
     bigquery_util.BigQuery().insert_rows(jobs,"dev-env-368414","freework","list_links",write_mode="truncate")
 
 # def main():
