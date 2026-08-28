@@ -45,7 +45,7 @@ def freelance_info_job_scraper():
 
     load_json_into_bq = GCSToBigQueryOperator(
         task_id="load_jobs_to_bigquery",
-        bucket="freelance_info_bucket",
+        bucket="freelance_info_jobs",
         source_objects=[uploaded_file],
         source_format="NEWLINE_DELIMITED_JSON",
         destination_project_dataset_table="dev-env-368414.freelance_info.job_list",
