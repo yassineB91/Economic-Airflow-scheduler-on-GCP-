@@ -24,7 +24,7 @@ models:
     columns:
       - name: city
         description: "The primary key for this table"
-        tests:
+        data_tests:
           - unique
           - not_null
 
@@ -42,7 +42,7 @@ models:
     columns:
       - name: city
         description: "The primary key for this table"
-        tests:
+        data_tests:
           - unique
           - not_null
 
@@ -51,7 +51,7 @@ models:
     columns:
       - name: city
         description: "The primary key for this table"
-        tests:
+        data_tests:
           - unique
           - not_null
 
@@ -61,7 +61,7 @@ models:
     columns:
       - name: city
         description: "The primary key for this table"
-        tests:
+        data_tests:
           - unique
           - not_null
 
@@ -70,7 +70,7 @@ models:
     columns:
       - name: city
         description: "The primary key for this table"
-        tests:
+        data_tests:
           - unique
           - not_null
   
@@ -79,7 +79,7 @@ models:
     columns:
       - name: city
         description: "The primary key for this table"
-        tests:
+        data_tests:
           - unique
           - not_null
 

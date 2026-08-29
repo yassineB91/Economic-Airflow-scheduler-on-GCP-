@@ -44,16 +44,38 @@ models:
         enforced: true
 
     columns:
+      - name: job_id
+        data_type: string
+      - name: job
+        data_type: string
       - name: job_type
         data_type: string
         data_tests:
           - not_null
           - accepted_values:
               values: ['CDI']
+      - name: salary_min
+        data_type: numeric
+      - name: salary_max
+        data_type: numeric
+      - name: start
+        data_type: string
+      - name: duration
+        data_type: string
+      - name: experience
+        data_type: string
+      - name: remote
+        data_type: string
+      - name: location
+        data_type: string
+      - name: key_skills
+        data_type: string
       - name: insert_date
         data_type: timestamp
         data_tests:
           - not_null
+      - name: description
+        data_type: string
   - name: jobs_cleaning_freelance
     description: "freework freelance jobs content parsed and cleaned"
     columns:
