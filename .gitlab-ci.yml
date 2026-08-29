@@ -107,14 +107,10 @@ submit_cloud_build:
       - docker-compose.yml
       - cloudbuild.yaml
       - dbt/dbt_project.yml
+      - dbt/profiles.yml
       - dbt/packages.yml
       - dbt/package-lock.yml
-      - dbt/models/**/*
-      - dbt/macros/**/*
-      - dbt/seeds/**/*
-      - dbt/snapshots/**/*
-      - dbt/analyses/**/*
-      - dbt/tests/**/*
+      - dbt/processing/**/*
       - entrypoint.sh
       - wait-for-it.sh
       - .gitlab-ci.yml
