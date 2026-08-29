@@ -51,21 +51,18 @@ models:
       - name: location_id
         data_tests:
           - relationships:
-              arguments:
-                to: ref('jobs_modeling_location')
-                field: location_id
+              to: ref('jobs_modeling_location')
+              field: location_id
       - name: job_type_id
         data_tests:
           - relationships:
-              arguments:
-                to: ref('jobs_modeling_type')
-                field: job_type_id
+              to: ref('jobs_modeling_type')
+              field: job_type_id
       - name: experience_id
         data_tests:
           - relationships:
-              arguments:
-                to: ref('jobs_modeling_experience')
-                field: experience_id
+              to: ref('jobs_modeling_experience')
+              field: experience_id
 exposures:
   - name: freework_dashboard
     type: dashboard
