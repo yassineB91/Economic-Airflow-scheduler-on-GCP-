@@ -17,6 +17,8 @@ safe_cast(split(split(split(salary_tjm,"-")[SAFE_OFFSET(1)],",")[SAFE_OFFSET(0)]
 from `dev-env-368414`.`freework`.`job_list`
  where  key_skills like '%Freelance%'and key_skills not like '%CDI%'
 
+  and insert_date > (select coalesce(max(insert_date), '1900-01-01') from `dev-env-368414`.`freework`.`jobs_cleaning_freelance`)
+
 )
 
 

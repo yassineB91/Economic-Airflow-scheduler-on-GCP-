@@ -45,11 +45,13 @@ models:
 
     columns:
       - name: job_type
+        data_type: string
         data_tests:
           - not_null
           - accepted_values:
               values: ['CDI']
       - name: insert_date
+        data_type: timestamp
         data_tests:
           - not_null
   - name: jobs_cleaning_freelance
