@@ -5,7 +5,8 @@
         'field': 'insert_date',
         'data_type': 'timestamp'
     },
-    incremental_strategy = 'insert_overwrite'
+    incremental_strategy = 'insert_overwrite',
+    on_schema_change = 'fail'
 ) }}
 
 with source as (
