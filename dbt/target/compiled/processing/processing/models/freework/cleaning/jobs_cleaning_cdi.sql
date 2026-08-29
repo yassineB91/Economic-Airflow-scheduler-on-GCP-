@@ -1,7 +1,7 @@
 
 
 with source as (
-    select * from `processing-452316`.`freework`.`job_list`
+    select * from `dev-env-368414`.`freework`.`job_list`
 ),
 
 filtered_jobs as (

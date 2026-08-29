@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `processing-452316`.`freework`.`cities_cleaning_seine_saint_denis`
+    create or replace table `dev-env-368414`.`freework`.`cities_cleaning_seine_saint_denis`
       
     
     
@@ -14,7 +14,7 @@
 with source_data as (
 select 
 *
-from `processing-452316`.`villeideal`.`seine_saint_denis`
+from `dev-env-368414`.`villeideal`.`seine_saint_denis`
 
 
 )

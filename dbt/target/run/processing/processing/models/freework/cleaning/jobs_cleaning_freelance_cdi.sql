@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `processing-452316`.`freework`.`jobs_cleaning_freelance_cdi`
+    create or replace table `dev-env-368414`.`freework`.`jobs_cleaning_freelance_cdi`
       
     partition by timestamp_trunc(insert_date, day)
     
@@ -43,7 +43,7 @@ split(title,"-")[0] as job,
  key_skills,
  insert_date,
  description
-from `processing-452316`.`freework`.`job_list`
+from `dev-env-368414`.`freework`.`job_list`
  where  key_skills like '%Freelance%'and key_skills  like '%CDI%'
 
 )

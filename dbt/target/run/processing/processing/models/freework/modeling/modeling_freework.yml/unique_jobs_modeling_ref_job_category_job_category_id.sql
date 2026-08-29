@@ -10,7 +10,7 @@ select
 with dbt_test__target as (
 
   select job_category_id as unique_field
-  from `processing-452316`.`freework`.`jobs_modeling_ref_job_category`
+  from `dev-env-368414`.`freework`.`jobs_modeling_ref_job_category`
   where job_category_id is not null
 
 )

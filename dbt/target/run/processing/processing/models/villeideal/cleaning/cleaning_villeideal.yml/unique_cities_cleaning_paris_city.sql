@@ -10,7 +10,7 @@ select
 with dbt_test__target as (
 
   select city as unique_field
-  from `processing-452316`.`freework`.`cities_cleaning_paris`
+  from `dev-env-368414`.`freework`.`cities_cleaning_paris`
   where city is not null
 
 )

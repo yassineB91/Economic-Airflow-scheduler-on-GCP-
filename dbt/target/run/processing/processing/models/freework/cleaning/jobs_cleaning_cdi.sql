@@ -2,17 +2,18 @@
   
     
 
-    create or replace table `processing-452316`.`freework`.`jobs_cleaning_cdi`
+    create or replace table `dev-env-368414`.`freework`.`jobs_cleaning_cdi`
       
     partition by timestamp_trunc(insert_date, day)
     
 
+    
     OPTIONS()
     as (
       
 
 with source as (
-    select * from `processing-452316`.`freework`.`job_list`
+    select * from `dev-env-368414`.`freework`.`job_list`
 ),
 
 filtered_jobs as (

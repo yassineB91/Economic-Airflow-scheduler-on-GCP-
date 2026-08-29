@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="title", model=get_where_subquery(source('freework', 'job_list'))) }}

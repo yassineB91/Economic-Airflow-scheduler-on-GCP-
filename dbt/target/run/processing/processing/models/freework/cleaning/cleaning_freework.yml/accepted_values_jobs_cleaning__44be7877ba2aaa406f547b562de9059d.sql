@@ -13,7 +13,7 @@ with all_values as (
         job_type as value_field,
         count(*) as n_records
 
-    from `processing-452316`.`freework`.`jobs_cleaning_aggregation`
+    from `dev-env-368414`.`freework`.`jobs_cleaning_aggregation`
     group by job_type
 
 )

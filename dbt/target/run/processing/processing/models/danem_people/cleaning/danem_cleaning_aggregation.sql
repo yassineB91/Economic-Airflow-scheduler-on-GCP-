@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `processing-452316`.`danem_people`.`danem_cleaning_aggregation`
+    create or replace table `dev-env-368414`.`danem_people`.`danem_cleaning_aggregation`
       
     partition by timestamp_trunc(insert_date, day)
     
@@ -12,12 +12,12 @@
       
 
 with aggregated_jobs as (
-    select * from `processing-452316`.`danem_people`.`danem_cleaning_cdi`
+    select * from `dev-env-368414`.`danem_people`.`danem_cleaning_cdi`
     
 
     union all 
 
-    select * from `processing-452316`.`danem_people`.`danem_cleaning_freelance`
+    select * from `dev-env-368414`.`danem_people`.`danem_cleaning_freelance`
     
 ) 
 select * from aggregated_jobs

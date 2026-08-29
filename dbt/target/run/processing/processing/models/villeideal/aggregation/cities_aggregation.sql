@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `processing-452316`.`freework`.`cities_aggregation`
+    create or replace table `dev-env-368414`.`freework`.`cities_aggregation`
       
     
     
@@ -13,13 +13,13 @@
 
 with source_data as (
 
-select *, 'yvelines'as departement  from `processing-452316`.`villeideal`.`yvelines`
+select *, 'yvelines'as departement  from `dev-env-368414`.`villeideal`.`yvelines`
 union all
-select *, 'essone'as departement from `processing-452316`.`villeideal`.`essone`
+select *, 'essone'as departement from `dev-env-368414`.`villeideal`.`essone`
 union all
-select *, 'seine_et_marne'as departement from `processing-452316`.`villeideal`.`seine_et_marne`
+select *, 'seine_et_marne'as departement from `dev-env-368414`.`villeideal`.`seine_et_marne`
 union all
-select *, 'seine_saint_denis'as departement from `processing-452316`.`villeideal`.`seine_saint_denis`
+select *, 'seine_saint_denis'as departement from `dev-env-368414`.`villeideal`.`seine_saint_denis`
 
 )
 

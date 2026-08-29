@@ -100,7 +100,6 @@ Flow:
 - `GCS_LOGGING_BUCKET`
 - `GOOGLE_APPLICATION_CREDENTIALS_JSON` (JSON content, not a file path)
 - `AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT` (Airflow connection URI)
-- `AIRFLOW_CONN_SLACK_WEBHOOK` (optional, required for Slack alerts)
 - `POSTGRES_USER`
 - `POSTGRES_PASSWORD`
 - `POSTGRES_DB`
@@ -126,7 +125,6 @@ export IMAGE_TAG="dev"
 export GCS_LOGGING_BUCKET="your-log-bucket"
 export GOOGLE_APPLICATION_CREDENTIALS_JSON="$(cat /path/to/sa.json)"
 export AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT="google-cloud-platform://?extra__google_cloud_platform__project=your-gcp-project"
-export AIRFLOW_CONN_SLACK_WEBHOOK="<set-your-slack-webhook-url>"
 export POSTGRES_USER="airflow"
 export POSTGRES_PASSWORD="replace-with-strong-password"
 export POSTGRES_DB="airflow"

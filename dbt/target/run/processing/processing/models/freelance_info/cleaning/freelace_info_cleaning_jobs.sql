@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `processing-452316`.`freelance_info`.`freelace_info_cleaning_jobs`
+    create or replace table `dev-env-368414`.`freelance_info`.`freelace_info_cleaning_jobs`
       
     
     
@@ -49,7 +49,7 @@ COALESCE(
 ) AS experience,
   insert_date
 
-FROM `processing-452316.freelance_info.job_list`
+FROM `dev-env-368414.freelance_info.job_list`
  
 ),
 

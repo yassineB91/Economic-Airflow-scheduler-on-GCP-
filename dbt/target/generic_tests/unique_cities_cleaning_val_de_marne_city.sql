@@ -1,0 +1,1 @@
+{{ test_unique(column_name="city", model=get_where_subquery(ref('cities_cleaning_val_de_marne'))) }}

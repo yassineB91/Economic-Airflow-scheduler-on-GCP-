@@ -3,7 +3,7 @@ version: 2
 
 sources:
   - name: raw_cities
-    database: processing-452316
+    database: "{{ var('source_project', target.project) }}"
     schema: villeideal
     tables:
       - name: yvelines

@@ -1,0 +1,1 @@
+{{ test_relationships(column_name="job_type_id", field="job_type_id", model=get_where_subquery(ref('jobs_modeling_fact_jobs_initial')), to=ref('jobs_modeling_type')) }}

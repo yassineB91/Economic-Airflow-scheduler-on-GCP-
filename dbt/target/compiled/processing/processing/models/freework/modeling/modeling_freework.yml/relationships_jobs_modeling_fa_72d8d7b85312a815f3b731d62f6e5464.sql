@@ -4,13 +4,13 @@
 
 with child as (
     select skill_id as from_field
-    from `processing-452316`.`freework`.`jobs_modeling_fact_jobs_initial`
+    from `dev-env-368414`.`freework`.`jobs_modeling_fact_jobs_initial`
     where skill_id is not null
 ),
 
 parent as (
     select skill_id as to_field
-    from `processing-452316`.`freework`.`jobs_modeling_skills`
+    from `dev-env-368414`.`freework`.`jobs_modeling_skills`
 )
 
 select

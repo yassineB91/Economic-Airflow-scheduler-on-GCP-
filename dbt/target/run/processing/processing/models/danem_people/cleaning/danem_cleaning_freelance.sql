@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `processing-452316`.`danem_people`.`danem_cleaning_freelance`
+    create or replace table `dev-env-368414`.`danem_people`.`danem_cleaning_freelance`
       
     partition by timestamp_trunc(insert_date, day)
     
@@ -14,7 +14,7 @@
 with src_freelance as (
 select 
 *
-from `processing-452316`.`danem_people`.`job_list` where job_type="Freelance"
+from `dev-env-368414`.`danem_people`.`job_list` where job_type="Freelance"
 
 )
 ,

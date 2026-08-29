@@ -1,7 +1,7 @@
 
 
 with source as (
-    select * from `processing-452316`.`freework`.`job_list`
+    select * from `dev-env-368414`.`freework`.`job_list`
 ),
 
 filtered_jobs as (
@@ -24,6 +24,8 @@ filtered_jobs as (
         and key_skills not like '%Freelance%'
         and key_skills like '%CDI%'
         and split(title, '-')[OFFSET(0)] != ''
+        
+            and insert_date > (select max(insert_date) from `dev-env-368414`.`freework`.`jobs_cleaning_cdi`)
         
 )
 

@@ -16,9 +16,9 @@ else 'Freelance'
 end job_type,
 array_to_string(TEXT_ANALYZE(REGEXP_REPLACE(NORMALIZE(jca.title, NFD), r"\pM", ''), analyzer=>'PATTERN_ANALYZER'),' ') as title,
 coalesce(t.Technology,'') as skill
-from processing-452316.danem_people.danem_cleaning_aggregation jca
+from dev-env-368414.danem_people.danem_cleaning_aggregation jca
 left JOIN 
-    `processing-452316.freework.technologies` t
+    `dev-env-368414.freework.technologies` t
   on 
     LOWER(jca.description) LIKE CONCAT('%', LOWER(t.Technology), '%') and jca.description is not null and jca.description<>""
 where jca.job_category_class in ("Big Data","ERP &amp; CRM","Télécommunications","Systèmes / Réseaux et Télécoms","Cybersécurité","Business Intelligence","Développement Web &amp; Mobile")

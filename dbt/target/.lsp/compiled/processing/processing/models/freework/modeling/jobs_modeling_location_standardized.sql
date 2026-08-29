@@ -2,7 +2,7 @@
 
 with location_table as (
   select distinct location_id, location, split(location,",")[0] as loc
- from processing-452316.freework.jobs_modeling_location),
+ from `dev-env-368414`.`freework`.`jobs_modeling_location`),
   source_data as (
  select distinct location_id,location, loc
   from location_table 

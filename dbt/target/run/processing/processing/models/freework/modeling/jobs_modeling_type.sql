@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `processing-452316`.`freework`.`jobs_modeling_type`
+    create or replace table `dev-env-368414`.`freework`.`jobs_modeling_type`
       
     
     
@@ -15,7 +15,7 @@ with source_data as (
 with type as (select
 distinct 
 job_type
-from `processing-452316`.`freework`.`jobs_cleaning_aggregation`
+from `dev-env-368414`.`freework`.`jobs_cleaning_aggregation`
 
 )
 select

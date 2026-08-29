@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `processing-452316`.`freework`.`jobs_modeling_fact_jobs_initial`
+    create or replace table `dev-env-368414`.`freework`.`jobs_modeling_fact_jobs_initial`
       
     
     
@@ -18,7 +18,7 @@ select
 distinct 
 job, salary_min,salary_max,tjm_min,
 tjm_max,start, job_type, duration, experience, remote, location, key_skills, insert_date, description
-from `processing-452316`.`freework`.`jobs_cleaning_aggregation` 
+from `dev-env-368414`.`freework`.`jobs_cleaning_aggregation` 
 where job<>''
 
 )
@@ -40,11 +40,11 @@ t.job_type_id,
 j.insert_date
 from
 jobs_table j
-left outer join `processing-452316`.`freework`.`jobs_modeling_experience` e
+left outer join `dev-env-368414`.`freework`.`jobs_modeling_experience` e
 on j.experience=e.experience
-left outer join `processing-452316`.`freework`.`jobs_modeling_location` l
+left outer join `dev-env-368414`.`freework`.`jobs_modeling_location` l
 on j.location=l.location
-left outer join `processing-452316`.`freework`.`jobs_modeling_type` t
+left outer join `dev-env-368414`.`freework`.`jobs_modeling_type` t
 on j.job_type=t.job_type
 )
 select * from source_data

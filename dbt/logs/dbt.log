@@ -90460,3 +90460,547 @@ Update your versions in packages.yml, then run dbt deps
 [0m09:17:57.560460 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x734fe4b0ed80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x734fe44a0f50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x734fe471ffe0>]}
 [0m09:17:57.571071 [debug] [MainThread]: Flushing usage events
 [0m09:17:58.721992 [debug] [MainThread]: An error was encountered while trying to flush usage events
+{"data":{"log_version":3,"version":"=2.0.0-preview.212"},"info":{"category":"","code":"A001","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"info","msg":"Running with dbt-fusion=2.0.0-preview.212","name":"MainReportVersion","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:22.858194Z"}}
+{"data":{"args":{"debug":"false","invocation_command":"/home/yassine/.local/bin/dbt run --select processing/models/freework/cleaning/jobs_cleaning_cdi.sql --log-format json --defer","log_format":"json","quiet":"false","write_json":"true"}},"info":{"category":"","code":"A002","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"debug","msg":"running dbt-fusion with arguments {\"command\":\"run\",\"vars\":\"{}\",\"limit\":\"10\",\"select\":[\"path:processing/models/freework/cleaning/jobs_cleaning_cdi.sql\"],\"resource_types\":[\"model\"],\"debug\":false,\"log_format\":\"json\",\"quiet\":false,\"write_json\":true,\"write_catalog\":false,\"manage_state\":false}","name":"MainReportArgs","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:22.858280Z"}}
+{"data":{"msg":"dbt-fusion 2.0.0-preview.212"},"info":{"category":"","code":"","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"info","msg":"dbt-fusion 2.0.0-preview.212","name":"Generic","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:22.858602Z"}}
+{"data":{"msg":"Loading profiles.yml"},"info":{"category":"","code":"","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"info","msg":"Loading profiles.yml","name":"Generic","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:22.860236Z"}}
+{"data":{},"info":{"category":"","code":"1041","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"warn","msg":"[warning] [FmtError (dbt1041)]: Old format package-lock.yml file found. Please provide package definitions.","name":"FmtError","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:22.878181Z"}}
+{"data":{"msg":"Loading packages.yml"},"info":{"category":"","code":"","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"info","msg":"Loading packages.yml","name":"Generic","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:22.879939Z"}}
+{"data":{},"info":{"category":"","code":"1089","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"warn","msg":"[warning] [NoNodeForYamlKey (dbt1089)]: Unused schema.yml entry for model 'danem_people_list_links'\n  --> processing/models/danem_people/incremental/danem_people_incremental.yml","name":"NoNodeForYamlKey","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:23.208914Z"}}
+{"data":{"artifact_path":"target/semantic_manifest.json","artifact_type":"ARTIFACT_TYPE_SEMANTIC_MANIFEST"},"info":{"category":"","code":"P001","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"info","msg":"Artifact written to target/semantic_manifest.json","name":"ArtifactWritten","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:23.647020Z"}}
+{"data":{},"info":{"category":"","code":"","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"debug","msg":"Initializing schema store with entry: Frontier(CanonicalFqn { catalog: \"processing-452316\", schema: \"freework\", table: \"job_list\" }) and interval: None","name":"Generic","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:23.650575Z"}}
+{"data":{},"info":{"category":"","code":"","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"debug","msg":"BigQuery driver resolved: bigquery 0.21.0.dev+dbt0.21.17","name":"Generic","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:23.657911Z"}}
+{"data":{"node_info":{"materialized":"incremental","node_checksum":"26fc8b35b74a837426dca6773e9512b902ac74472555a45426dfd24f5bf52c02","node_finished_at":"","node_name":"jobs_cleaning_cdi","node_path":"processing/models/freework/cleaning/jobs_cleaning_cdi.sql","node_relation":{"alias":"jobs_cleaning_cdi","database":"dev-env-368414","relation_name":"dev-env-368414.freework.jobs_cleaning_cdi","schema":"freework"},"node_started_at":"2026-08-28T21:03:24.689253Z","node_status":"started","resource_type":"model","unique_id":"model.processing.jobs_cleaning_cdi"}},"info":{"category":"","code":"Q024","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"debug","msg":"Began running node model.processing.jobs_cleaning_cdi","name":"NodeStart","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:24.689554Z"}}
+{"data":{"node_info":{"materialized":"incremental","node_checksum":"26fc8b35b74a837426dca6773e9512b902ac74472555a45426dfd24f5bf52c02","node_finished_at":"","node_name":"jobs_cleaning_cdi","node_path":"processing/models/freework/cleaning/jobs_cleaning_cdi.sql","node_relation":{"alias":"jobs_cleaning_cdi","database":"dev-env-368414","relation_name":"dev-env-368414.freework.jobs_cleaning_cdi","schema":"freework"},"node_started_at":"2026-08-28T21:03:24.689253Z","node_status":"started","resource_type":"model","unique_id":"model.processing.jobs_cleaning_cdi"}},"info":{"category":"","code":"Q011","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"info","msg":"Started model freework.jobs_cleaning_cdi","name":"LogStartLine","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:24.689815Z"}}
+{"data":{"node_info":{"materialized":"incremental","node_checksum":"26fc8b35b74a837426dca6773e9512b902ac74472555a45426dfd24f5bf52c02","node_finished_at":"","node_name":"jobs_cleaning_cdi","node_path":"processing/models/freework/cleaning/jobs_cleaning_cdi.sql","node_relation":{"alias":"jobs_cleaning_cdi","database":"dev-env-368414","relation_name":"dev-env-368414.freework.jobs_cleaning_cdi","schema":"freework"},"node_started_at":"2026-08-28T21:03:24.690126Z","node_status":"compiling","resource_type":"model","unique_id":"model.processing.jobs_cleaning_cdi"}},"info":{"category":"","code":"Q030","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"debug","msg":"Started rendering model freework.jobs_cleaning_cdi","name":"NodeCompiling","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:24.690176Z"}}
+{"data":{"node_info":{"materialized":"incremental","node_checksum":"26fc8b35b74a837426dca6773e9512b902ac74472555a45426dfd24f5bf52c02","node_finished_at":"","node_name":"jobs_cleaning_cdi","node_path":"processing/models/freework/cleaning/jobs_cleaning_cdi.sql","node_relation":{"alias":"jobs_cleaning_cdi","database":"dev-env-368414","relation_name":"dev-env-368414.freework.jobs_cleaning_cdi","schema":"freework"},"node_started_at":"2026-08-28T21:03:24.864671Z","node_status":"executing","resource_type":"model","unique_id":"model.processing.jobs_cleaning_cdi"}},"info":{"category":"","code":"Q031","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"debug","msg":"Started running model freework.jobs_cleaning_cdi","name":"NodeExecuting","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:24.864744Z"}}
+{"data":{"msg":"Invalid value for on_schema_change (None) specified. Setting default value of ignore.","node_info":{"unique_id":"model.processing.jobs_cleaning_cdi"}},"info":{"category":"","code":"I063","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"debug","msg":"Invalid value for on_schema_change (None) specified. Setting default value of ignore.","name":"JinjaDebugInfo","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:24.869225Z"}}
+{"data":{"msg":"Writing runtime sql for node \"model.processing.jobs_cleaning_cdi\"","node_info":{"unique_id":"model.processing.jobs_cleaning_cdi"}},"info":{"category":"","code":"I063","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"debug","msg":"Writing runtime sql for node \"model.processing.jobs_cleaning_cdi\"","name":"JinjaDebugInfo","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:24.874934Z"}}
+{"data":{"node_info":{"unique_id":"model.processing.jobs_cleaning_cdi"}},"info":{"category":"","code":"","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"debug","msg":"create_debug_span(...).entered() took 49.052µs","name":"Generic","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:24.878160Z"}}
+{"data":{"node_info":{"unique_id":"model.processing.jobs_cleaning_cdi"},"sql":"/* {\"app\": \"dbt\", \"dbt_version\": \"2.0.0\", \"node_id\": \"model.processing.jobs_cleaning_cdi\", \"profile_name\": \"processing\", \"target_name\": \"freework\"} */\n\n  \n    \n\n    create or replace table `dev-env-368414`.`freework`.`jobs_cleaning_cdi`\n      \n    partition by timestamp_trunc(insert_date, day)\n    \n\n    \n    OPTIONS()\n    as (\n      \n\nwith source as (\n    select * from `processing-452316`.`freework`.`job_list`\n),\n\nfiltered_jobs as (\n    select\n        to_hex(md5(cast(coalesce(cast(title as string), '_dbt_utils_surrogate_key_null_') || '-' || coalesce(cast(insert_date as string), '_dbt_utils_surrogate_key_null_') as string))) as job_id,\n        split(title, '-')[OFFSET(0)] as job,\n        'CDI' as job_type,\n        safe_cast(replace(split(salary_tjm, '-')[OFFSET(0)], 'k', '000') as numeric) as salary_min,\n        safe_cast(replace(split(salary_tjm, '-')[SAFE_OFFSET(1)], 'k €/an', '000') as numeric) as salary_max,\n        start,\n        duration,\n        experience,\n        remote,\n        location,\n        key_skills,\n        insert_date,\n        description\n    from source\n    where 1=1\n        and key_skills not like '%Freelance%'\n        and key_skills like '%CDI%'\n        and split(title, '-')[OFFSET(0)] != ''\n        \n)\n\nselect distinct *\nfrom filtered_jobs\n    );\n  "},"info":{"category":"","code":"E017","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"debug","msg":"-- created_at: 2026-08-28T21:03:24.878127094+00:00\n-- finished_at: 2026-08-28T21:03:25.517183543+00:00\n-- elapsed: 639ms\n-- outcome: error\n-- error vendor code: -2147483648\n-- error message: Unknown: [BigQuery] googleapi: Error 403: Access Denied: Table processing-452316:freework.job_list: User does not have permission to query table processing-452316:freework.job_list, or perhaps it does not exist., accessDenied (Query: https://console.cloud.google.com/bigquery?project=dev-env-368414&j=bq:europe-west1:WccdWK3Npir5pLnkx8pWicxdrnD&page=queryresults)\n-- dialect: bigquery\n-- node_id: model.processing.jobs_cleaning_cdi\n-- query_id: not available\n-- desc: execute adapter call\n/* {\"app\": \"dbt\", \"dbt_version\": \"2.0.0\", \"node_id\": \"model.processing.jobs_cleaning_cdi\", \"profile_name\": \"processing\", \"target_name\": \"freework\"} */\n\n  \n    \n\n    create or replace table `dev-env-368414`.`freework`.`jobs_cleaning_cdi`\n      \n    partition by timestamp_trunc(insert_date, day)\n    \n\n    \n    OPTIONS()\n    as (\n      \n\nwith source as (\n    select * from `processing-452316`.`freework`.`job_list`\n),\n\nfiltered_jobs as (\n    select\n        to_hex(md5(cast(coalesce(cast(title as string), '_dbt_utils_surrogate_key_null_') || '-' || coalesce(cast(insert_date as string), '_dbt_utils_surrogate_key_null_') as string))) as job_id,\n        split(title, '-')[OFFSET(0)] as job,\n        'CDI' as job_type,\n        safe_cast(replace(split(salary_tjm, '-')[OFFSET(0)], 'k', '000') as numeric) as salary_min,\n        safe_cast(replace(split(salary_tjm, '-')[SAFE_OFFSET(1)], 'k €/an', '000') as numeric) as salary_max,\n        start,\n        duration,\n        experience,\n        remote,\n        location,\n        key_skills,\n        insert_date,\n        description\n    from source\n    where 1=1\n        and key_skills not like '%Freelance%'\n        and key_skills like '%CDI%'\n        and split(title, '-')[OFFSET(0)] != ''\n        \n)\n\nselect distinct *\nfrom filtered_jobs\n    );\n  ;","name":"SQLQuery","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:25.517246Z"}}
+{"data":{"node_info":{"unique_id":"model.processing.jobs_cleaning_cdi"}},"info":{"category":"","code":"1308","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"error","msg":"[error] [DbDriverFailed (dbt1308)]: Database Error in model jobs_cleaning_cdi (target/run/processing/processing/models/freework/cleaning/jobs_cleaning_cdi.sql)\n  [BigQuery] googleapi: Error 403: Access Denied: Table processing-452316:freework.job_list: User does not have permission to query table processing-452316:freework.job_list, or perhaps it does not exist., accessDenied (Query: https://console.cloud.google.com/bigquery?project=dev-env-368414&j=bq:europe-west1:WccdWK3Npir5pLnkx8pWicxdrnD&page=queryresults)\n  (in run/processing/processing/models/freework/cleaning/jobs_cleaning_cdi.sql)","name":"DbDriverFailed","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:26.520140Z"}}
+{"data":{"execution_time":1.8313966989517212,"node_info":{"materialized":"incremental","node_checksum":"26fc8b35b74a837426dca6773e9512b902ac74472555a45426dfd24f5bf52c02","node_finished_at":"2026-08-28T21:03:26.520649Z","node_name":"jobs_cleaning_cdi","node_path":"processing/models/freework/cleaning/jobs_cleaning_cdi.sql","node_relation":{"alias":"jobs_cleaning_cdi","database":"dev-env-368414","relation_name":"dev-env-368414.freework.jobs_cleaning_cdi","schema":"freework"},"node_started_at":"2026-08-28T21:03:24.689253Z","node_status":"error","resource_type":"model","unique_id":"model.processing.jobs_cleaning_cdi"},"status":"error"},"info":{"category":"","code":"Q012","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"info","msg":"    Failed [  1.83s] model freework.jobs_cleaning_cdi (incremental)","name":"LogModelResult","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:26.520945Z"}}
+{"data":{"run_result":{"execution_time":1.8313966989517212,"status":"error"},"status":"error","unique_id":"model.processing.jobs_cleaning_cdi"},"info":{"category":"","code":"Z033","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"debug","msg":"Marking children of model.processing.jobs_cleaning_cdi as skipped","name":"MarkSkippedChildren","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:26.521122Z"}}
+{"data":{"node_info":{"materialized":"incremental","node_checksum":"26fc8b35b74a837426dca6773e9512b902ac74472555a45426dfd24f5bf52c02","node_finished_at":"2026-08-28T21:03:26.520649Z","node_name":"jobs_cleaning_cdi","node_path":"processing/models/freework/cleaning/jobs_cleaning_cdi.sql","node_relation":{"alias":"jobs_cleaning_cdi","database":"dev-env-368414","relation_name":"dev-env-368414.freework.jobs_cleaning_cdi","schema":"freework"},"node_started_at":"2026-08-28T21:03:24.689253Z","node_status":"error","resource_type":"model","unique_id":"model.processing.jobs_cleaning_cdi"},"run_result":{"execution_time":1.8313966989517212,"status":"error"}},"info":{"category":"","code":"Q025","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"debug","msg":"Finished running node model.processing.jobs_cleaning_cdi","name":"NodeFinished","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:26.521106Z"}}
+{"data":{"artifact_path":"target/manifest.json","artifact_type":"WritableManifest"},"info":{"category":"","code":"P001","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"info","msg":"Artifact written to target/manifest.json","name":"ArtifactWritten","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:26.633535Z"}}
+{"data":{"msg":"New version available 2.0.0-preview.218 (run `dbt system update`)"},"info":{"category":"","code":"","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"info","msg":"New version available 2.0.0-preview.218 (run `dbt system update`)","name":"Generic","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:26.665785Z"}}
+{"data":{"completed_at":"2026-08-28T21:03:26.704614Z","elapsed":3.8467037677764893,"success":false},"info":{"category":"","code":"Q039","extra":{},"invocation_id":"01a04a2f-34e5-7cf1-b27f-ebdd22ceb8a2","level":"info","msg":"\n==================== Execution Summary =====================\nFinished 'run' with 2 warnings and 1 error for target 'freework' [3.8s]\nProcessed: 1 model\nSummary: 1 total | 1 error","name":"CommandCompleted","pid":164191,"thread":"tokio-rt-worker","ts":"2026-08-28T21:03:26.705104Z"}}
+[0m16:56:36.992004 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ba763628260>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ba76586a540>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ba762f64d40>]}
+
+
+============================== 16:56:36.995230 | 1c6981b8-a843-46ec-b507-a19a43ca5f1d ==============================
+[0m16:56:36.995230 [info ] [MainThread]: Running with dbt=1.11.14
+[0m16:56:36.995791 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'no_print': 'None', 'write_json': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'log_cache_events': 'False', 'profiles_dir': '/home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt', 'static_parser': 'True', 'debug': 'False', 'indirect_selection': 'eager', 'quiet': 'False', 'printer_width': '80', 'use_colors': 'True', 'invocation_command': 'dbt ', 'empty': 'None', 'introspect': 'True', 'log_path': '/home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt/logs', 'fail_fast': 'False', 'use_experimental_parser': 'False', 'version_check': 'True', 'warn_error': 'None', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True'}
+[0m16:56:37.154312 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '1c6981b8-a843-46ec-b507-a19a43ca5f1d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ba763d20200>]}
+[0m16:56:37.188613 [debug] [MainThread]: Set downloads directory='/tmp/dbt-downloads-ed2nm0i6'
+[0m16:56:37.189074 [debug] [MainThread]: Making package index registry request: GET https://hub.getdbt.com/api/v1/index.json
+[0m16:56:37.505563 [debug] [MainThread]: Response from registry index: GET https://hub.getdbt.com/api/v1/index.json 200
+[0m16:56:37.507117 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json
+[0m16:56:38.052585 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json 200
+[0m16:56:38.058819 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/audit_helper.json
+[0m16:56:38.738628 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/audit_helper.json 200
+[0m16:56:38.741622 [info ] [MainThread]: Installing dbt-labs/dbt_utils
+[0m16:56:39.522597 [info ] [MainThread]: Installed from version 1.2.0
+[0m16:56:39.523247 [info ] [MainThread]: Updated version available: 1.4.1
+[0m16:56:39.523628 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': '1c6981b8-a843-46ec-b507-a19a43ca5f1d', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ba762ef2570>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ba762e4b4a0>]}
+[0m16:56:39.524069 [info ] [MainThread]: Installing dbt-labs/audit_helper
+[0m16:56:40.697692 [info ] [MainThread]: Installed from version 0.7.0
+[0m16:56:40.698447 [info ] [MainThread]: Updated version available: 0.14.0
+[0m16:56:40.698941 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': '1c6981b8-a843-46ec-b507-a19a43ca5f1d', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ba763d20b00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ba762e4b4a0>]}
+[0m16:56:40.699343 [info ] [MainThread]: 
+[0m16:56:40.699796 [info ] [MainThread]: Updates available for packages: ['dbt-labs/dbt_utils', 'dbt-labs/audit_helper']                 
+Update your versions in packages.yml, then run dbt deps
+[0m16:56:40.701158 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 3.7762907, "process_in_blocks": "952", "process_kernel_time": 0.25643, "process_mem_max_rss": "108624", "process_out_blocks": "2816", "process_user_time": 1.926997}
+[0m16:56:40.702072 [debug] [MainThread]: Command `cli deps` succeeded at 16:56:40.701892 after 3.78 seconds
+[0m16:56:40.702696 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ba763494380>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ba762ef2570>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ba7637a2e10>]}
+[0m16:56:40.703201 [debug] [MainThread]: Flushing usage events
+[0m16:56:41.607858 [debug] [MainThread]: An error was encountered while trying to flush usage events
+==================== 2026-08-29T15:18:35.397935Z | 01a04e19-e683-7b12-b798-ef1c47999458 ====================
+15:18:35.399296 [info ]: dbt-fusion 2.0.0-preview.212
+15:18:35.400912 [info ]: Started loading project
+15:18:35.401683 [info ]: Loading profiles.yml
+15:18:35.402567 [info ]: Finished loading project [  0.00s]
+15:18:35.403439 [error]: [IoError (dbt1001)]: Failed to write file: /home/yassine/.dbt/leases/.dbt_lease_0f37014dc3: Read-only file system (os error 30): Read-only file system (os error 30)
+15:18:35.404511 [info ]: 
+==================== Execution Summary =====================
+Finished 'compile' with 1 error [6ms]
+==================== 2026-08-29T15:18:42.482976Z | 01a04e1a-0231-7fe1-a26d-0c8f0758cd4f ====================
+15:18:42.483156 [info ]: dbt-fusion 2.0.0-preview.212
+15:18:42.483394 [info ]: Started loading project
+15:18:42.483997 [info ]: Loading profiles.yml
+15:18:42.493191 [warn ]: [FmtError (dbt1041)]: Old format package-lock.yml file found. Please provide package definitions.
+15:18:42.493876 [info ]: Loading packages.yml
+15:18:42.494034 [debug]:    Started loading packages
+15:18:42.496930 [debug]:     Loaded [  0.00s] packages
+15:18:42.497763 [info ]: Finished loading project [  0.01s]
+15:18:42.498208 [info ]: Started parsing
+15:18:42.556532 [debug]: Finished parsing processing/models/danem_people/cleaning/danem_people_cleaning.yml [  0.00s]
+15:18:42.556799 [debug]: Finished parsing processing/models/danem_people/incremental/danem_people_incremental.yml [  0.00s]
+15:18:42.556982 [debug]: Finished parsing processing/models/danem_people/modeling/danem_people_modeling.yml [  0.00s]
+15:18:42.557137 [debug]: Finished parsing processing/models/freelance_info/cleaning/cleaning_freelance_info.yml [  0.00s]
+15:18:42.557344 [debug]: Finished parsing processing/models/freelance_info/merging/freelance_info_list_links.yml [  0.00s]
+15:18:42.557767 [debug]: Finished parsing processing/models/freework/cleaning/cleaning_freework.yml [  0.00s]
+15:18:42.558101 [debug]: Finished parsing processing/models/freework/modeling/modeling_freework.yml [  0.00s]
+15:18:42.558494 [debug]: Finished parsing processing/models/villeideal/cleaning/cleaning_villeideal.yml [  0.00s]
+15:18:42.558686 [debug]: Finished parsing processing/seeds/properties.yml [  0.00s]
+15:18:42.558730 [debug]: Finished parsing processing/analyses/schema.yml [  0.00s]
+15:18:42.567064 [debug]: Finished parsing processing/snapshots/cities_aggregation_snapshot.sql [  0.00s]
+15:18:42.570102 [debug]: Finished parsing processing/models/danem_people/cleaning/danem_cleaning_aggregation.sql [  0.00s]
+15:18:42.570846 [debug]: Finished parsing processing/models/danem_people/cleaning/danem_cleaning_cdi.sql [  0.00s]
+15:18:42.571555 [debug]: Finished parsing processing/models/danem_people/cleaning/danem_cleaning_freelance.sql [  0.00s]
+15:18:42.572231 [debug]: Finished parsing processing/models/danem_people/incremental/danem_people_link_list_merge.sql [  0.00s]
+15:18:42.573488 [debug]: Finished parsing processing/models/danem_people/modeling/danem_modeling_aggregation.sql [  0.00s]
+15:18:42.574768 [debug]: Finished parsing processing/models/freelance_info/cleaning/freelace_info_cleaning_jobs.sql [  0.00s]
+15:18:42.575396 [debug]: Finished parsing processing/models/freelance_info/merging/freelance_info_link_list_merge.sql [  0.00s]
+15:18:42.576365 [debug]: Finished parsing processing/models/freework/cleaning/jobs_cleaning_aggregation.sql [  0.00s]
+15:18:42.577517 [debug]: Finished parsing processing/models/freework/cleaning/jobs_cleaning_cdi.sql [  0.00s]
+15:18:42.578431 [debug]: Finished parsing processing/models/freework/cleaning/jobs_cleaning_freelance.sql [  0.00s]
+15:18:42.579822 [debug]: Finished parsing processing/models/freework/cleaning/jobs_cleaning_freelance_cdi.sql [  0.00s]
+15:18:42.580820 [debug]: Finished parsing processing/models/freework/modeling/compare_columns_location.sql [  0.00s]
+15:18:42.581751 [debug]: Finished parsing processing/models/freework/modeling/compare_queries_location.sql [  0.00s]
+15:18:42.582591 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_bridge_job_skill.sql [  0.00s]
+15:18:42.584025 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_experience.sql [  0.00s]
+15:18:42.586169 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_fact_jobs_initial.sql [  0.00s]
+15:18:42.587332 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_location.sql [  0.00s]
+15:18:42.588143 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_location_standardized.sql [  0.00s]
+15:18:42.589048 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_ref_job_category.sql [  0.00s]
+15:18:42.590050 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_skills.sql [  0.00s]
+15:18:42.590890 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_type.sql [  0.00s]
+15:18:42.591541 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_essone.sql [  0.00s]
+15:18:42.592224 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_hauts_de_seine.sql [  0.00s]
+15:18:42.592895 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_paris.sql [  0.00s]
+15:18:42.593562 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_seine_et_marne.sql [  0.00s]
+15:18:42.594245 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_seine_saint_denis.sql [  0.00s]
+15:18:42.595046 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_val_de_marne.sql [  0.00s]
+15:18:42.595827 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_val_doise.sql [  0.00s]
+15:18:42.621848 [warn ]: [NoNodeForYamlKey (dbt1089)]: Unused schema.yml entry for model 'danem_people_list_links'
+  --> processing/models/danem_people/incremental/danem_people_incremental.yml
+15:18:42.630044 [debug]: Finished parsing processing/analyses/number_jobs_per_day.sql [  0.00s]
+15:18:42.634394 [debug]: Finished parsing target/generic_tests/not_null_jobs_modeling_location_location_id.sql [  0.00s]
+15:18:42.634426 [debug]: Finished parsing target/generic_tests/source_not_null_danem_people_list_links_ext_insert_date.sql [  0.00s]
+15:18:42.634878 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_freelance_cdi_job_type.sql [  0.00s]
+15:18:42.634900 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_essone_city.sql [  0.00s]
+15:18:42.634983 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_aggregation_job_type.sql [  0.00s]
+15:18:42.635683 [debug]: Finished parsing target/generic_tests/unique_jobs_modeling_location_location_id.sql [  0.00s]
+15:18:42.635680 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_val_de_marne_city.sql [  0.00s]
+15:18:42.635891 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_essone_city.sql [  0.00s]
+15:18:42.636191 [debug]: Finished parsing target/generic_tests/accepted_values_jobs_cleaning__44be7877ba2aaa406f547b562de9059d.sql [  0.00s]
+15:18:42.636210 [debug]: Finished parsing target/generic_tests/source_not_null_danem_people_list_links_ext_link.sql [  0.00s]
+15:18:42.636402 [debug]: Finished parsing target/generic_tests/not_null_jobs_modeling_skills_skill_id.sql [  0.00s]
+15:18:42.636684 [debug]: Finished parsing target/generic_tests/accepted_values_jobs_cleaning__ed6685dc4af0a4e9e1b3caa2aa4346c9.sql [  0.00s]
+15:18:42.636768 [debug]: Finished parsing target/generic_tests/source_not_null_freelance_info_list_links_ext_insert_date.sql [  0.00s]
+15:18:42.636967 [debug]: Finished parsing target/generic_tests/unique_jobs_modeling_skills_skill_id.sql [  0.00s]
+15:18:42.637031 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_val_doise_city.sql [  0.00s]
+15:18:42.637228 [debug]: Finished parsing target/generic_tests/not_null_jobs_modeling_experience_experience_id.sql [  0.00s]
+15:18:42.637344 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_hauts_de_seine_city.sql [  0.00s]
+15:18:42.637356 [debug]: Finished parsing target/generic_tests/source_not_null_freelance_info_list_links_ext_title.sql [  0.00s]
+15:18:42.637873 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_hauts_de_seine_city.sql [  0.00s]
+15:18:42.637875 [debug]: Finished parsing target/generic_tests/not_null_jobs_modeling_type_job_type_id.sql [  0.00s]
+15:18:42.637878 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_val_doise_city.sql [  0.00s]
+15:18:42.637886 [debug]: Finished parsing target/generic_tests/unique_jobs_modeling_experience_experience_id.sql [  0.00s]
+15:18:42.638244 [debug]: Finished parsing target/generic_tests/source_not_null_freework_job_list_insert_date.sql [  0.00s]
+15:18:42.638700 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_cdi_insert_date.sql [  0.00s]
+15:18:42.639608 [debug]: Finished parsing target/generic_tests/not_null_danem_cleaning_aggregation_insert_date.sql [  0.00s]
+15:18:42.639622 [debug]: Finished parsing target/generic_tests/unique_jobs_modeling_type_job_type_id.sql [  0.00s]
+15:18:42.639882 [debug]: Finished parsing target/generic_tests/source_not_null_freework_job_list_title.sql [  0.00s]
+15:18:42.640169 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_paris_city.sql [  0.00s]
+15:18:42.640314 [debug]: Finished parsing target/generic_tests/not_null_danem_cleaning_cdi_insert_date.sql [  0.00s]
+15:18:42.640428 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_cdi_job_type.sql [  0.00s]
+15:18:42.640467 [debug]: Finished parsing target/generic_tests/relationships_jobs_modeling_fa_0493c19482a0d28dfb2a875db74273bb.sql [  0.00s]
+15:18:42.640817 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_paris_city.sql [  0.00s]
+15:18:42.641352 [debug]: Finished parsing target/generic_tests/source_not_null_freework_list_links_insert_date.sql [  0.00s]
+15:18:42.641861 [debug]: Finished parsing target/generic_tests/not_null_danem_cleaning_freelance_insert_date.sql [  0.00s]
+15:18:42.642035 [debug]: Finished parsing target/generic_tests/accepted_values_jobs_cleaning_cdi_job_type__CDI.sql [  0.00s]
+15:18:42.642068 [debug]: Finished parsing target/generic_tests/source_not_null_freework_list_links_job.sql [  0.00s]
+15:18:42.642375 [debug]: Finished parsing target/generic_tests/not_null_jobs_modeling_fact_jobs_initial_job_id.sql [  0.00s]
+15:18:42.642615 [debug]: Finished parsing target/generic_tests/not_null_danem_modeling_aggregation_insert_date.sql [  0.00s]
+15:18:42.642657 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_seine_saint_denis_city.sql [  0.00s]
+15:18:42.642861 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_freelance_insert_date.sql [  0.00s]
+15:18:42.642960 [debug]: Finished parsing target/generic_tests/unique_jobs_modeling_fact_jobs_initial_job_id.sql [  0.00s]
+15:18:42.643016 [debug]: Finished parsing target/generic_tests/source_not_null_freework_list_links_link.sql [  0.00s]
+15:18:42.643303 [debug]: Finished parsing target/generic_tests/not_null_freelace_info_cleaning_jobs_insert_date.sql [  0.00s]
+15:18:42.643385 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_seine_saint_denis_city.sql [  0.00s]
+15:18:42.643439 [debug]: Finished parsing target/generic_tests/relationships_jobs_modeling_fa_f9c6df8b0be6407e71791a250136cccc.sql [  0.00s]
+15:18:42.643718 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_aggregation_insert_date.sql [  0.00s]
+15:18:42.643775 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_freelance_job_type.sql [  0.00s]
+15:18:42.643864 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_val_de_marne_city.sql [  0.00s]
+15:18:42.644267 [debug]: Finished parsing target/generic_tests/relationships_jobs_modeling_fa_9d73c90739f7c494f758c4dbab99e1ef.sql [  0.00s]
+15:18:42.644405 [debug]: Finished parsing target/generic_tests/accepted_values_jobs_cleaning_freelance_job_type__Freelance.sql [  0.00s]
+15:18:42.644908 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_freelance_cdi_insert_date.sql [  0.00s]
+15:18:42.796948 [info ]: Finished parsing [  0.30s]
+15:18:42.798229 [info ]: Started scheduling
+15:18:42.798656 [info ]: Finished scheduling [  0.00s]
+15:18:42.799234 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "dev-env-368414", schema: "freework", table: "job_list" }) and interval: None
+15:18:42.801325 [debug]:    Started downloading relations (1 items)
+15:18:42.801542 [debug]: BigQuery driver resolved: bigquery 0.21.0.dev+dbt0.21.17
+15:18:42.802068 [debug]:     Failed [  0.00s] downloading relations (error: HTTP error: io: failed to lookup address information: Temporary failure in name resolution)
+15:18:42.837340 [info ]: Started building task graph
+15:18:42.837468 [info ]: Finished building task graph [  0.00s]
+15:18:42.839706 [info ]: Started rendering (4 nodes)
+15:18:42.839777 [info ]: Started test dbt_test__audit.not_null_jobs_cleaning_cdi_job_type
+15:18:42.839792 [debug]: Started rendering test dbt_test__audit.not_null_jobs_cleaning_cdi_job_type
+15:18:42.839855 [info ]: Started test dbt_test__audit.not_null_jobs_cleaning_cdi_insert_date
+15:18:42.839866 [debug]: Started rendering test dbt_test__audit.not_null_jobs_cleaning_cdi_insert_date
+15:18:42.839878 [info ]: Started test dbt_test__audit.accepted_values_jobs_cleaning_cdi_job_type__CDI
+15:18:42.839883 [debug]: Started rendering test dbt_test__audit.accepted_values_jobs_cleaning_cdi_job_type__CDI
+15:18:42.839891 [info ]: Started model freework.jobs_cleaning_cdi
+15:18:42.839897 [debug]: Started rendering model freework.jobs_cleaning_cdi
+15:18:42.844182 [error]: [DbDriverFailed (dbt1308)]: HTTP error: io: failed to lookup address information: Temporary failure in name resolution
+(in processing/models/freework/cleaning/jobs_cleaning_cdi.sql:35:15)
+  --> processing/models/freework/cleaning/jobs_cleaning_cdi.sql:35:15
+15:18:42.844251 [debug]: Finished rendering [  0.00s] model freework.jobs_cleaning_cdi [error]
+15:18:42.844330 [info ]: Started analyzing (4 nodes)
+15:18:42.844361 [debug]: Started analyzing model freework.jobs_cleaning_cdi
+15:18:42.844405 [debug]: Finished analyzing [  0.00s] model freework.jobs_cleaning_cdi [skipped]
+15:18:42.844415 [info ]:     Failed [  0.00s] model freework.jobs_cleaning_cdi (incremental)
+15:18:42.844866 [debug]: Compiled SQL for node test.processing.not_null_jobs_cleaning_cdi_job_type.4bc3f2f0ef at target/compiled/processing/target/generic_tests/not_null_jobs_cleaning_cdi_job_type.sql
+15:18:42.844940 [debug]: Compiled SQL for node test.processing.not_null_jobs_cleaning_cdi_insert_date.ae8f18644d at target/compiled/processing/target/generic_tests/not_null_jobs_cleaning_cdi_insert_date.sql
+15:18:42.844988 [debug]: Finished rendering [  0.01s] test dbt_test__audit.not_null_jobs_cleaning_cdi_job_type [success]
+15:18:42.845026 [debug]: Started analyzing test dbt_test__audit.not_null_jobs_cleaning_cdi_job_type
+15:18:42.845066 [debug]: Finished rendering [  0.01s] test dbt_test__audit.not_null_jobs_cleaning_cdi_insert_date [success]
+15:18:42.845085 [debug]: Compiled SQL for node test.processing.accepted_values_jobs_cleaning_cdi_job_type__CDI.3b56719ce9 at target/compiled/processing/target/generic_tests/accepted_values_jobs_cleaning_cdi_job_type__CDI.sql
+15:18:42.845089 [debug]: Started analyzing test dbt_test__audit.not_null_jobs_cleaning_cdi_insert_date
+15:18:42.845165 [debug]: Finished rendering [  0.01s] test dbt_test__audit.accepted_values_jobs_cleaning_cdi_job_type__CDI [success]
+15:18:42.845177 [info ]: Finished rendering [  0.01s] (4 nodes, 0 skipped, 1 errors)
+15:18:42.845200 [debug]: Started analyzing test dbt_test__audit.accepted_values_jobs_cleaning_cdi_job_type__CDI
+15:18:42.859174 [debug]: Finished analyzing [  0.01s] test dbt_test__audit.not_null_jobs_cleaning_cdi_job_type [success]
+15:18:42.859236 [info ]:  Succeeded [  0.02s] test  not_null_jobs_cleaning_cdi_job_type (processing/models/freework/cleaning/cleaning_freework.yml:43:13)
+15:18:42.859273 [debug]: Finished analyzing [  0.01s] test dbt_test__audit.not_null_jobs_cleaning_cdi_insert_date [success]
+15:18:42.859282 [info ]:  Succeeded [  0.02s] test  not_null_jobs_cleaning_cdi_insert_date (processing/models/freework/cleaning/cleaning_freework.yml:49:13)
+15:18:42.859311 [debug]: Finished analyzing [  0.01s] test dbt_test__audit.accepted_values_jobs_cleaning_cdi_job_type__CDI [success]
+15:18:42.859320 [info ]: Finished analyzing [  0.01s] (4 nodes, 1 skipped, 0 errors)
+15:18:42.859349 [info ]:  Succeeded [  0.02s] test  accepted_values_jobs_cleaning_cdi_job_type__CDI (processing/models/freework/cleaning/cleaning_freework.yml:44:13)
+15:18:42.907433 [info ]: 
+==================== Execution Summary =====================
+Finished 'compile' with 2 warnings and 1 error for target 'freework' [424ms]
+Processed: 1 model | 3 tests
+Summary: 4 total | 3 success | 1 error
+==================== 2026-08-29T15:18:50.600661Z | 01a04e1a-21e6-7410-8ef6-cfcf93c921b5 ====================
+15:18:50.600976 [info ]: dbt-fusion 2.0.0-preview.212
+15:18:50.601308 [info ]: Started loading project
+15:18:50.602297 [info ]: Loading profiles.yml
+15:18:50.611447 [warn ]: [FmtError (dbt1041)]: Old format package-lock.yml file found. Please provide package definitions.
+15:18:50.612483 [info ]: Loading packages.yml
+15:18:50.612649 [debug]:    Started loading packages
+15:18:50.615525 [debug]:     Loaded [  0.00s] packages
+15:18:50.616621 [info ]: Finished loading project [  0.02s]
+15:18:50.617043 [info ]: Started parsing
+15:18:50.673659 [debug]: Finished parsing processing/models/danem_people/cleaning/danem_people_cleaning.yml [  0.00s]
+15:18:50.673884 [debug]: Finished parsing processing/models/danem_people/incremental/danem_people_incremental.yml [  0.00s]
+15:18:50.674059 [debug]: Finished parsing processing/models/danem_people/modeling/danem_people_modeling.yml [  0.00s]
+15:18:50.674213 [debug]: Finished parsing processing/models/freelance_info/cleaning/cleaning_freelance_info.yml [  0.00s]
+15:18:50.674426 [debug]: Finished parsing processing/models/freelance_info/merging/freelance_info_list_links.yml [  0.00s]
+15:18:50.674813 [debug]: Finished parsing processing/models/freework/cleaning/cleaning_freework.yml [  0.00s]
+15:18:50.675223 [debug]: Finished parsing processing/models/freework/modeling/modeling_freework.yml [  0.00s]
+15:18:50.675784 [debug]: Finished parsing processing/models/villeideal/cleaning/cleaning_villeideal.yml [  0.00s]
+15:18:50.676124 [debug]: Finished parsing processing/seeds/properties.yml [  0.00s]
+15:18:50.676201 [debug]: Finished parsing processing/analyses/schema.yml [  0.00s]
+15:18:50.681759 [debug]: Finished parsing processing/snapshots/cities_aggregation_snapshot.sql [  0.00s]
+15:18:50.685092 [debug]: Finished parsing processing/models/danem_people/cleaning/danem_cleaning_aggregation.sql [  0.00s]
+15:18:50.685865 [debug]: Finished parsing processing/models/danem_people/cleaning/danem_cleaning_cdi.sql [  0.00s]
+15:18:50.686636 [debug]: Finished parsing processing/models/danem_people/cleaning/danem_cleaning_freelance.sql [  0.00s]
+15:18:50.687268 [debug]: Finished parsing processing/models/danem_people/incremental/danem_people_link_list_merge.sql [  0.00s]
+15:18:50.688464 [debug]: Finished parsing processing/models/danem_people/modeling/danem_modeling_aggregation.sql [  0.00s]
+15:18:50.689805 [debug]: Finished parsing processing/models/freelance_info/cleaning/freelace_info_cleaning_jobs.sql [  0.00s]
+15:18:50.690436 [debug]: Finished parsing processing/models/freelance_info/merging/freelance_info_link_list_merge.sql [  0.00s]
+15:18:50.691211 [debug]: Finished parsing processing/models/freework/cleaning/jobs_cleaning_aggregation.sql [  0.00s]
+15:18:50.692351 [debug]: Finished parsing processing/models/freework/cleaning/jobs_cleaning_cdi.sql [  0.00s]
+15:18:50.693094 [debug]: Finished parsing processing/models/freework/cleaning/jobs_cleaning_freelance.sql [  0.00s]
+15:18:50.693970 [debug]: Finished parsing processing/models/freework/cleaning/jobs_cleaning_freelance_cdi.sql [  0.00s]
+15:18:50.694832 [debug]: Finished parsing processing/models/freework/modeling/compare_columns_location.sql [  0.00s]
+15:18:50.695631 [debug]: Finished parsing processing/models/freework/modeling/compare_queries_location.sql [  0.00s]
+15:18:50.696491 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_bridge_job_skill.sql [  0.00s]
+15:18:50.697424 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_experience.sql [  0.00s]
+15:18:50.698832 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_fact_jobs_initial.sql [  0.00s]
+15:18:50.699653 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_location.sql [  0.00s]
+15:18:50.700608 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_location_standardized.sql [  0.00s]
+15:18:50.701356 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_ref_job_category.sql [  0.00s]
+15:18:50.702212 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_skills.sql [  0.00s]
+15:18:50.702996 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_type.sql [  0.00s]
+15:18:50.703745 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_essone.sql [  0.00s]
+15:18:50.704518 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_hauts_de_seine.sql [  0.00s]
+15:18:50.705253 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_paris.sql [  0.00s]
+15:18:50.705958 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_seine_et_marne.sql [  0.00s]
+15:18:50.706645 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_seine_saint_denis.sql [  0.00s]
+15:18:50.707311 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_val_de_marne.sql [  0.00s]
+15:18:50.708056 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_val_doise.sql [  0.00s]
+15:18:50.737796 [warn ]: [NoNodeForYamlKey (dbt1089)]: Unused schema.yml entry for model 'danem_people_list_links'
+  --> processing/models/danem_people/incremental/danem_people_incremental.yml
+15:18:50.743967 [debug]: Finished parsing processing/analyses/number_jobs_per_day.sql [  0.00s]
+15:18:50.747441 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_essone_city.sql [  0.00s]
+15:18:50.747454 [debug]: Finished parsing target/generic_tests/not_null_jobs_modeling_location_location_id.sql [  0.00s]
+15:18:50.747456 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_aggregation_job_type.sql [  0.00s]
+15:18:50.747462 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_val_de_marne_city.sql [  0.00s]
+15:18:50.748223 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_freelance_cdi_job_type.sql [  0.00s]
+15:18:50.748305 [debug]: Finished parsing target/generic_tests/source_not_null_danem_people_list_links_ext_insert_date.sql [  0.00s]
+15:18:50.748330 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_essone_city.sql [  0.00s]
+15:18:50.748705 [debug]: Finished parsing target/generic_tests/unique_jobs_modeling_location_location_id.sql [  0.00s]
+15:18:50.748744 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_val_doise_city.sql [  0.00s]
+15:18:50.748966 [debug]: Finished parsing target/generic_tests/source_not_null_danem_people_list_links_ext_link.sql [  0.00s]
+15:18:50.749232 [debug]: Finished parsing target/generic_tests/accepted_values_jobs_cleaning__ed6685dc4af0a4e9e1b3caa2aa4346c9.sql [  0.00s]
+15:18:50.749478 [debug]: Finished parsing target/generic_tests/accepted_values_jobs_cleaning__44be7877ba2aaa406f547b562de9059d.sql [  0.00s]
+15:18:50.749488 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_val_doise_city.sql [  0.00s]
+15:18:50.749578 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_hauts_de_seine_city.sql [  0.00s]
+15:18:50.750149 [debug]: Finished parsing target/generic_tests/not_null_jobs_modeling_skills_skill_id.sql [  0.00s]
+15:18:50.750201 [debug]: Finished parsing target/generic_tests/source_not_null_freelance_info_list_links_ext_insert_date.sql [  0.00s]
+15:18:50.751410 [debug]: Finished parsing target/generic_tests/not_null_danem_cleaning_aggregation_insert_date.sql [  0.00s]
+15:18:50.751410 [debug]: Finished parsing target/generic_tests/unique_jobs_modeling_skills_skill_id.sql [  0.00s]
+15:18:50.751442 [debug]: Finished parsing target/generic_tests/not_null_jobs_modeling_experience_experience_id.sql [  0.00s]
+15:18:50.751444 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_hauts_de_seine_city.sql [  0.00s]
+15:18:50.752236 [debug]: Finished parsing target/generic_tests/source_not_null_freelance_info_list_links_ext_title.sql [  0.00s]
+15:18:50.752235 [debug]: Finished parsing target/generic_tests/unique_jobs_modeling_experience_experience_id.sql [  0.00s]
+15:18:50.752247 [debug]: Finished parsing target/generic_tests/not_null_jobs_modeling_type_job_type_id.sql [  0.00s]
+15:18:50.752257 [debug]: Finished parsing target/generic_tests/not_null_danem_cleaning_cdi_insert_date.sql [  0.00s]
+15:18:50.752817 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_paris_city.sql [  0.00s]
+15:18:50.752932 [debug]: Finished parsing target/generic_tests/not_null_danem_cleaning_freelance_insert_date.sql [  0.00s]
+15:18:50.753011 [debug]: Finished parsing target/generic_tests/unique_jobs_modeling_type_job_type_id.sql [  0.00s]
+15:18:50.753310 [debug]: Finished parsing target/generic_tests/source_not_null_freework_job_list_insert_date.sql [  0.00s]
+15:18:50.753605 [debug]: Finished parsing target/generic_tests/not_null_danem_modeling_aggregation_insert_date.sql [  0.00s]
+15:18:50.753830 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_paris_city.sql [  0.00s]
+15:18:50.754101 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_cdi_insert_date.sql [  0.00s]
+15:18:50.754311 [debug]: Finished parsing target/generic_tests/source_not_null_freework_job_list_title.sql [  0.00s]
+15:18:50.754358 [debug]: Finished parsing target/generic_tests/relationships_jobs_modeling_fa_0493c19482a0d28dfb2a875db74273bb.sql [  0.00s]
+15:18:50.754727 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_seine_saint_denis_city.sql [  0.00s]
+15:18:50.754876 [debug]: Finished parsing target/generic_tests/not_null_freelace_info_cleaning_jobs_insert_date.sql [  0.00s]
+15:18:50.755164 [debug]: Finished parsing target/generic_tests/source_not_null_freework_list_links_insert_date.sql [  0.00s]
+15:18:50.755310 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_cdi_job_type.sql [  0.00s]
+15:18:50.755420 [debug]: Finished parsing target/generic_tests/not_null_jobs_modeling_fact_jobs_initial_job_id.sql [  0.00s]
+15:18:50.755679 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_seine_saint_denis_city.sql [  0.00s]
+15:18:50.755851 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_aggregation_insert_date.sql [  0.00s]
+15:18:50.755876 [debug]: Finished parsing target/generic_tests/source_not_null_freework_list_links_job.sql [  0.00s]
+15:18:50.756063 [debug]: Finished parsing target/generic_tests/accepted_values_jobs_cleaning_cdi_job_type__CDI.sql [  0.00s]
+15:18:50.756140 [debug]: Finished parsing target/generic_tests/unique_jobs_modeling_fact_jobs_initial_job_id.sql [  0.00s]
+15:18:50.756141 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_val_de_marne_city.sql [  0.00s]
+15:18:50.756500 [debug]: Finished parsing target/generic_tests/source_not_null_freework_list_links_link.sql [  0.00s]
+15:18:50.756546 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_freelance_insert_date.sql [  0.00s]
+15:18:50.756983 [debug]: Finished parsing target/generic_tests/relationships_jobs_modeling_fa_f9c6df8b0be6407e71791a250136cccc.sql [  0.00s]
+15:18:50.757061 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_freelance_job_type.sql [  0.00s]
+15:18:50.757457 [debug]: Finished parsing target/generic_tests/accepted_values_jobs_cleaning_freelance_job_type__Freelance.sql [  0.00s]
+15:18:50.757776 [debug]: Finished parsing target/generic_tests/relationships_jobs_modeling_fa_9d73c90739f7c494f758c4dbab99e1ef.sql [  0.00s]
+15:18:50.758152 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_freelance_cdi_insert_date.sql [  0.00s]
+15:18:50.890113 [info ]: Finished parsing [  0.27s]
+15:18:50.923866 [info ]: 
+==================== Execution Summary =====================
+Finished 'parse' with 2 warnings for target 'freework' [323ms]
+==================== 2026-08-29T15:20:47.652044Z | 01a04e1b-eb22-7401-afca-f6768e837775 ====================
+15:20:47.652233 [info ]: dbt-fusion 2.0.0-preview.212
+15:20:47.652461 [info ]: Started loading project
+15:20:47.653199 [info ]: Loading profiles.yml
+15:20:47.663572 [warn ]: [FmtError (dbt1041)]: Old format package-lock.yml file found. Please provide package definitions.
+15:20:47.664412 [info ]: Loading packages.yml
+15:20:47.664593 [debug]:    Started loading packages
+15:20:47.667876 [debug]:     Loaded [  0.00s] packages
+15:20:47.668918 [info ]: Finished loading project [  0.02s]
+15:20:47.669465 [info ]: Started parsing
+15:20:47.746516 [debug]: Finished parsing processing/models/danem_people/cleaning/danem_people_cleaning.yml [  0.00s]
+15:20:47.746829 [debug]: Finished parsing processing/models/danem_people/incremental/danem_people_incremental.yml [  0.00s]
+15:20:47.747061 [debug]: Finished parsing processing/models/danem_people/modeling/danem_people_modeling.yml [  0.00s]
+15:20:47.747301 [debug]: Finished parsing processing/models/freelance_info/cleaning/cleaning_freelance_info.yml [  0.00s]
+15:20:47.747602 [debug]: Finished parsing processing/models/freelance_info/merging/freelance_info_list_links.yml [  0.00s]
+15:20:47.748120 [debug]: Finished parsing processing/models/freework/cleaning/cleaning_freework.yml [  0.00s]
+15:20:47.748558 [debug]: Finished parsing processing/models/freework/modeling/modeling_freework.yml [  0.00s]
+15:20:47.749077 [debug]: Finished parsing processing/models/villeideal/cleaning/cleaning_villeideal.yml [  0.00s]
+15:20:47.749346 [debug]: Finished parsing processing/seeds/properties.yml [  0.00s]
+15:20:47.749421 [debug]: Finished parsing processing/analyses/schema.yml [  0.00s]
+15:20:47.757971 [debug]: Finished parsing processing/snapshots/cities_aggregation_snapshot.sql [  0.00s]
+15:20:47.761311 [debug]: Finished parsing processing/models/danem_people/cleaning/danem_cleaning_aggregation.sql [  0.00s]
+15:20:47.762182 [debug]: Finished parsing processing/models/danem_people/cleaning/danem_cleaning_cdi.sql [  0.00s]
+15:20:47.763099 [debug]: Finished parsing processing/models/danem_people/cleaning/danem_cleaning_freelance.sql [  0.00s]
+15:20:47.763858 [debug]: Finished parsing processing/models/danem_people/incremental/danem_people_link_list_merge.sql [  0.00s]
+15:20:47.765315 [debug]: Finished parsing processing/models/danem_people/modeling/danem_modeling_aggregation.sql [  0.00s]
+15:20:47.767032 [debug]: Finished parsing processing/models/freelance_info/cleaning/freelace_info_cleaning_jobs.sql [  0.00s]
+15:20:47.768106 [debug]: Finished parsing processing/models/freelance_info/merging/freelance_info_link_list_merge.sql [  0.00s]
+15:20:47.769350 [debug]: Finished parsing processing/models/freework/cleaning/jobs_cleaning_aggregation.sql [  0.00s]
+15:20:47.770608 [debug]: Finished parsing processing/models/freework/cleaning/jobs_cleaning_cdi.sql [  0.00s]
+15:20:47.771429 [debug]: Finished parsing processing/models/freework/cleaning/jobs_cleaning_freelance.sql [  0.00s]
+15:20:47.772411 [debug]: Finished parsing processing/models/freework/cleaning/jobs_cleaning_freelance_cdi.sql [  0.00s]
+15:20:47.773365 [debug]: Finished parsing processing/models/freework/modeling/compare_columns_location.sql [  0.00s]
+15:20:47.774184 [debug]: Finished parsing processing/models/freework/modeling/compare_queries_location.sql [  0.00s]
+15:20:47.775012 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_bridge_job_skill.sql [  0.00s]
+15:20:47.776001 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_experience.sql [  0.00s]
+15:20:47.777786 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_fact_jobs_initial.sql [  0.00s]
+15:20:47.778768 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_location.sql [  0.00s]
+15:20:47.779444 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_location_standardized.sql [  0.00s]
+15:20:47.780352 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_ref_job_category.sql [  0.00s]
+15:20:47.781581 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_skills.sql [  0.00s]
+15:20:47.782717 [debug]: Finished parsing processing/models/freework/modeling/jobs_modeling_type.sql [  0.00s]
+15:20:47.783806 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_essone.sql [  0.00s]
+15:20:47.784698 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_hauts_de_seine.sql [  0.00s]
+15:20:47.785570 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_paris.sql [  0.00s]
+15:20:47.786446 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_seine_et_marne.sql [  0.00s]
+15:20:47.787323 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_seine_saint_denis.sql [  0.00s]
+15:20:47.788151 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_val_de_marne.sql [  0.00s]
+15:20:47.789027 [debug]: Finished parsing processing/models/villeideal/cleaning/cities_cleaning_val_doise.sql [  0.00s]
+15:20:47.827455 [debug]: Finished parsing processing/analyses/number_jobs_per_day.sql [  0.00s]
+15:20:47.831391 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_essone_city.sql [  0.00s]
+15:20:47.831451 [debug]: Finished parsing target/generic_tests/accepted_values_jobs_cleaning_freelance_job_type__Freelance.sql [  0.00s]
+15:20:47.831565 [debug]: Finished parsing target/generic_tests/relationships_jobs_modeling_fa_f9c6df8b0be6407e71791a250136cccc.sql [  0.00s]
+15:20:47.831592 [debug]: Finished parsing target/generic_tests/source_not_null_danem_people_list_links_ext_insert_date.sql [  0.00s]
+15:20:47.832142 [debug]: Finished parsing target/generic_tests/not_null_freelance_info_link_list_merge_insert_date.sql [  0.00s]
+15:20:47.832231 [debug]: Finished parsing target/generic_tests/relationships_jobs_modeling_fa_9d73c90739f7c494f758c4dbab99e1ef.sql [  0.00s]
+15:20:47.832288 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_freelance_cdi_insert_date.sql [  0.00s]
+15:20:47.832370 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_val_de_marne_city.sql [  0.00s]
+15:20:47.832394 [debug]: Finished parsing target/generic_tests/source_not_null_danem_people_list_links_ext_link.sql [  0.00s]
+15:20:47.832408 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_essone_city.sql [  0.00s]
+15:20:47.833089 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_aggregation_insert_date.sql [  0.00s]
+15:20:47.833162 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_freelance_cdi_job_type.sql [  0.00s]
+15:20:47.833599 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_hauts_de_seine_city.sql [  0.00s]
+15:20:47.833612 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_val_doise_city.sql [  0.00s]
+15:20:47.834156 [debug]: Finished parsing target/generic_tests/source_not_null_freelance_info_list_links_ext_insert_date.sql [  0.00s]
+15:20:47.834200 [debug]: Finished parsing target/generic_tests/not_null_jobs_modeling_location_location_id.sql [  0.00s]
+15:20:47.834667 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_hauts_de_seine_city.sql [  0.00s]
+15:20:47.834724 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_aggregation_job_type.sql [  0.00s]
+15:20:47.835198 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_val_doise_city.sql [  0.00s]
+15:20:47.835222 [debug]: Finished parsing target/generic_tests/unique_jobs_modeling_location_location_id.sql [  0.00s]
+15:20:47.835684 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_paris_city.sql [  0.00s]
+15:20:47.835863 [debug]: Finished parsing target/generic_tests/accepted_values_jobs_cleaning__44be7877ba2aaa406f547b562de9059d.sql [  0.00s]
+15:20:47.836275 [debug]: Finished parsing target/generic_tests/not_null_jobs_modeling_skills_skill_id.sql [  0.00s]
+15:20:47.836349 [debug]: Finished parsing target/generic_tests/not_null_danem_cleaning_aggregation_insert_date.sql [  0.00s]
+15:20:47.836857 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_cdi_insert_date.sql [  0.00s]
+15:20:47.837378 [debug]: Finished parsing target/generic_tests/not_null_danem_cleaning_cdi_insert_date.sql [  0.00s]
+15:20:47.837403 [debug]: Finished parsing target/generic_tests/unique_jobs_modeling_skills_skill_id.sql [  0.00s]
+15:20:47.837429 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_cdi_job_type.sql [  0.00s]
+15:20:47.837476 [debug]: Finished parsing target/generic_tests/source_not_null_freelance_info_list_links_ext_title.sql [  0.00s]
+15:20:47.838166 [debug]: Finished parsing target/generic_tests/accepted_values_jobs_cleaning_cdi_job_type__CDI.sql [  0.00s]
+15:20:47.838211 [debug]: Finished parsing target/generic_tests/source_not_null_freework_job_list_insert_date.sql [  0.00s]
+15:20:47.838217 [debug]: Finished parsing target/generic_tests/accepted_values_jobs_cleaning__ed6685dc4af0a4e9e1b3caa2aa4346c9.sql [  0.01s]
+15:20:47.838287 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_paris_city.sql [  0.00s]
+15:20:47.838339 [debug]: Finished parsing target/generic_tests/not_null_danem_cleaning_freelance_insert_date.sql [  0.00s]
+15:20:47.838735 [debug]: Finished parsing target/generic_tests/not_null_jobs_modeling_experience_experience_id.sql [  0.00s]
+15:20:47.839098 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_freelance_insert_date.sql [  0.00s]
+15:20:47.839140 [debug]: Finished parsing target/generic_tests/not_null_danem_modeling_aggregation_insert_date.sql [  0.00s]
+15:20:47.839263 [debug]: Finished parsing target/generic_tests/source_not_null_freework_job_list_title.sql [  0.00s]
+15:20:47.839308 [debug]: Finished parsing target/generic_tests/unique_jobs_modeling_experience_experience_id.sql [  0.00s]
+15:20:47.839691 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_seine_saint_denis_city.sql [  0.00s]
+15:20:47.839769 [debug]: Finished parsing target/generic_tests/not_null_danem_people_link_list_merge_insert_date.sql [  0.00s]
+15:20:47.839893 [debug]: Finished parsing target/generic_tests/source_not_null_freework_list_links_insert_date.sql [  0.00s]
+15:20:47.839899 [debug]: Finished parsing target/generic_tests/relationships_jobs_modeling_fa_0493c19482a0d28dfb2a875db74273bb.sql [  0.00s]
+15:20:47.840060 [debug]: Finished parsing target/generic_tests/not_null_jobs_modeling_type_job_type_id.sql [  0.00s]
+15:20:47.840486 [debug]: Finished parsing target/generic_tests/not_null_cities_cleaning_seine_saint_denis_city.sql [  0.00s]
+15:20:47.840597 [debug]: Finished parsing target/generic_tests/not_null_freelace_info_cleaning_jobs_insert_date.sql [  0.00s]
+15:20:47.840722 [debug]: Finished parsing target/generic_tests/source_not_null_freework_list_links_job.sql [  0.00s]
+15:20:47.840743 [debug]: Finished parsing target/generic_tests/not_null_jobs_modeling_fact_jobs_initial_job_id.sql [  0.00s]
+15:20:47.840980 [debug]: Finished parsing target/generic_tests/unique_jobs_modeling_type_job_type_id.sql [  0.00s]
+15:20:47.841196 [debug]: Finished parsing target/generic_tests/not_null_jobs_cleaning_freelance_job_type.sql [  0.00s]
+15:20:47.841344 [debug]: Finished parsing target/generic_tests/source_not_null_freework_list_links_link.sql [  0.00s]
+15:20:47.841409 [debug]: Finished parsing target/generic_tests/unique_jobs_modeling_fact_jobs_initial_job_id.sql [  0.00s]
+15:20:47.841576 [debug]: Finished parsing target/generic_tests/unique_cities_cleaning_val_de_marne_city.sql [  0.00s]
+15:20:48.002554 [info ]: Finished parsing [  0.33s]
+15:20:48.026279 [info ]: 
+==================== Execution Summary =====================
+Finished 'parse' with 1 warning for target 'freework' [374ms]
+[0m19:29:28.803668 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71add05adf10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71adcfcfdfa0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71add0289eb0>]}
+
+
+============================== 19:29:28.815043 | 21ddfd77-b9bc-4882-a40e-64ab704c68ce ==============================
+[0m19:29:28.815043 [info ] [MainThread]: Running with dbt=1.11.14
+[0m19:29:28.816987 [debug] [MainThread]: running dbt with arguments {'invocation_command': 'dbt ', 'static_parser': 'True', 'log_path': '/home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt/logs', 'profiles_dir': '/home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt', 'debug': 'False', 'quiet': 'False', 'warn_error': 'None', 'use_experimental_parser': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'cache_selected_only': 'False', 'version_check': 'True', 'fail_fast': 'False', 'write_json': 'True', 'log_cache_events': 'False', 'target_path': 'None', 'send_anonymous_usage_stats': 'True', 'use_colors': 'True', 'partial_parse': 'True', 'empty': 'False', 'indirect_selection': 'eager', 'introspect': 'True', 'no_print': 'None', 'log_format': 'default', 'printer_width': '80'}
+[0m19:29:33.054884 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '21ddfd77-b9bc-4882-a40e-64ab704c68ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71adaf252690>]}
+[0m19:29:33.258152 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '21ddfd77-b9bc-4882-a40e-64ab704c68ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71adb97e1880>]}
+[0m19:29:33.259236 [info ] [MainThread]: Registered adapter: bigquery=1.12.0
+[0m19:29:33.582602 [debug] [MainThread]: checksum: 46ca364eb5a74e797770e439ab470326341fbe85061d8897787f099f52b7ce49, vars: {}, profile: , target: freework, version: 1.11.14
+[0m19:29:34.090386 [info ] [MainThread]: Unable to do partial parsing because config vars, config profile, or config target have changed
+[0m19:29:34.091165 [debug] [MainThread]: previous checksum: 46ca364eb5a74e797770e439ab470326341fbe85061d8897787f099f52b7ce49, current checksum: a68dd0028e4625ca51859c4d7ad960e9a293287eb57c7487058cd75251386e72
+[0m19:29:34.091839 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '21ddfd77-b9bc-4882-a40e-64ab704c68ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71adcfcb66f0>]}
+[0m19:29:39.038716 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '21ddfd77-b9bc-4882-a40e-64ab704c68ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71adadbd8470>]}
+[0m19:29:39.346347 [debug] [MainThread]: Wrote artifact WritableManifest to /home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt/target/manifest.json
+[0m19:29:39.358484 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt/target/semantic_manifest.json
+[0m19:29:39.408432 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '21ddfd77-b9bc-4882-a40e-64ab704c68ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71adad7982c0>]}
+[0m19:29:39.409908 [info ] [MainThread]: Found 28 models, 1 snapshot, 1 analysis, 2 seeds, 53 data tests, 16 sources, 2 exposures, 701 macros
+[0m19:29:39.411073 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '21ddfd77-b9bc-4882-a40e-64ab704c68ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71adad71a2d0>]}
+[0m19:29:39.418137 [info ] [MainThread]: 
+[0m19:29:39.419539 [info ] [MainThread]: Concurrency: 4 threads (target='freework')
+[0m19:29:39.421079 [info ] [MainThread]: 
+[0m19:29:39.422978 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m19:29:39.426107 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_dev-env-368414'
+[0m19:29:39.427853 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m19:29:40.696363 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_dev-env-368414, now list_dev-env-368414_danem_people)
+[0m19:29:40.699742 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_dev-env-368414_villeideal'
+[0m19:29:40.701622 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m19:29:40.704823 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_dev-env-368414_freework'
+[0m19:29:40.717004 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m19:29:40.707911 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_dev-env-368414_freelance_info'
+[0m19:29:40.709550 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m19:29:40.726249 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m19:29:41.486383 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '21ddfd77-b9bc-4882-a40e-64ab704c68ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71add23155e0>]}
+[0m19:29:41.488980 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m19:29:41.511433 [debug] [Thread-2 (]: Began running node model.processing.jobs_cleaning_cdi
+[0m19:29:41.514102 [info ] [Thread-2 (]: 1 of 1 START sql incremental model freework.jobs_cleaning_cdi .................. [RUN]
+[0m19:29:41.516505 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_dev-env-368414_danem_people, now model.processing.jobs_cleaning_cdi)
+[0m19:29:41.518536 [debug] [Thread-2 (]: Began compiling node model.processing.jobs_cleaning_cdi
+[0m19:29:41.574877 [debug] [Thread-2 (]: Writing injected SQL for node "model.processing.jobs_cleaning_cdi"
+[0m19:29:41.578508 [debug] [Thread-2 (]: Began executing node model.processing.jobs_cleaning_cdi
+[0m19:29:41.832712 [debug] [Thread-2 (]: Writing runtime sql for node "model.processing.jobs_cleaning_cdi"
+[0m19:29:41.834514 [debug] [Thread-2 (]: On model.processing.jobs_cleaning_cdi: /* {"app": "dbt", "dbt_version": "1.11.14", "profile_name": "processing", "target_name": "freework", "node_id": "model.processing.jobs_cleaning_cdi"} */
+
+  
+    
+
+    create or replace table `dev-env-368414`.`freework`.`jobs_cleaning_cdi`
+      
+    partition by timestamp_trunc(insert_date, day)
+    
+
+    
+    OPTIONS()
+    as (
+      
+
+with source as (
+    select * from `dev-env-368414`.`freework`.`job_list`
+),
+
+filtered_jobs as (
+    select
+        to_hex(md5(cast(coalesce(cast(title as string), '_dbt_utils_surrogate_key_null_') || '-' || coalesce(cast(insert_date as string), '_dbt_utils_surrogate_key_null_') as string))) as job_id,
+        split(title, '-')[OFFSET(0)] as job,
+        'CDI' as job_type,
+        safe_cast(replace(split(salary_tjm, '-')[OFFSET(0)], 'k', '000') as numeric) as salary_min,
+        safe_cast(replace(split(salary_tjm, '-')[SAFE_OFFSET(1)], 'k €/an', '000') as numeric) as salary_max,
+        start,
+        duration,
+        experience,
+        remote,
+        location,
+        key_skills,
+        insert_date,
+        description
+    from source
+    where 1=1
+        and key_skills not like '%Freelance%'
+        and key_skills like '%CDI%'
+        and split(title, '-')[OFFSET(0)] != ''
+        
+)
+
+select distinct *
+from filtered_jobs
+    );
+  
+[0m19:29:41.835988 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m19:29:42.536025 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=dev-env-368414&j=bq:europe-west1:127404a2-be12-425d-893d-f20d73da8277&page=queryresults
+[0m19:29:43.692936 [debug] [Thread-2 (]: SQL status: OK in 1.155 seconds
+[0m19:29:44.222592 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '21ddfd77-b9bc-4882-a40e-64ab704c68ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71adaf28eba0>]}
+[0m19:29:44.225024 [info ] [Thread-2 (]: 1 of 1 OK created sql incremental model freework.jobs_cleaning_cdi ............. [[32mCREATE TABLE (46.0 rows, 179.6 KiB processed)[0m in 2.69s]
+[0m19:29:44.227314 [debug] [Thread-2 (]: Finished running node model.processing.jobs_cleaning_cdi
+[0m19:29:44.233455 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m19:29:44.235838 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m19:29:44.237000 [debug] [MainThread]: Connection 'model.processing.jobs_cleaning_cdi' was properly closed.
+[0m19:29:44.238002 [debug] [MainThread]: Connection 'list_dev-env-368414_villeideal' was properly closed.
+[0m19:29:44.239291 [debug] [MainThread]: Connection 'list_dev-env-368414_freework' was properly closed.
+[0m19:29:44.240270 [debug] [MainThread]: Connection 'list_dev-env-368414_freelance_info' was properly closed.
+[0m19:29:44.241372 [info ] [MainThread]: 
+[0m19:29:44.242860 [info ] [MainThread]: Finished running 1 incremental model in 0 hours 0 minutes and 4.82 seconds (4.82s).
+[0m19:29:44.245849 [debug] [MainThread]: Command end result
+[0m19:29:44.483425 [debug] [MainThread]: Wrote artifact WritableManifest to /home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt/target/manifest.json
+[0m19:29:44.489785 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt/target/semantic_manifest.json
+[0m19:29:44.506289 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/yassine/Economic-Airflow-scheduler-on-GCP-/dbt/target/run_results.json
+[0m19:29:44.507539 [info ] [MainThread]: 
+[0m19:29:44.508876 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m19:29:44.509931 [info ] [MainThread]: 
+[0m19:29:44.511619 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=1
+[0m19:29:44.514597 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 16.72092, "process_in_blocks": "234560", "process_kernel_time": 1.678714, "process_mem_max_rss": "253732", "process_out_blocks": "6544", "process_user_time": 15.730613}
+[0m19:29:44.518560 [debug] [MainThread]: Command `cli run` succeeded at 19:29:44.518123 after 16.73 seconds
+[0m19:29:44.520347 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71add0475d90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71adadbd92b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71adae84fb30>]}
+[0m19:29:44.521713 [debug] [MainThread]: Flushing usage events
+[0m19:29:45.104044 [debug] [MainThread]: An error was encountered while trying to flush usage events

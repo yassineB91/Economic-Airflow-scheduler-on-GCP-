@@ -5,7 +5,7 @@
 
 
 select insert_date
-from `processing-452316`.`freework`.`list_links`
+from `dev-env-368414`.`freework`.`list_links`
 where insert_date is null
 
 

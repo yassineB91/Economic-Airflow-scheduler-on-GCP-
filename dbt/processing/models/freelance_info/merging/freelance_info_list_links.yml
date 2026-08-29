@@ -2,7 +2,7 @@ version: 2
 ###### Sources ######
 sources:
   - name: freelance_info
-    database: processing-452316
+    database: "{{ var('source_project', target.project) }}"
     schema: freelance_info
     tables:
       - name: list_links_ext
@@ -17,7 +17,7 @@ sources:
 ###### Models ######
 
 models:
-  - name: freelance_info_list_links
+  - name: freelance_info_link_list_merge
     description: "merge job links"
     columns:
       - name: insert_date

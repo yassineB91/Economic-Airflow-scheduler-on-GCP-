@@ -43,9 +43,9 @@ COALESCE(
 ) AS experience,
   insert_date
 
-FROM `processing-452316.freelance_info.job_list`
+FROM {{ source('freelance_info', 'job_list') }}
  {% if is_incremental() %}
-  where jca.insert_date >= (select coalesce(max(insert_date), '1900-01-01') from {{ this }})
+  where insert_date >= (select coalesce(max(insert_date), '1900-01-01') from {{ this }})
 {% endif %}
 ),
 

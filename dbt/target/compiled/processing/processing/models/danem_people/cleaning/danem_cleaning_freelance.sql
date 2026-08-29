@@ -3,7 +3,7 @@
 with src_freelance as (
 select 
 *
-from `processing-452316`.`danem_people`.`job_list` where job_type="Freelance"
+from `dev-env-368414`.`danem_people`.`job_list` where job_type="Freelance"
 
 )
 ,

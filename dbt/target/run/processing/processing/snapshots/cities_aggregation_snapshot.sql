@@ -1,6 +1,6 @@
 
-      merge into `processing-452316`.`villeideal`.`cities_aggregation_snapshot` as DBT_INTERNAL_DEST
-    using `processing-452316`.`villeideal`.`cities_aggregation_snapshot__dbt_tmp` as DBT_INTERNAL_SOURCE
+      merge into `dev-env-368414`.`villeideal`.`cities_aggregation_snapshot` as DBT_INTERNAL_DEST
+    using `dev-env-368414`.`villeideal`.`cities_aggregation_snapshot__dbt_tmp` as DBT_INTERNAL_SOURCE
     on DBT_INTERNAL_SOURCE.dbt_scd_id = DBT_INTERNAL_DEST.dbt_scd_id
 
     when matched

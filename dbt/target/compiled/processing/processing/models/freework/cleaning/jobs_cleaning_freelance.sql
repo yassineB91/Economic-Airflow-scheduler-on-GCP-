@@ -14,7 +14,7 @@ safe_cast(split(split(split(salary_tjm,"-")[SAFE_OFFSET(1)],",")[SAFE_OFFSET(0)]
  key_skills,
  insert_date,
  description
-from `processing-452316`.`freework`.`job_list`
+from `dev-env-368414`.`freework`.`job_list`
  where  key_skills like '%Freelance%'and key_skills not like '%CDI%'
 
 )

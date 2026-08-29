@@ -151,8 +151,8 @@
         },
         "stop": {
           "line": 35,
-          "col": 47,
-          "index": 789
+          "col": 44,
+          "index": 786
         }
       }
     },
@@ -173,12 +173,12 @@
         "start": {
           "line": 37,
           "col": 1,
-          "index": 856
+          "index": 853
         },
         "stop": {
           "line": 37,
           "col": 1,
-          "index": 856
+          "index": 853
         }
       }
     }

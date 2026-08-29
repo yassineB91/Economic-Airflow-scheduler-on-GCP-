@@ -77,39 +77,10 @@ def freework_job_scraper():
                                  dbt run --profiles-dir . --select jobs_cleaning_aggregation",
         on_failure_callback=task_failure_slack_alert,
         on_success_callback=task_success_slack_alert)
-    ##
-    jobs_modeling_experience = BashOperator(task_id="jobs_modeling_experience",bash_command=f"cd /opt/airflow/dbt && \
-                                 dbt run --profiles-dir . --select jobs_modeling_experience",
-        on_failure_callback=task_failure_slack_alert,
-        on_success_callback=task_success_slack_alert)
-    jobs_modeling_type = BashOperator(task_id="jobs_modeling_type",bash_command=f"cd /opt/airflow/dbt && \
-                                 dbt run --profiles-dir . --select jobs_modeling_type",
-        on_failure_callback=task_failure_slack_alert,
-        on_success_callback=task_success_slack_alert)
-    jobs_modeling_location = BashOperator(task_id="jobs_modeling_location",bash_command=f"cd /opt/airflow/dbt && \
-                                 dbt run --profiles-dir . --select jobs_modeling_location",
-        on_failure_callback=task_failure_slack_alert,
-        on_success_callback=task_success_slack_alert)
-    jobs_modeling_skills = BashOperator(task_id="jobs_modeling_skills",bash_command=f"cd /opt/airflow/dbt && \
-                                 dbt run --profiles-dir . --select jobs_modeling_skills",
-        on_failure_callback=task_failure_slack_alert,
-        on_success_callback=task_success_slack_alert)
-    jobs_modeling_fact_jobs_initial = BashOperator(task_id="jobs_modeling_fact_jobs_initial",bash_command=f"cd /opt/airflow/dbt && \
-                                 dbt run --profiles-dir . --select jobs_modeling_fact_jobs_initial",
-        on_failure_callback=task_failure_slack_alert,
-        on_success_callback=task_success_slack_alert)
-    jobs_modeling_bridge_job_skill = BashOperator(task_id="jobs_modeling_bridge_job_skill",bash_command=f"cd /opt/airflow/dbt && \
-                                 dbt run --profiles-dir . --select jobs_modeling_bridge_job_skill",
-        on_failure_callback=task_failure_slack_alert,
-        on_success_callback=task_success_slack_alert)
-    jobs_modeling_ref_job_category = BashOperator(task_id="jobs_modeling_ref_job_category",bash_command=f"cd /opt/airflow/dbt && \
-                                 dbt run --profiles-dir . --select jobs_modeling_ref_job_category",
-        on_failure_callback=task_failure_slack_alert,
-        on_success_callback=task_success_slack_alert)
-
+ 
 
     get_page_number_task() >> link_scraper_task() >> uploaded_file 
-    uploaded_file >> load_json_into_bq >> move_loaded_file >> [freelance_cleaning_task,cdi_cleaning_task,cdi_freelance_cleaning_task] >> jobs_cleaning_aggregation >> [jobs_modeling_experience,jobs_modeling_type,jobs_modeling_location,jobs_modeling_skills] >> jobs_modeling_fact_jobs_initial >> jobs_modeling_bridge_job_skill >> jobs_modeling_ref_job_category 
+    uploaded_file >> load_json_into_bq >> move_loaded_file >> [freelance_cleaning_task,cdi_cleaning_task,cdi_freelance_cleaning_task] >> jobs_cleaning_aggregation
 
 freework_job_scraper()
 

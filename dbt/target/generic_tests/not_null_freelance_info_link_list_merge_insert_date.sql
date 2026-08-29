@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="insert_date", model=get_where_subquery(ref('freelance_info_link_list_merge'))) }}

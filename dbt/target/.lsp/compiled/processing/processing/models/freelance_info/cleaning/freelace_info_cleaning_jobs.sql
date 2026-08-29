@@ -38,7 +38,7 @@ COALESCE(
 ) AS experience,
   insert_date
 
-FROM `processing-452316.freelance_info.job_list`
+FROM `dev-env-368414`.`freelance_info`.`job_list`
  
 ),
 

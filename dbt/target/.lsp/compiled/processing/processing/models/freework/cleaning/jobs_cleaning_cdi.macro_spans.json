@@ -47,8 +47,8 @@
         },
         "stop": {
           "line": 4,
-          "col": 60,
-          "index": 78
+          "col": 57,
+          "index": 75
         }
       }
     },
@@ -69,12 +69,12 @@
         "start": {
           "line": 9,
           "col": 9,
-          "index": 121
+          "index": 118
         },
         "stop": {
           "line": 9,
           "col": 185,
-          "index": 297
+          "index": 294
         }
       }
     },
@@ -95,12 +95,12 @@
         "start": {
           "line": 27,
           "col": 9,
-          "index": 908
+          "index": 905
         },
         "stop": {
-          "line": 27,
+          "line": 29,
           "col": 9,
-          "index": 908
+          "index": 1023
         }
       }
     }

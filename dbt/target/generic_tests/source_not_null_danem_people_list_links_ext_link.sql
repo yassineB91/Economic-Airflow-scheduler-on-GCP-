@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="link", model=get_where_subquery(source('danem_people', 'list_links_ext'))) }}

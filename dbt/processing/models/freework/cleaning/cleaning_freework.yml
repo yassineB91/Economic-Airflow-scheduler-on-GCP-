@@ -2,7 +2,7 @@ version: 2
 ###### Sources ######
 sources:
   - name: freework
-    database: processing-452316
+    database: "{{ var('source_project', target.project) }}"
     schema: freework
     tables:
       - name: list_links
@@ -34,9 +34,15 @@ sources:
         warn_after: {count: 24, period: hour}
         error_after: {count: 30, period: hour}
       loaded_at_field: insert_date
+
 models:
   - name: jobs_cleaning_cdi
     description: "freework CDI jobs content parsed and cleaned"
+
+    config:
+      contract:
+        enforced: true
+
     columns:
       - name: job_type
         data_tests:

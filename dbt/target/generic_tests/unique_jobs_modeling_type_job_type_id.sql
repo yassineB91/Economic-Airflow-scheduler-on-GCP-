@@ -1,0 +1,1 @@
+{{ test_unique(column_name="job_type_id", model=get_where_subquery(ref('jobs_modeling_type'))) }}

@@ -4,33 +4,33 @@ processing:
     villeideal:
       type: bigquery
       method: oauth
-      project: dev-env-368414
-      dataset: villeideal
+      project: "{{env_var('GCP_PROJECT_ID','dev-env-368414')}}"
+      dataset:  "{{env_var('BQ_DATASET','villeideal')}}"
       threads: 4
       timeout_seconds: 300
-      location: europe-west1
+      location: "{{env_var('BQ_REGION','europe-west1')}}"
       priority: interactive
       retries: 1
 
     freework:
       type: bigquery
       method: oauth
-      project: dev-env-368414
-      dataset: freework
+      project: "{{env_var('GCP_PROJECT_ID','dev-env-368414')}}"
+      dataset: "{{env_var('BQ_DATASET','freework')}}" 
       threads: 4
       timeout_seconds: 300
-      location: europe-west1
+      location: "{{env_var('BQ_REGION','europe-west1')}}"
       priority: interactive
       retries: 1
 
     freelance_info:
       type: bigquery
       method: oauth
-      project: dev-env-368414
-      dataset: freelance_info
+      project: "{{env_var('GCP_PROJECT_ID','dev-env-368414')}}"
+      dataset: "{{env_var('BQ_DATASET','freelance_info')}}"
       threads: 4
       timeout_seconds: 300
-      location: europe-west1
+      location: "{{env_var('BQ_REGION','europe-west1')}}"
       priority: interactive
       retries: 1
 
@@ -38,10 +38,10 @@ processing:
     danem_people:
       type: bigquery
       method: oauth
-      project: dev-env-368414
-      dataset: danem_people
+      project: "{{env_var('GCP_PROJECT_ID','dev-env-368414')}}"
+      dataset: "{{env_var('BQ_DATASET','danem_people')}}"
       threads: 4
       timeout_seconds: 300
-      location: europe-west1
+      location: "{{env_var('BQ_REGION','europe-west1')}}"
       priority: interactive
       retries: 1

@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `processing-452316`.`freework`.`jobs_modeling_ref_job_category`
+    create or replace table `dev-env-368414`.`freework`.`jobs_modeling_ref_job_category`
       
     
     
@@ -14,7 +14,7 @@
 with source_data as (
 with jobs as (
 select  distinct array_to_string(TEXT_ANALYZE(REGEXP_REPLACE(NORMALIZE(job, NFD), r"\pM", ''), analyzer=>'PATTERN_ANALYZER'),' ') as title,job, job_id
-from `processing-452316`.`freework`.`jobs_modeling_fact_jobs_initial`
+from `dev-env-368414`.`freework`.`jobs_modeling_fact_jobs_initial`
 
 )
 select distinct title,job,job_id,

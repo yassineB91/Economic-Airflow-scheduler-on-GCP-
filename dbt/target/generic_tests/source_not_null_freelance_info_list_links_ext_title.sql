@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="title", model=get_where_subquery(source('freelance_info', 'list_links_ext'))) }}

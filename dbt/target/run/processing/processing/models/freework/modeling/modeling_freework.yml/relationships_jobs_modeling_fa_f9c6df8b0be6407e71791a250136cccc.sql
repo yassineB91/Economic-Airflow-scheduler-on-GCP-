@@ -9,13 +9,13 @@ select
 
 with child as (
     select job_type_id as from_field
-    from `processing-452316`.`freework`.`jobs_modeling_fact_jobs_initial`
+    from `dev-env-368414`.`freework`.`jobs_modeling_fact_jobs_initial`
     where job_type_id is not null
 ),
 
 parent as (
     select job_type_id as to_field
-    from `processing-452316`.`freework`.`jobs_modeling_type`
+    from `dev-env-368414`.`freework`.`jobs_modeling_type`
 )
 
 select

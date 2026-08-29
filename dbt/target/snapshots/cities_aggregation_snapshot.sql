@@ -1,0 +1,1 @@
+{{ snapshot_cities_aggregation_snapshot() }}

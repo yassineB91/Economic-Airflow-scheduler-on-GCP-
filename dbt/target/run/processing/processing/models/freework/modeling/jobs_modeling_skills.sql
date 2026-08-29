@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `processing-452316`.`freework`.`jobs_modeling_skills`
+    create or replace table `dev-env-368414`.`freework`.`jobs_modeling_skills`
       
     
     
@@ -19,7 +19,7 @@ SELECT
     
     trim((replace(replace(replace(skills,"[",""),"]",""),"'","")))
  as skill
-    FROM `processing-452316`.`freework`.`jobs_cleaning_aggregation`,
+    FROM `dev-env-368414`.`freework`.`jobs_cleaning_aggregation`,
     unnest(split(key_skills,",")) as skills
     where 
     trim((replace(replace(replace(skills,"[",""),"]",""),"'","")))

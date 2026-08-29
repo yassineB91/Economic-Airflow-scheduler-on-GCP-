@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="city", model=get_where_subquery(ref('cities_cleaning_val_doise'))) }}

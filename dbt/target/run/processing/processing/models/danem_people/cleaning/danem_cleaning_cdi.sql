@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `processing-452316`.`danem_people`.`danem_cleaning_cdi`
+    create or replace table `dev-env-368414`.`danem_people`.`danem_cleaning_cdi`
       
     partition by timestamp_trunc(insert_date, day)
     
@@ -15,7 +15,7 @@ with src_cdi as (
 select 
 
 *
-from `processing-452316`.`danem_people`.`job_list` where job_type="CDI"
+from `dev-env-368414`.`danem_people`.`job_list` where job_type="CDI"
 
 ),
  stg_cdi as (

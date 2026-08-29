@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `processing-452316`.`freework`.`jobs_modeling_experience`
+    create or replace table `dev-env-368414`.`freework`.`jobs_modeling_experience`
       
     
     
@@ -15,7 +15,7 @@ with source_data as (
 with exp as (select
 distinct 
 experience
-from `processing-452316`.`freework`.`jobs_cleaning_aggregation`
+from `dev-env-368414`.`freework`.`jobs_cleaning_aggregation`
 
 )
 select 

@@ -2,7 +2,7 @@ version: 2
 ###### Sources ######
 sources:
   - name: danem_people
-    database: processing-452316
+    database: "{{ var('source_project', target.project) }}"
     schema: danem_people
     tables:
       - name: list_links_ext
@@ -17,7 +17,7 @@ sources:
 ###### Models ######
 
 models:
-  - name: danem_people_list_links
+  - name: danem_people_link_list_merge
     description: "merge job links"
     columns:
       - name: insert_date

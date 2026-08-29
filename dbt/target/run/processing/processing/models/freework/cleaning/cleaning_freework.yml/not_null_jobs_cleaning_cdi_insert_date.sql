@@ -10,7 +10,7 @@ select
 
 
 select insert_date
-from `processing-452316`.`freework`.`jobs_cleaning_cdi`
+from `dev-env-368414`.`freework`.`jobs_cleaning_cdi`
 where insert_date is null
 
 

@@ -2,10 +2,11 @@ version: 2
 ###### Sources ######
 sources:
   - name: freelance_info
-    database: processing-452316
+    database: "{{ var('source_project', target.project) }}"
     schema: freelance_info
     tables:
       - name: freelance_info_link_list_merge
+      - name: job_list
 
 
 ###### Models ######

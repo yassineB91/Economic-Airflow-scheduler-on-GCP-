@@ -2,7 +2,7 @@ version: 2
 ###### Sources ######
 sources:
   - name: danem_people
-    database: processing-452316
+    database: "{{ var('source_project', target.project) }}"
     schema: danem_people
     tables:
       - name: danem_cleaning_aggregation
